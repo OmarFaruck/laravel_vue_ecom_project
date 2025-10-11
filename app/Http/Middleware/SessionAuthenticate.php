@@ -20,6 +20,7 @@ class SessionAuthenticate
 
         if($email=="default"){
             // return redirect('/admin/login');
+            return redirect('/login');
         }
         else{
             $request->headers->set('email',$email);
