@@ -15,7 +15,7 @@ class RegisterController extends Controller
            $email=$request->session()->get('email','default');
            if($email != 'default') {
             // return redirect()->route('DashboardPage');
-            return redirect()->route(route: '/login');
+            return redirect()->route(route: 'loginPage');
         }
           return Inertia::render("Admin/RegisterPage");
 
@@ -26,7 +26,7 @@ class RegisterController extends Controller
         try {
             $email=$request->input('email');
             $name=$request->input('name');
-            $role='user';
+            // $role='user';
             $password=$request->input('password');
 
             User::create([
@@ -40,7 +40,8 @@ class RegisterController extends Controller
             session()->flash('status', true);
             session()->flash('error', '');
 
-            return  redirect()->route('registrationPage');
+            // return  redirect()->route('registrationPage');
+            return  redirect()->route('loginPage');
         }
         catch (\Exception $e) {
             session()->flash('message', 'Registration Fail');
@@ -51,8 +52,5 @@ class RegisterController extends Controller
     }
 
 
-    public function login(){
-          return Inertia::render("Admin/LoginPage");
-
-    }
+   
 }

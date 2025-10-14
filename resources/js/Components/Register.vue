@@ -73,7 +73,7 @@
         </a>
       </div>
 
-      <Link href="login" class="text-center">I already have a membership</Link>
+      <Link href='/login' class="text-center">I already have a membership</Link>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
@@ -103,7 +103,7 @@ function submit() {
             onSuccess:()=>{
                 if(page.props.flash.status===true){
                     // router.get("/admin/login")
-                    router.get("/login")
+                    router.get('/login')
                 }
                 else {                    
                     toaster.error(page.props.flash.message)

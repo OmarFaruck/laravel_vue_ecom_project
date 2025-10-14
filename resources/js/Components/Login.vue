@@ -9,17 +9,17 @@
     <div class="card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="../../index3.html" method="post">
+      <form @submit.prevent="submit"> 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" id="email" v-model="form.email" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+         <div class="input-group mb-3">
+          <input type="password" class="form-control" id="password" v-model="form.password" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -74,8 +74,33 @@
  
 </template>
 
-<script setup>
-import { Link } from '@inertiajs/vue3';
+<script setup lang="js">
+import { Link, useForm, usePage,router } from '@inertiajs/vue3';
+import { createToaster } from "@meforma/vue-toaster";
 
+const form = useForm({
+    email: '',
+    password: ''
+});
+const toaster = createToaster();
+const page =usePage()
 
+function submit() {
+    if (!form.email) {
+        toaster.error("Email Required");
+    } else if (!form.password) {
+        toaster.error("Password Required");
+    } else {
+        form.post("/login", {
+            onSuccess: () => {
+                if (page.props.flash.status) {
+                    // router.get("/admin/dashboard"); 
+                    router.get("/register");
+                } else {
+                    toaster.error(page.props.flash.message);
+                }
+            }
+        });
+    }
+}
 </script>
