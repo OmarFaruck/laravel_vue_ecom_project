@@ -19,5 +19,5 @@ Route::get('/login', [LoginController::class, 'loginPage'])->name(name: 'loginPa
 Route::post('/login', [LoginController::class, 'login'])->name(name: 'login');
 
 Route::middleware(['SessionAuthenticate'])->group(callback: function () {
-    // Route::get('/', [DashboardController::class, ''])->name('');
+    Route::get('/AdminPage', [DashboardController::class, 'AdminPage'])->name('AdminPage');
 });

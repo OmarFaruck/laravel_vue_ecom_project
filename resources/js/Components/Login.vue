@@ -62,8 +62,8 @@
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <Link href="/" class="text-center">Register a new membership</Link>
-        <!-- <Link href="register" class="text-center">Register a new membership</Link> -->
+        <!-- <Link href="/" class="text-center">Register a new membership</Link> -->
+        <Link href="/register" class="text-center">Register a new membership</Link>
       </p>
     </div>
     <!-- /.card-body -->
@@ -95,7 +95,7 @@ function submit() {
             onSuccess: () => {
                 if (page.props.flash.status) {
                     // router.get("/admin/dashboard"); 
-                    router.get("/register");
+                    router.get("/AdminPage");
                 } else {
                     toaster.error(page.props.flash.message);
                 }

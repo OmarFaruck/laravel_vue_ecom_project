@@ -14,10 +14,10 @@ class LoginController extends Controller
 
         $email=$request->session()->get('email','default'); //dd($email);
 
-        // if($email != 'default') {
-        //     // return redirect()->route('DashboardPage');
-        //     return redirect()->route('registrationPage');
-        // }
+        if($email != 'default') {
+            // return redirect()->route('DashboardPage');
+            return redirect()->route('AdminPage');
+        }
 
           return Inertia::render("Admin/LoginPage");
 
@@ -44,7 +44,7 @@ class LoginController extends Controller
             session()->flash('error', '');
 
             // return redirect()->route('DashboardPage');
-            return redirect()->route('registrationPage');
+            return redirect()->route('AdminPage');
         }
 
         // Login failed

@@ -125,7 +125,8 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
+                            <!-- <img class="img-fluid" src="img/carousel-1.jpg" alt="Image"> -->
+                            <img class="img-fluid" src="" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
@@ -135,7 +136,8 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
+                            <!-- <img class="img-fluid" src="img/carousel-2.jpg" alt="Image"> -->
+                            <img class="img-fluid" src="" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
@@ -203,11 +205,13 @@
                         <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
                         <form action="">
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
+                                <!-- <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" /> -->
+                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                    required="required" />
+                                <!-- <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
+                                    required="required" /> -->
+                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email" />
                             </div>
                             <div>
                                 <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
@@ -217,19 +221,7 @@
                 </div>
             </div>
         </div>
-        <div class="row border-top border-light mx-xl-5 py-4">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
-                    by
-                    <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a><br>
-                    Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                </p>
-            </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
-            </div>
-        </div>
+ 
     </div>
     <!-- Footer End -->
 </template>
