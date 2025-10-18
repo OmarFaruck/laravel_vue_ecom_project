@@ -1,11 +1,13 @@
 <template>
+       
     <FrontendLayout>
-      <h1>amar sonar  </h1>
-   </FrontendLayout>
+      <h1>dfbfgjh</h1>
+       
+    </FrontendLayout>
 </template>
 
-<script setup>
-import FrontendLayout from '@/Layout/FrontendLayout.vue';
+<script>
 
+import FrontendLayout from "@/Layout/FrontendLayout.vue";
 
 </script>
