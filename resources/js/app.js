@@ -2,6 +2,9 @@ import './bootstrap';
 import { createApp, h } from 'vue'
 import { createInertiaApp, router } from '@inertiajs/vue3'
 import NProgress from 'nprogress'
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+ 
  // Font Awesome imports
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

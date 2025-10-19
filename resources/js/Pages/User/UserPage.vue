@@ -1,10 +1,11 @@
 <template>
+ 
+<FrontendLayout/>
 
-<HomePage/>
-
+                
 </template>
-<script setup>
-import HomePage from '@/Components/User/HomePage.vue';
-
+<script setup> 
+import FrontendLayout from '@/Layout/FrontendLayout.vue';
+ 
 
 </script>
