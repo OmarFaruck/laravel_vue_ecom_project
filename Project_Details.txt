@@ -1,0 +1,18 @@
+				Admin & User Page
+-----------------------------------------------------------------------------------------------------------
+
+1. Controller + Model + Migration =>Categori + SubCategori Create.
+
+2.TrandyProducts Controller + Model + Migration Create & Table ( img,h6,price )
+
+3.JustArrived Controller + Model + Migration Create & Table ( img,h6,price )
+
+4.Subscribe Controller + Model + Migration Create & Table ( img,h6,price )
+
+5.Page Controller + Model + Migration Create & Table ( img,h6,price )
+
+6.Coupon Controller + Model + Migration Create & Table ( img,h6,price )
+
+7.Checkout Controller + Model + Migration Create & Table ( img,h6,price )
+
+# DateTable Link= https://hc200ok.github.io/vue3-easy-data-table-doc/introduction.html 
