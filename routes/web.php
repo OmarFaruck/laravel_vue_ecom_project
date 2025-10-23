@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\SessionAuthenticate;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\CategoriController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\DashboardController;
 
@@ -18,6 +19,10 @@ Route::post('/admin/register', [RegisterController::class, 'register'])->name(na
 Route::get('/login', [LoginController::class, 'loginPage'])->name(name: 'loginPage');
 Route::post('/login', [LoginController::class, 'login'])->name(name: 'login');
 
-Route::middleware(['SessionAuthenticate'])->group(callback: function () {
-    Route::get('/AdminPage', [DashboardController::class, 'AdminPage'])->name('AdminPage');
-});
+// Route::middleware(['SessionAuthenticate'])->group(callback: function () {
+//     Route::get('/AdminPage', [DashboardController::class, 'AdminPage'])->name('AdminPage');
+// });
+
+ Route::get('/AdminPage', [DashboardController::class, 'AdminPage'])->name('AdminPage');
+ 
+Route::resource('/categori', CategoriController::class);

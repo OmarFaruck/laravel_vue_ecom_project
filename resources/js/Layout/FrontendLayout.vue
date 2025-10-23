@@ -185,23 +185,22 @@
                             >
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            <a href="/login" class="nav-item nav-link">Login</a>
+                            <a href="/register" class="nav-item nav-link">Register</a>
                         </div>
                     </div>
                 </nav>
-             
-             
+
+
                <div
                     id="header-carousel"
                     class="carousel slide"
                     data-bs-ride="carousel"
                 >
                     <div class="carousel-inner">
-<<<<<<< HEAD
                         <div class="carousel-item active" style="height: 410px;">
                             <!-- <img class="img-fluid" src="img/carousel-1.jpg" alt="Image"> -->
-                            <img class="img-fluid" src="" alt="Image">
+                            <img class="img-fluid" :src="carouselImage1" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
@@ -212,64 +211,12 @@
                         </div>
                         <div class="carousel-item" style="height: 410px;">
                             <!-- <img class="img-fluid" src="img/carousel-2.jpg" alt="Image"> -->
-                            <img class="img-fluid" src="" alt="Image">
+                            <img class="img-fluid" :src="carouselImage2" alt="Image"/>
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
                                     <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
                                     <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-=======
-                        <div class="carousel-item active" style="height: 410px">
-                            <img
-                                class="img-fluid"
-                                :src="carouselImage1"
-                                alt="Carousel Image"
-                            />
-                            <div
-                                class="carousel-caption d-flex flex-column align-items-center justify-content-center"
-                            >
-                                <div class="p-3" style="max-width: 700px">
-                                    <h4
-                                        class="text-light text-uppercase font-weight-medium mb-3"
-                                    >
-                                        20% Off Your First Order
-                                    </h4>
-                                    <h3
-                                        class="display-4 text-white font-weight-semi-bold mb-4"
-                                    >
-                                        Fashionable Dress
-                                    </h3>
-                                    <a href="" class="btn btn-light py-2 px-3"
-                                        >Shop Now</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="carousel-item" style="height: 410px">
-                            <img
-                                class="img-fluid"
-                                :src="carouselImage2"
-                                alt="Carousel Image"
-                            />
-                            <div
-                                class="carousel-caption d-flex flex-column align-items-center justify-content-center"
-                            >
-                                <div class="p-3" style="max-width: 700px">
-                                    <h4
-                                        class="text-light text-uppercase font-weight-medium mb-3"
-                                    >
-                                        10% Off Your First Order
-                                    </h4>
-                                    <h3
-                                        class="display-4 text-white font-weight-semi-bold mb-4"
-                                    >
-                                        Reasonable Price
-                                    </h3>
-                                    <a href="" class="btn btn-light py-2 px-3"
-                                        >Shop Now</a
-                                    >
->>>>>>> 1828572 (All layout update)
                                 </div>
                             </div>
                         </div>
@@ -292,7 +239,7 @@
                     >
                         <span class="carousel-control-next-icon"></span>
                     </button>
-                </div>   
+                </div>
                 <UserPage/>
             </div>
         </div>
@@ -398,7 +345,6 @@
                         </h5>
                         <form action="">
                             <div class="form-group">
-<<<<<<< HEAD
                                 <!-- <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" /> -->
                                 <input type="text" class="form-control border-0 py-4" placeholder="Your Name" />
                             </div>
@@ -406,22 +352,6 @@
                                 <!-- <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
                                     required="required" /> -->
                                 <input type="email" class="form-control border-0 py-4" placeholder="Your Email" />
-=======
-                                <input
-                                    type="text"
-                                    class="form-control border-0 py-4"
-                                    placeholder="Your Name"
-                                />
-                                <!-- required="required" -->
-                            </div>
-                            <div class="form-group">
-                                <input
-                                    type="email"
-                                    class="form-control border-0 py-4"
-                                    placeholder="Your Email"
-                                />
-                                <!-- required="required" -->
->>>>>>> 1828572 (All layout update)
                             </div>
                             <div>
                                 <button
@@ -437,42 +367,16 @@
             </div>
         </div>
 
- 
-=======
-        <div class="row border-top border-light mx-xl-5 py-4">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy;
-                    <a class="text-dark font-weight-semi-bold" href="#"
-                        >Your Site Name</a
-                    >. All Rights Reserved. Designed by
-                    <a
-                        class="text-dark font-weight-semi-bold"
-                        href="https://htmlcodex.com"
-                        >HTML Codex</a
-                    ><br />
-                    Distributed By
-                    <a href="https://themewagon.com" target="_blank"
-                        >ThemeWagon</a
-                    >
-                </p>
-            </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <!-- <img class="img-fluid" src="img/payments.png" alt=""> -->
-                <img class="img-fluid" src="" alt="" />
-            </div>
-        </div>
->>>>>>> 1828572 (All layout update)
     </div>
     <!-- Footer End -->
 </template>
 
 <script>
- 
+
 
  import carouselImage1 from '@/Assets/css/fontend/img/carousel-1.jpg';
  import carouselImage2 from "@/Assets/css/fontend/img/carousel-2.jpg";
- 
+
  export default {
    data() {
      return {
