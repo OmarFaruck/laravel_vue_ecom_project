@@ -23,6 +23,6 @@ Route::post('/login', [LoginController::class, 'login'])->name(name: 'login');
 //     Route::get('/AdminPage', [DashboardController::class, 'AdminPage'])->name('AdminPage');
 // });
 
- Route::get('/AdminPage', [DashboardController::class, 'AdminPage'])->name('AdminPage');
+ Route::get('/admin/dashboard', [DashboardController::class, 'AdminPage'])->name('AdminPage');
  
-Route::resource('/categori', CategoriController::class);
+Route::resource('/category', CategoriController::class);
