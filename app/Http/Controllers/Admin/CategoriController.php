@@ -13,7 +13,7 @@ class CategoriController extends Controller
      */
     public function index(Request $request)
     {
-        $user_id=$request->header('$id');
+        // $user_id=$request->header('$id');
         return Inertia::render("Categori/CategoriPage");
     }
 
