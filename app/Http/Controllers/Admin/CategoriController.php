@@ -14,7 +14,7 @@ class CategoriController extends Controller
     public function index(Request $request)
     {
         // $user_id=$request->header('$id');
-        return Inertia::render("Categori/CategoriPage");
+        return Inertia::render("Admin/Categori/CategoriPage");
     }
 
     /**
