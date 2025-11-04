@@ -69,6 +69,21 @@
                                 <p>Category</p>
                             </Link>
                         </li>
+
+                        <li class="nav-item">
+                            <Link
+                                href="/logout"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/logout'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>Logout</p>
+                            </Link>
+                        </li>
+
+
                     </ul>
                 </nav>
             </div>

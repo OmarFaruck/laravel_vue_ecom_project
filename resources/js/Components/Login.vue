@@ -94,8 +94,8 @@ function submit() {
         form.post("/login", {
             onSuccess: () => {
                 if (page.props.flash.status) {
-                    // router.get("/admin/dashboard"); 
-                    router.get("/AdminPage");
+                    router.get("/admin/dashboard"); 
+                    // router.get("AdminPage");
                 } else {
                     toaster.error(page.props.flash.message);
                 }

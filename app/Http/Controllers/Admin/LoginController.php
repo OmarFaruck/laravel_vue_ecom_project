@@ -23,46 +23,46 @@ class LoginController extends Controller
 
     }
 
-     function login(Request $request) { //dd(Hash::make($request->input('password')));
+    public function login(Request $request)
+{
+    $user = User::where('email', $request->input('email'))->first();
 
-          $user = User::where('email', $request->input('email'))->first();
+    if ($user && Hash::check($request->input('password'), $user->password)) {
 
-        // Checking if user exists and verify password
-        if ($user && Hash::check($request->input('password'), $user->password)) {
+        $request->session()->regenerate();
 
-            // Regenerate session for security
-            $request->session()->regenerate();
-            
-            $email=$request->input('email');
-            $request->session()->put('email',$email);
-            $request->session()->put('user_id',$user->id);
-            $request->session()->put('name',$user->name);
-            // $request->session()->put('role',$user->role);
+        $request->session()->put('email', $user->email);
+        $request->session()->put('user_id', $user->id);
+        $request->session()->put('name', $user->name);
 
-            session()->flash('message', 'Login Successful');
-            session()->flash('status', true);
-            session()->flash('error', '');
+        session()->flash('message', 'Login Successful');
+        session()->flash('status', true);
 
-            // return redirect()->route('DashboardPage');
+        // ✅ ✅ Main Fix: usertype অনুযায়ী redirect
+        if ($user->usertype == '1') { 
+            // ✅ Admin
             return redirect()->route('AdminPage');
+        } else { 
+            // ✅ Normal User 
+            return redirect()->route('homePage');
         }
+    }
 
-        // Login failed
-        return back()->with([
-            'message' => 'Login Failed',
-            'status' => false,
-            'error' => 'Invalid email or password'
-        ]); 
+    // Login failed
+    return back()->with([
+        'message' => 'Login Failed',
+        'status' => false,
+        'error' => 'Invalid email or password'
+    ]);
+}   
+
+    function logoutPage(Request $request){
+//        echo 'logout'; exit;
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('loginPage');
 
     }    
-
-//     function logout(Request $request){
-// //        echo 'logout'; exit;
-//         $request->session()->invalidate();
-//         $request->session()->regenerateToken();
-//         return redirect()->route('LoginPage');
-
-//     }    
            
         
 
