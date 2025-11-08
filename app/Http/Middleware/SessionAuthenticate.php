@@ -64,11 +64,11 @@ class SessionAuthenticate
     if ($user->usertype == '0') {
 
         // ✅ user allowed: home page only
-        if ($request->is('/') || $request->routeIs('homePage')) {
+        if ($request->is('/homeproduct/pages') || $request->routeIs(patterns: 'HomeProductPage')) {
             return $next($request);
         }
 
-        return redirect()->route('homePage');
+        return redirect()->route('HomeProductPage');
     }
 
     return $next($request);

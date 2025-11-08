@@ -10,6 +10,9 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
+                <div class="text-end">
+                    <a href="category/CreatePage"><h3>Categori_Page</h3></a>
+                </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

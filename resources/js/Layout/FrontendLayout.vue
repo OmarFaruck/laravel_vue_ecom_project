@@ -240,13 +240,15 @@
                         <span class="carousel-control-next-icon"></span>
                     </button>
                 </div>
-                <UserPage/>
+                <!-- <UserPage/> -->
             </div>
         </div>
     </div>
     <!-- Navbar End -->
 
-    <slot />
+       <main>
+      <slot />
+    </main>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">

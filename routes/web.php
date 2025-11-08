@@ -30,11 +30,17 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
         ->name('AdminPage');
 
     // ✅ User route
-    Route::get('/', [PageController::class, 'home'])
-        ->name('homePage');
+    // Route::get('/', [PageController::class, 'home'])
+    //     ->name('homePage');
+    Route::get('/homeproduct/pages', [PageController::class, 'homeproductpage'])
+        ->name('HomeProductPage');
 
 });
 
-//  Route::get('/admin/dashboard', [DashboardController::class, 'AdminPage'])->name('AdminPage');
-
 Route::resource('/category', CategoriController::class);
+
+
+ Route::get('/', [PageController::class, 'home'])->name('home');
+ 
+
+

@@ -12,4 +12,8 @@ class PageController extends Controller
          return Inertia::render("User/UserPage");
          
     }
+    public function homeproductpage(Request $request){
+         return Inertia::render("User/UserPage");
+         
+    }
 }

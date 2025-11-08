@@ -44,7 +44,7 @@ class LoginController extends Controller
             return redirect()->route('AdminPage');
         } else { 
             // ✅ Normal User 
-            return redirect()->route('homePage');
+            return redirect()->route('HomeProductPage');
         }
     }
 
@@ -60,7 +60,7 @@ class LoginController extends Controller
 //        echo 'logout'; exit;
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('loginPage');
+        return redirect()->route('home');
 
     }    
            

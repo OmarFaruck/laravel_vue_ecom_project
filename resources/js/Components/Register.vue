@@ -82,7 +82,7 @@
 </template>
 
 <script setup lang="js">
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { Link, useForm, usePage, router } from '@inertiajs/vue3';
 import { createToaster } from "@meforma/vue-toaster";
 
 const form = useForm({name:'' , email:'' ,password:'' , retype_password:''})
@@ -105,7 +105,7 @@ function submit() {
                     // router.get("/admin/login")
                     router.get('/login')
                 }
-                else {                    
+                else {
                     toaster.error(page.props.flash.message)
                 }
             }
