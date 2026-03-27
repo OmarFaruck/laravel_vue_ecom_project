@@ -9,7 +9,7 @@
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form @submit.prevent="submit">
+      <form @submit.prevent="handleSignup">
         <div class="input-group mb-3">
           <input type="text" class="form-control" id="name" v-model="form.name" placeholder="Full name">
           <div class="input-group-append">
@@ -89,27 +89,37 @@ const form = useForm({name:'' , email:'' ,password:'' , retype_password:''})
 const toaster = createToaster();
 const page =usePage()
 
-function submit() {
-        if(form.email.length===0){
-        toaster.error("Name Required")
-    }
-    else if(form.name.length===0) {
-        toaster.error("Email Required")
-    }
-    else if(form.password.length===0) {
-        toaster.error("Password Required")
-    }else {
-        form.post("/admin/register",{
-            onSuccess:()=>{
-                if(page.props.flash.status===true){
-                    // router.get("/admin/login")
-                    router.get('/login')
-                }
-                else {
-                    toaster.error(page.props.flash.message)
-                }
-            }
-        })
-    }
+// function submit() {
+//         if(form.email.length===0){
+//         toaster.error("Name Required")
+//     }
+//     else if(form.name.length===0) {
+//         toaster.error("Email Required")
+//     }
+//     else if(form.password.length===0) {
+//         toaster.error("Password Required")
+//     }else {
+//         form.post("/admin/register",{
+//             onSuccess:()=>{
+//                 if(page.props.flash.status===true){
+//                     // router.get("/admin/login")
+//                     // router.get('/login')
+//                     windows.location.href="loginPage";
+//                     toaster.success(page.props.flash.message)
+//                 }
+//                 else {
+//                     toaster.error(page.props.flash.message)
+//                 }
+//             }
+//         })
+//     }
+// }
+
+function handleSignup() {
+    form.post('/admin/register', {
+        onSuccess: () => {
+            window.location.href = '/login';
+        }
+    })
 }
 </script>

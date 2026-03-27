@@ -11,46 +11,47 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function registrationPage(Request $request){
-           $email=$request->session()->get('email','default');
-           if($email != 'default') {
-            // return redirect()->route('DashboardPage');
-            return redirect()->route(route: 'loginPage');
-        }
-          return Inertia::render("Admin/RegisterPage");
-
-    }
-
+    public function registrationPage(Request $request)
+    {           //allahhu@1994
     
-    public function register(Request $request){
-        try {
-            $email=$request->input('email');
-            $name=$request->input('name');
-            // $role='user';
-            $password=$request->input('password');
-
-            User::create([
-                'name'=>$name,
-                'email'=>$email,
-                // 'role'=>$role,
-                'password'=>Hash::make($password)
-            ]);
-
-            session()->flash('message', 'Registration Successful');
-            session()->flash('status', true);
-            session()->flash('error', '');
-
-            // return  redirect()->route('registrationPage');
-            return  redirect()->route('loginPage');
-        }
-        catch (\Exception $e) {
-            session()->flash('message', 'Registration Fail');
-            session()->flash('status', false);
-            session()->flash('error', $e->getMessage());
-        }
-
+        return Inertia::render("Admin/RegisterPage");
     }
 
 
-   
+    public function register(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6'
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+
+        ]);
+
+        // return redirect()->route('loginPage'); 
+       return redirect()->back()->with('success', 'Registration Successful');
+
+        // try {
+        //     User::create([
+        //         'name'=>$request->name,
+        //         'email'=>$request->email,
+        //         'password'=>Hash::make($request->password)
+        //     ]);
+
+        //     return Inertia::location(route('loginPage')); // 🔥 FIX
+
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->with([
+        //         'error' => $e->getMessage()
+        //     ]);
+        // }
+
+
+    }
 }

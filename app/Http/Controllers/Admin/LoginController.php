@@ -11,14 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
      public function loginPage(Request $request){
-
-        $email=$request->session()->get('email','default'); //dd($email);
-
-        if($email != 'default') {
-            // return redirect()->route('DashboardPage');
-            return redirect()->route('AdminPage');
-        }
-
+        
           return Inertia::render("Admin/LoginPage");
 
     }

@@ -49,11 +49,15 @@
       </div>
 
       <div class="social-auth-links text-center mt-2 mb-3">
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+        <a href="/auth/github" class="btn btn-block btn-primary">
+          <i class="fab fa-github mr-2"></i> Sign in using github
         </a>
-        <a href="#" class="btn btn-block btn-danger">
+        <a href="/auth/google" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+        </a>
+      
+        <a href="/auth/facebook" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
         </a>
       </div>
       <!-- /.social-auth-links -->
