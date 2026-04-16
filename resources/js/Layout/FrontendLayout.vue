@@ -185,8 +185,26 @@
                             >
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="/login" class="nav-item nav-link">Login</a>
-                            <a href="/logout" class="nav-item nav-link">Logout</a>
+                         
+    <!-- ❌ User NOT logged in -->
+    <template v-if="!page.props.auth.user">
+        <Link href="/login" class="nav-item nav-link">
+            Login
+        </Link>
+    </template>
+
+    <!-- ✅ User logged in -->
+    <template v-else>
+        <Link 
+            href="/logout" 
+            method="post" 
+            as="button" 
+            class="nav-item nav-link"
+        >
+            Logout
+        </Link>
+    </template>
+ 
                         </div>
                     </div>
                 </nav>
@@ -373,8 +391,14 @@
     <!-- Footer End -->
 </template>
 
-<script>
 
+<script setup>
+import { Link, usePage } from '@inertiajs/vue3'
+
+const page = usePage()
+</script>
+
+<script>
 
  import carouselImage1 from '@/Assets/css/fontend/img/carousel-1.jpg';
  import carouselImage2 from "@/Assets/css/fontend/img/carousel-2.jpg";

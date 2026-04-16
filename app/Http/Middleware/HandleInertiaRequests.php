@@ -45,6 +45,7 @@ class HandleInertiaRequests extends Middleware
                 'share_data' => fn () => $request->session()->get('share_data')
             ],
             'auth' => [
+                
                 'user' => function () use ($request) {
                     $userId = $request->session()->get('user_id');
                     if ($userId) {

@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
      public function loginPage(Request $request){
-        
-          return Inertia::render("Admin/LoginPage");
+
+          return Inertia::render("Admin/LoginPage");    //allahhu@1994
 
     }
 
@@ -32,11 +32,11 @@ class LoginController extends Controller
         session()->flash('status', true);
 
         // ✅ ✅ Main Fix: usertype অনুযায়ী redirect
-        if ($user->usertype == '1') { 
+        if ($user->usertype == '1') {
             // ✅ Admin
             return redirect()->route('AdminPage');
-        } else { 
-            // ✅ Normal User 
+        } else {
+            // ✅ Normal User
             return redirect()->route('HomeProductPage');
         }
     }
@@ -47,7 +47,7 @@ class LoginController extends Controller
         'status' => false,
         'error' => 'Invalid email or password'
     ]);
-}   
+}
 
     function logoutPage(Request $request){
 //        echo 'logout'; exit;
@@ -55,12 +55,12 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('home');
 
-    }    
-           
-        
+    }
 
-        
-      
 
-      
+
+
+
+
+
 }
