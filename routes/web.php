@@ -24,6 +24,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 
 Route::get('/logout', [LoginController::class, 'logoutPage'])->name('logoutPage');
+Route::post('/logout', [LoginController::class, 'logoutPage'])->name('logoutPage');
 
 
 Route::get('/auth/{provider}', [SocialController::class, 'redirect'])->name('social.redirect');

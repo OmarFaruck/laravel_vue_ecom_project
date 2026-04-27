@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categori;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CategoriController extends Controller
 {
@@ -14,7 +15,9 @@ class CategoriController extends Controller
     public function index(Request $request)
     {
         // $user_id=$request->header('$id');
-        return Inertia::render("Admin/Categori/CategoriPage");
+        return Inertia::render("Admin/Categori/CategoriPage", [
+            'Categori' => Categori::all()
+        ]);
     }
 
     /**
@@ -30,7 +33,17 @@ class CategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+         $data=$request->validate([
+            'name'=>'required',
+            'description'=>'nullable'
+         ]);
+            Categori::create([
+                'name'=>$data['name'],
+                'description'=>$data['description']
+            ]);
+
+           return redirect()->route('category.index')->with('success','Categori created successfully');
     }
 
     /**
