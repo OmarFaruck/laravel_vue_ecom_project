@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+
 
 class PageController extends Controller
 {
@@ -16,4 +18,6 @@ class PageController extends Controller
          return Inertia::render("User/UserPage");
          
     }
+ 
+
 }

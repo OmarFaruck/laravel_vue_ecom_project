@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoriController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\RegisterController;
@@ -43,7 +43,14 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
         ->name('HomeProductPage');
 });
 
-Route::resource('/category', CategoriController::class);
+ 
 
 
 Route::get('/', [PageController::class, 'home'])->name('home');
+
+Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
