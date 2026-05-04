@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\RegisterController;
+use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\middleware\SessionAuthenticate;
@@ -54,3 +55,10 @@ Route::post('/category', [CategoryController::class, 'store'])->name('category.s
 Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
 Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+Route::get('/subcategory', [SubCategoryController::class, 'index'])->name('subcategory.index');
+Route::get('/subcategory/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
+Route::post('/subcategory', [SubCategoryController::class, 'store'])->name('subcategory.store');
+Route::get('/subcategory/{id}/edit', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
+Route::put('/subcategory/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
+Route::delete('/subcategory/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');

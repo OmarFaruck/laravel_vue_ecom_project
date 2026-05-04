@@ -72,6 +72,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/subcategory"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/subcategory'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>SubCategory</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
