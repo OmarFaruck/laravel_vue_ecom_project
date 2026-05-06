@@ -1,6 +1,5 @@
 <template>
-<SubCategoryPage :SubCategory="SubCategory"/>
- <!-- <h1>subcategory page</h1> -->
+  <SubCategoryPage :subcategories="subcategories" :category="category" />
 </template>
 
 <script setup>
@@ -12,7 +11,7 @@ defineOptions({
 });
 
 defineProps({
-  SubCategory: Array,
+  subcategories: Array,
+  category: Array,
 });
-
 </script>
