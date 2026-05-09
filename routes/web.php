@@ -1,5 +1,6 @@
 <?php
-
+ 
+use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
@@ -49,6 +50,7 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 
+// category Page
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
@@ -56,9 +58,20 @@ Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('ca
 Route::put('/category/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('/category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
+
+// subcategory Page
 Route::get('/subcategory', [SubCategoryController::class, 'index'])->name('subcategory.index');
 Route::get('/subcategory/create', [SubCategoryController::class, 'create'])->name('subcategory.create');
 Route::post('/subcategory', [SubCategoryController::class, 'store'])->name('subcategory.store');
 Route::get('/subcategory/{id}/edit', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
 Route::put('/subcategory/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update');
 Route::delete('/subcategory/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');
+
+
+// subcategory Page
+Route::get('/page_create', [AdminPageController::class, 'index'])->name('page_create');
+Route::get('/page_create/create', [AdminPageController::class, 'create'])->name('page_create.create');
+Route::post('/page_create', [AdminPageController::class, 'store'])->name('page_create.store');
+Route::get('/page_create/{id}/edit', [AdminPageController::class, 'edit'])->name('page_create.edit');
+Route::put('/page_create/{id}', [AdminPageController::class, 'update'])->name('page_create.update');
+Route::delete('/page_create/{id}', [AdminPageController::class, 'destroy'])->name('page_create.destroy');

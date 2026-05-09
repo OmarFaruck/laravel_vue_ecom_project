@@ -8,12 +8,12 @@
                     <label class="align-items-left">Search Name:</label>
                     <input v-model="searchValue" placeholder="Search by name..." type="text" class="form-control" />
                 </div>
-                <h2>SubCategory Pages</h2>
+                <h2>Page Create Pages</h2>
 
 
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
-                    Add SubCategory Page
+                    Add Page Create Page
                 </button>
 
 
@@ -65,14 +65,14 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitcreate">
                         <div class="modal-header">
-                            <h5 class="modal-title">SubCategory Form</h5>
+                            <h5 class="modal-title">Page Create Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label>Name:</label>
-                                <input v-model="form.name" type="text" placeholder="Subcategory Name"
+                                <input v-model="form.name" type="text" placeholder="Page Create Name"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.name">
                                     {{ form.errors.name }}
@@ -110,14 +110,14 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitUpdate">
                         <div class="modal-header">
-                            <h5 class="modal-title">SubCategory Form</h5>
+                            <h5 class="modal-title">Page Create Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label>Name:</label>
-                                <input v-model="form.name" type="text" placeholder="Edit Subcategory Name"
+                                <input v-model="form.name" type="text" placeholder="Edit Page Create Name"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.name">
                                     {{ form.errors.name }}

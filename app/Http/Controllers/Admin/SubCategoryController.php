@@ -41,16 +41,36 @@ class SubCategoryController extends Controller
 
     public function edit($id)
     {
-        // return Inertia::render('Admin/SubCategory/Edit', compact('id'));
+        $subcategory = SubCategory::findOrFail($id);
+        $categories = Category::select('id', 'name')->get();
+
+        return Inertia::render('Admin/SubCategory/Edit', [
+            'subcategory' => $subcategory,
+            'categories' => $categories,
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        // Logic for updating subcategory
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $subcategory = SubCategory::findOrFail($id);
+        $subcategory->update([
+            'name' => $data['name'],
+            'category_id' => $data['category_id'],
+        ]);
+
+        return redirect()->route('subcategory.index');
     }
 
     public function destroy($id)
     {
-        // Logic for deleting subcategory
+        $subcategory = SubCategory::findOrFail($id);
+        $subcategory->delete();
+
+        return redirect()->route('subcategory.index');
     }
 }

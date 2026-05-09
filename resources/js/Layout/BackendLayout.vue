@@ -85,6 +85,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/page_create"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/page_create'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>PageCreate</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
