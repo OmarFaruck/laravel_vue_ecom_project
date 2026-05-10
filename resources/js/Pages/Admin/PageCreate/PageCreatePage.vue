@@ -1,5 +1,5 @@
 <template>
-  <PageCreatePage :pagecreate="pagecreate" />
+  <PageCreatePage :PageCreate="PageCreate" />
 </template>
 
 <script setup>
@@ -11,6 +11,6 @@ defineOptions({
 });
 
 defineProps({
-  PageCreate: Array, 
+  PageCreate: Array,
 });
 </script>

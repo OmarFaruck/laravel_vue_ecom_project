@@ -69,7 +69,7 @@ Route::delete('/subcategory/{id}', [SubCategoryController::class, 'destroy'])->n
 
 
 // subcategory Page
-Route::get('/page_create', [AdminPageController::class, 'index'])->name('page_create');
+Route::get('/page_create', [AdminPageController::class, 'index'])->name('page_create.index');
 Route::get('/page_create/create', [AdminPageController::class, 'create'])->name('page_create.create');
 Route::post('/page_create', [AdminPageController::class, 'store'])->name('page_create.store');
 Route::get('/page_create/{id}/edit', [AdminPageController::class, 'edit'])->name('page_create.edit');

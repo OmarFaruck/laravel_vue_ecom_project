@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-    //
+    protected $fillable = [
+        'name',
+        'slug',     
+        // Add other fields as nec essary
+    ];
+
+  
 }

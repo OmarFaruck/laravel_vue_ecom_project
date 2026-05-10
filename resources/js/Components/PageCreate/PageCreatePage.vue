@@ -21,12 +21,12 @@
 
 
 
-            <Vue3EasyDataTable 
-            :headers="headers" 
-            :items="items" 
-            :rows-per-page="10" 
+            <Vue3EasyDataTable
+            :headers="headers"
+            :items="items"
+            :rows-per-page="10"
             border-cell
-            header-text-direction="center" 
+            header-text-direction="center"
             body-text-direction="center"
             :search-field="searchField"
             :search-value="searchValue"
@@ -71,7 +71,7 @@
 
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label>Name:</label>
+                                <label>Page Name:</label>
                                 <input v-model="form.name" type="text" placeholder="Page Create Name"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.name">
@@ -79,20 +79,17 @@
                                 </div>
                             </div>
 
-
                             <div class="mb-3">
-                                <label>Catagory id:</label>
-                                <select v-model="form.category_id" class="form-control">
-                                    <option value="">Select a category</option>
-                                    <option v-for="cata in category" :key="cata.id" :value="cata.id">
-                                        {{ cata.name }}
-                                    </option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.category_id">
-                                    {{ form.errors.category_id }}
+                                <label>Page Slug:</label>
+                                <input v-model="form.slug" type="text" placeholder="Page Create Slug"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.slug">
+                                    {{ form.errors.slug }}
                                 </div>
                             </div>
 
+
+                       
                         </div>
 
                         <div class="modal-footer">
@@ -124,20 +121,17 @@
                                 </div>
                             </div>
 
-
                             <div class="mb-3">
-                                <label>Catagory id:</label>
-                                <select v-model="form.category_id" class="form-control">
-                                    <option value="">Select a category</option>
-                                    <option v-for="cata in category" :key="cata.id" :value="cata.id">
-                                        {{ cata.name }}
-                                    </option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.category_id">
-                                    {{ form.errors.category_id }}
+                                <label>Slug:</label>
+                                <input v-model="form.slug" type="text" placeholder="Edit Page Create Slug"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.slug">
+                                    {{ form.errors.slug }}
                                 </div>
                             </div>
 
+
+                           
                         </div>
 
                         <div class="modal-footer">
@@ -154,7 +148,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useForm, router } from "@inertiajs/vue3";
+import { usePage,useForm, router } from "@inertiajs/vue3";
 import { Modal } from "bootstrap";
 import { SquarePen, Trash2 } from '@lucide/vue';
 import Vue3EasyDataTable from 'vue3-easy-data-table';
@@ -164,42 +158,28 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 import type { Header, Item } from "vue3-easy-data-table";
 
-const searchField = ["id", "name", "category.name"];
+const searchField = ["id", "name", "slug"];
 const searchValue = ref();
 
-interface CategoryItem {
-    id: number;
-    name: string;
-}
-
-interface SubCategoryItem {
-    id: number;
-    name: string;
-    category: CategoryItem;
-}
-
-const { subcategories, category } = defineProps({
-    subcategories: Array<SubCategoryItem>,
-    category: Array<CategoryItem>,
-});
-
-const items = computed(() => subcategories || []);
+ const page = usePage();
+ 
+const items = computed(() => page.props.pages || []);
 const headers = [
     { text: "ID", value: "id" },
-    { text: "Name", value: "name" },
-    { text: "Category", value: "category.name" },
+    { text: "Page Name", value: "name" },
+    { text: "Page slug", value: "slug" },
     { text: "Action", value: "action" },
 
 ];
 const form = useForm({
     id: null,
     name: "",
-    category_id: "",
+    slug: "",
     // image: null,
 });
 
 const submitcreate = () => {
-    form.post("/subcategory", {
+    form.post("/page_create", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -225,10 +205,10 @@ const submitcreate = () => {
     swal("Good job!", "This Subcategory will be added", "success");
 };
 
-function edit(item: { id: null; name: string; category_id: string; }) {
+function edit(item: { id: null; name: string; slug: string; }) {
     form.id = item.id;
     form.name = item.name;
-    form.category_id = item.category_id;
+    form.slug = item.slug;
 
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
@@ -254,7 +234,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/subcategory/${form.id}`, {
+        .post(`/page_create/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -276,7 +256,7 @@ function remove(data: { id: any; }) {
 
     swal({
         title: "Are you sure?",
-        text: "This Subcategory will be deleted!",
+        text: "This Page will be deleted!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -284,7 +264,7 @@ function remove(data: { id: any; }) {
 
         if (willDelete) {
 
-            router.delete(`/subcategory/${data.id}`, {
+            router.delete(`/page_create/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",
