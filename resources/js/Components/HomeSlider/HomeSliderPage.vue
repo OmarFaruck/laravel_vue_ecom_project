@@ -8,12 +8,12 @@
                     <label class="align-items-left">Search Name:</label>
                     <input v-model="searchValue" placeholder="Search by name..." type="text" class="form-control" />
                 </div>
-                <h2>SubCategory Pages</h2>
+                <h2>Home Slider Pages</h2>
 
 
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
-                    Add SubCategory Page
+                    Add Home Slider
                 </button>
 
 
@@ -21,17 +21,9 @@
 
 
 
-            <Vue3EasyDataTable 
-            :headers="headers" 
-            :items="items" 
-            :rows-per-page="10" 
-            border-cell
-            header-text-direction="center" 
-            body-text-direction="center"
-            :search-field="searchField"
-            :search-value="searchValue"
-
-                >
+            <Vue3EasyDataTable :headers="headers" :items="items" :rows-per-page="10" border-cell
+                header-text-direction="center" body-text-direction="center" :search-field="searchField"
+                :search-value="searchValue">
                 <template #header-name="header">
                     <div class="customize-header">
                         <!-- <img src="../images/name.png" class="header-icon"> -->
@@ -54,6 +46,9 @@
                     </button>
                 </template>
 
+                <template #item-image="item">
+                    <img :src="`/storage/homeslider/${item.image}`" width="80" height="60" class="rounded" />
+                </template>
 
             </Vue3EasyDataTable>
         </div>
@@ -65,33 +60,38 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitcreate">
                         <div class="modal-header">
-                            <h5 class="modal-title">SubCategory Form</h5>
+                            <h5 class="modal-title">Page Create Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label>Name:</label>
-                                <input v-model="form.name" type="text" placeholder="Subcategory Name"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.name">
-                                    {{ form.errors.name }}
+                                <label>Image:</label>
+                                <input @input="form.image = $event.target.files[0]" type="file" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.image">
+                                    {{ form.errors.image }}
                                 </div>
                             </div>
-
 
                             <div class="mb-3">
-                                <label>Catagory id:</label>
-                                <select v-model="form.category_id" class="form-control">
-                                    <option value="">Select a category</option>
-                                    <option v-for="cata in category" :key="cata.id" :value="cata.id">
-                                        {{ cata.name }}
-                                    </option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.category_id">
-                                    {{ form.errors.category_id }}
+                                <label>Heading:</label>
+                                <input v-model="form.heading" type="text" placeholder="Page Create Heading"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.heading">
+                                    {{ form.errors.heading }}
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label>Offer:</label>
+                                <input v-model="form.offer" type="text" placeholder="Page Create Offer"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.offer">
+                                    {{ form.errors.offer }}
+                                </div>
+                            </div>
+
+
 
                         </div>
 
@@ -110,33 +110,38 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitUpdate">
                         <div class="modal-header">
-                            <h5 class="modal-title">SubCategory Form</h5>
+                            <h5 class="modal-title">Page Edit Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label>Name:</label>
-                                <input v-model="form.name" type="text" placeholder="Edit Subcategory Name"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.name">
-                                    {{ form.errors.name }}
+                                <label>Image:</label>
+                                <input @input="form.image = $event.target.files[0]" type="file" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.image">
+                                    {{ form.errors.image }}
                                 </div>
                             </div>
-
 
                             <div class="mb-3">
-                                <label>Catagory id:</label>
-                                <select v-model="form.category_id" class="form-control">
-                                    <option value="">Select a category</option>
-                                    <option v-for="cata in category" :key="cata.id" :value="cata.id">
-                                        {{ cata.name }}
-                                    </option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.category_id">
-                                    {{ form.errors.category_id }}
+                                <label>Heading:</label>
+                                <input v-model="form.heading" type="text" placeholder="Page Edit Heading"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.heading">
+                                    {{ form.errors.heading }}
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label>Offer:</label>
+                                <input v-model="form.offer" type="text" placeholder="Page Edit Offer"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.offer">
+                                    {{ form.errors.offer }}
+                                </div>
+                            </div>
+
+
 
                         </div>
 
@@ -153,54 +158,42 @@
     </div>
 </template>
 
-<script setup lang="ts">
-import { useForm, router } from "@inertiajs/vue3";
+<script setup>
+import { usePage, useForm, router } from "@inertiajs/vue3";
 import { Modal } from "bootstrap";
 import { SquarePen, Trash2 } from '@lucide/vue';
-import  Vue3EasyDataTable  from 'vue3-easy-data-table';
+import Vue3EasyDataTable from 'vue3-easy-data-table';
 import 'vue3-easy-data-table/dist/style.css';
+// import 'vue3-easy-data-table';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
- 
 
-const searchField = ["id", "name", "category.name"];
+const searchField = ["id", "image", "heading", "offer"];
 const searchValue = ref();
 
-interface CategoryItem {
-    id: number;
-    name: string;
-}
+const page = usePage();
 
-interface SubCategoryItem {
-    id: number;
-    name: string;
-    category: CategoryItem;
-}
-
-const { subcategories, category } = defineProps({
-    subcategories: Array<SubCategoryItem>,
-    category: Array<CategoryItem>,
-});
-
-const items = computed(() => subcategories || []);
+const items = computed(() => page.props.homeslider || []);
 const headers = [
     { text: "ID", value: "id" },
-    { text: "Name", value: "name" },
-    { text: "Category", value: "category.name" },
+    { text: "Image", value: "image" },
+    { text: "Heading", value: "heading" },
+    { text: "Offer", value: "offer" },
     { text: "Action", value: "action" },
 
 ];
 const form = useForm({
     id: null,
-    name: "",
-    category_id: "",
+    image: null,
+    heading: "",
+    offer: "",
     // image: null,
 });
 
 const submitcreate = () => {
-    form.post("/subcategory", {
+    form.post("/homeslider", {
         onSuccess: () => {
-            // Form এর সব input ফাঁকা করে দেয়
+            // Form এর সব input ফাঁকা করে দেয়
             form.reset();
 
 
@@ -221,14 +214,14 @@ const submitcreate = () => {
         },
     });
 
-    swal("Good job!", "This Subcategory will be added", "success");
+    swal("Good job!", "This Home Slider will be added", "success");
 };
 
-function edit(item: { id: null; name: string; category_id: string; }) {
+function edit(item) {
     form.id = item.id;
-    form.name = item.name;
-    form.category_id = item.category_id;
-
+    form.image = null;
+    form.heading = item.heading;
+    form.offer = item.offer;
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);
@@ -237,8 +230,6 @@ function edit(item: { id: null; name: string; category_id: string; }) {
 }
 
 function submitUpdate() {
-
-
 
     const ModelEI = document.getElementById("editModal");
     if (ModelEI) {
@@ -253,7 +244,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/subcategory/${form.id}`, {
+        .post(`/homeslider/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -268,14 +259,14 @@ function submitUpdate() {
 
         });
 
-    swal("Good job!", "This Subcategory will be updated", "success");
+    swal("Good job!", "This Home Slider will be updated", "success");
 }
 
-function remove(data: { id: any; }) {
+function remove(data) {
 
     swal({
         title: "Are you sure?",
-        text: "This Subcategory will be deleted!",
+        text: "This Home Slider will be deleted!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -283,7 +274,7 @@ function remove(data: { id: any; }) {
 
         if (willDelete) {
 
-            router.delete(`/subcategory/${data.id}`, {
+            router.delete(`/homeslider/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

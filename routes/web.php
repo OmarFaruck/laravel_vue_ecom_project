@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -75,3 +76,12 @@ Route::post('/page_create', [AdminPageController::class, 'store'])->name('page_c
 Route::get('/page_create/{id}/edit', [AdminPageController::class, 'edit'])->name('page_create.edit');
 Route::put('/page_create/{id}', [AdminPageController::class, 'update'])->name('page_create.update');
 Route::delete('/page_create/{id}', [AdminPageController::class, 'destroy'])->name('page_create.destroy');
+
+
+// home slider Page
+Route::get('/homeslider', [HomeSliderController::class, 'index'])->name('home_slider.index');
+Route::get('/homeslider/create', [HomeSliderController::class, 'create'])->name('home_slider.create');
+Route::post('/homeslider', [HomeSliderController::class, 'store'])->name('home_slider.store');
+Route::get('/homeslider/{id}/edit', [HomeSliderController::class, 'edit'])->name('home_slider.edit');
+Route::put('/homeslider/{id}', [HomeSliderController::class, 'update'])->name('home_slider.update');
+Route::delete('/homeslider/{id}', [HomeSliderController::class, 'destroy'])->name('home_slider.destroy');

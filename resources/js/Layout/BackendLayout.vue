@@ -98,6 +98,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/homeslider"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/homeslider'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>HomeSlider</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
