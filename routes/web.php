@@ -1,6 +1,7 @@
 <?php
  
 use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
@@ -85,3 +86,12 @@ Route::post('/homeslider', [HomeSliderController::class, 'store'])->name('home_s
 Route::get('/homeslider/{id}/edit', [HomeSliderController::class, 'edit'])->name('home_slider.edit');
 Route::put('/homeslider/{id}', [HomeSliderController::class, 'update'])->name('home_slider.update');
 Route::delete('/homeslider/{id}', [HomeSliderController::class, 'destroy'])->name('home_slider.destroy');
+
+
+// brand Page
+Route::get('/brandpage', [BrandController::class, 'index'])->name('brand_page.index');
+Route::get('/brandpage/create', [BrandController::class, 'create'])->name('brand_page.create');
+Route::post('/brandpage', [BrandController::class, 'store'])->name('brand_page.store');
+Route::get('/brandpage/{id}/edit', [BrandController::class, 'edit'])->name('brand_page.edit');
+Route::put('/brandpage/{id}', [BrandController::class, 'update'])->name('brand_page.update');
+Route::delete('/brandpage/{id}', [BrandController::class, 'destroy'])->name('brand_page.destroy');

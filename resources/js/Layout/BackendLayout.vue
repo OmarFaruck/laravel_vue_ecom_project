@@ -111,6 +111,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/brandpage"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/brandpage'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-tag"></i>
+                                <p>BrandPage</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
