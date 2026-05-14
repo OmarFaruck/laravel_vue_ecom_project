@@ -124,6 +124,45 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/trendyproducts"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/trendyproducts'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-fire"></i>
+                                <p>TrendyProduct</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
+                                href="/justarrived"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/justarrived'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-fire"></i>
+                                <p>JustArrived</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
+                                href="/newsletter"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/newsletter'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                <p>Newsletter</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{

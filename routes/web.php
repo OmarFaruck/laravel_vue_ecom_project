@@ -5,9 +5,12 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
+use App\Http\Controllers\Admin\JustArrivedController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\TrendyProductController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\middleware\SessionAuthenticate;
@@ -95,3 +98,33 @@ Route::post('/brandpage', [BrandController::class, 'store'])->name('brand_page.s
 Route::get('/brandpage/{id}/edit', [BrandController::class, 'edit'])->name('brand_page.edit');
 Route::put('/brandpage/{id}', [BrandController::class, 'update'])->name('brand_page.update');
 Route::delete('/brandpage/{id}', [BrandController::class, 'destroy'])->name('brand_page.destroy');
+
+
+// brand Page
+
+Route::get('/trendyproducts', [TrendyProductController::class, 'index'])->name('trendy_products.index');
+Route::get('/trendyproducts/create', [TrendyProductController::class, 'create'])->name('trendy_products.create');
+Route::post('/trendyproducts', [TrendyProductController::class, 'store'])->name('trendy_products.store');
+Route::get('/trendyproducts/{id}/edit', [TrendyProductController::class, 'edit'])->name('trendy_products.edit');
+Route::put('/trendyproducts/{id}', [TrendyProductController::class, 'update'])->name('trendy_products.update');
+Route::delete('/trendyproducts/{id}', [TrendyProductController::class, 'destroy'])->name('trendy_products.destroy');
+
+
+// brand Page
+
+Route::get('/justarrived', [JustArrivedController::class, 'index'])->name('just_arrived.index');
+Route::get('/justarrived/create', [JustArrivedController::class, 'create'])->name('just_arrived.create');
+Route::post('/justarrived', [JustArrivedController::class, 'store'])->name('just_arrived.store');
+Route::get('/justarrived/{id}/edit', [JustArrivedController::class, 'edit'])->name('just_arrived.edit');
+Route::put('/justarrived/{id}', [JustArrivedController::class, 'update'])->name('just_arrived.update');
+Route::delete('/justarrived/{id}', [JustArrivedController::class, 'destroy'])->name('just_arrived.destroy');
+
+
+// brand Page
+
+Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');
+Route::get('/newsletter/create', [NewsLetterController::class, 'create'])->name('news_letter.create');
+Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store');
+Route::get('/newsletter/{id}/edit', [NewsLetterController::class, 'edit'])->name('news_letter.edit');
+Route::put('/newsletter/{id}', [NewsLetterController::class, 'update'])->name('news_letter.update');
+Route::delete('/newsletter/{id}', [NewsLetterController::class, 'destroy'])->name('news_letter.destroy');
