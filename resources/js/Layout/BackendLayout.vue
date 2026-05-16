@@ -150,6 +150,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/stayupdate"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/stayupdate'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>StayUpdate</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/justarrived"
                                 class="nav-link"
                                 :class="{

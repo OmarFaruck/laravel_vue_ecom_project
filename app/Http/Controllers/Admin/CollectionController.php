@@ -9,7 +9,7 @@ use Inertia\Inertia;
 
 class CollectionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Admin/Collection/CollectionPage',[
             'collections' => Collection::all(),

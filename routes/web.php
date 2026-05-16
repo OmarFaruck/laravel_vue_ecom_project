@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\JustArrivedController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\RegisterController;
+use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TrendyProductController;
 use App\Http\Controllers\User\PageController;
@@ -109,6 +110,17 @@ Route::post('/collection', [CollectionController::class, 'store'])->name('collec
 Route::get('/collection/{id}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
 Route::put('/collection/{id}', [CollectionController::class, 'update'])->name('collection.update');
 Route::delete('/collection/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
+
+
+
+
+// Collection Page
+Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
+Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
+Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
+Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
+Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
+Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
 
 
 // brand Page
