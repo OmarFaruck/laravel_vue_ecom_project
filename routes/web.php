@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController; 
+use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\JustArrivedController;
@@ -98,6 +99,16 @@ Route::post('/brandpage', [BrandController::class, 'store'])->name('brand_page.s
 Route::get('/brandpage/{id}/edit', [BrandController::class, 'edit'])->name('brand_page.edit');
 Route::put('/brandpage/{id}', [BrandController::class, 'update'])->name('brand_page.update');
 Route::delete('/brandpage/{id}', [BrandController::class, 'destroy'])->name('brand_page.destroy');
+
+
+
+// Collection Page
+Route::get('/collection', [CollectionController::class, 'index'])->name('collection.index');
+Route::get('/collection/create', [CollectionController::class, 'create'])->name('collection.create');
+Route::post('/collection', [CollectionController::class, 'store'])->name('collection.store');
+Route::get('/collection/{id}/edit', [CollectionController::class, 'edit'])->name('collection.edit');
+Route::put('/collection/{id}', [CollectionController::class, 'update'])->name('collection.update');
+Route::delete('/collection/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
 
 
 // brand Page

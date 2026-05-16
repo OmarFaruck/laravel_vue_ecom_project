@@ -137,6 +137,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/collection"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/collection'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>Collection_Page</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/justarrived"
                                 class="nav-link"
                                 :class="{
