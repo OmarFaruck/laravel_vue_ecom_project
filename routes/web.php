@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\CollectionController;
+use App\Http\Controllers\Admin\ContactAddressController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
@@ -158,3 +159,12 @@ Route::post('/contactus', [ContactUsController::class, 'store'])->name('contact_
 Route::get('/contactus/{id}/edit', [ContactUsController::class, 'edit'])->name('contact_us.edit');
 Route::put('/contactus/{id}', [ContactUsController::class, 'update'])->name('contact_us.update');
 Route::delete('/contactus/{id}', [ContactUsController::class, 'destroy'])->name('contact_us.destroy');
+
+
+// Contact Address Page
+Route::get('/contactaddress', [ContactAddressController::class, 'index'])->name('contact_address.index');
+Route::get('/contactaddress/create', [ContactAddressController::class, 'create'])->name('contact_address.create');
+Route::post('/contactaddress', [ContactAddressController::class, 'store'])->name('contact_address.store');
+Route::get('/contactaddress/{id}/edit', [ContactAddressController::class, 'edit'])->name('contact_address.edit');
+Route::put('/contactaddress/{id}', [ContactAddressController::class, 'update'])->name('contact_address.update');
+Route::delete('/contactaddress/{id}', [ContactAddressController::class, 'destroy'])->name('contact_address.destroy');
