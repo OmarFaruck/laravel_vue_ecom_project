@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\CollectionController;
+use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\JustArrivedController;
@@ -75,7 +76,7 @@ Route::put('/subcategory/{id}', [SubCategoryController::class, 'update'])->name(
 Route::delete('/subcategory/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy');
 
 
-// subcategory Page
+// Admin Page
 Route::get('/page_create', [AdminPageController::class, 'index'])->name('page_create.index');
 Route::get('/page_create/create', [AdminPageController::class, 'create'])->name('page_create.create');
 Route::post('/page_create', [AdminPageController::class, 'store'])->name('page_create.store');
@@ -114,7 +115,7 @@ Route::delete('/collection/{id}', [CollectionController::class, 'destroy'])->nam
 
 
 
-// Collection Page
+// Stay Update Page
 Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
 Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
 Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
@@ -123,8 +124,7 @@ Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('s
 Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
 
 
-// brand Page
-
+// Trendy Products Page
 Route::get('/trendyproducts', [TrendyProductController::class, 'index'])->name('trendy_products.index');
 Route::get('/trendyproducts/create', [TrendyProductController::class, 'create'])->name('trendy_products.create');
 Route::post('/trendyproducts', [TrendyProductController::class, 'store'])->name('trendy_products.store');
@@ -133,8 +133,7 @@ Route::put('/trendyproducts/{id}', [TrendyProductController::class, 'update'])->
 Route::delete('/trendyproducts/{id}', [TrendyProductController::class, 'destroy'])->name('trendy_products.destroy');
 
 
-// brand Page
-
+// Just Arrived Page
 Route::get('/justarrived', [JustArrivedController::class, 'index'])->name('just_arrived.index');
 Route::get('/justarrived/create', [JustArrivedController::class, 'create'])->name('just_arrived.create');
 Route::post('/justarrived', [JustArrivedController::class, 'store'])->name('just_arrived.store');
@@ -143,11 +142,19 @@ Route::put('/justarrived/{id}', [JustArrivedController::class, 'update'])->name(
 Route::delete('/justarrived/{id}', [JustArrivedController::class, 'destroy'])->name('just_arrived.destroy');
 
 
-// brand Page
-
+// Newsletter Page
 Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');
 Route::get('/newsletter/create', [NewsLetterController::class, 'create'])->name('news_letter.create');
 Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store');
 Route::get('/newsletter/{id}/edit', [NewsLetterController::class, 'edit'])->name('news_letter.edit');
 Route::put('/newsletter/{id}', [NewsLetterController::class, 'update'])->name('news_letter.update');
 Route::delete('/newsletter/{id}', [NewsLetterController::class, 'destroy'])->name('news_letter.destroy');
+
+
+// Contact Us Page
+Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_us.index');
+Route::get('/contactus/create', [ContactUsController::class, 'create'])->name('contact_us.create');
+Route::post('/contactus', [ContactUsController::class, 'store'])->name('contact_us.store');
+Route::get('/contactus/{id}/edit', [ContactUsController::class, 'edit'])->name('contact_us.edit');
+Route::put('/contactus/{id}', [ContactUsController::class, 'update'])->name('contact_us.update');
+Route::delete('/contactus/{id}', [ContactUsController::class, 'destroy'])->name('contact_us.destroy');

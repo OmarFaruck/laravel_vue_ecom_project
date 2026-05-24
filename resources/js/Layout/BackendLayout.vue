@@ -189,6 +189,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/contactus"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/contactus'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-phone"></i>
+                                <p>ContactUs</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{

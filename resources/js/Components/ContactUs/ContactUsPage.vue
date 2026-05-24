@@ -8,12 +8,12 @@
                     <label class="align-items-left">Search Name:</label>
                     <input v-model="searchValue" placeholder="Search by name..." type="text" class="form-control" />
                 </div>
-                <h2>StayUpdate Pages</h2>
+                <h2>Contact Us Page</h2>
 
 
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
-                    Add StayUpdate
+                    Add Contact Us
                 </button>
 
 
@@ -21,17 +21,9 @@
 
 
 
-            <Vue3EasyDataTable  
-            :headers="headers" 
-            :items="items" 
-
-            :rows-per-page="5" 
-            border-cell
-                header-text-direction="center" 
-                body-text-direction="center" 
-                :search-field="searchField"
-                :search-value="searchValue"
-                >
+            <Vue3EasyDataTable :headers="headers" :items="items" :rows-per-page="10" border-cell
+                header-text-direction="center" body-text-direction="center" :search-field="searchField"
+                :search-value="searchValue">
                 <template #header-name="header">
                     <div class="customize-header">
                         <!-- <img src="../images/name.png" class="header-icon"> -->
@@ -52,9 +44,8 @@
                     <button type="button" @click="remove(item)" class="btn btn-sm btn-danger">
                         <Trash2 /> Delete
                     </button>
-                </template>
+                </template> 
 
-              
             </Vue3EasyDataTable>
         </div>
 
@@ -65,21 +56,43 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitcreate">
                         <div class="modal-header">
-                            <h5 class="modal-title">Stay Update Create Form</h5>
+                            <h5 class="modal-title">Contact Us Create Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
-                        <div class="modal-body">
-                            
+                        <div class="modal-body"> 
+
+                            <div class="mb-3">
+                                <label>Name:</label>
+                                <input v-model="form.name" type="text" placeholder="Create Name"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.name">
+                                    {{ form.errors.name }}
+                                </div>
+                            </div>
+
                             <div class="mb-3">
                                 <label>Email:</label>
-                                <input v-model="form.email" type="email" placeholder="Enter email"
+                                <input v-model="form.email" type="email" placeholder="Create Email"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.email">
                                     {{ form.errors.email }}
                                 </div>
-                            </div>
- 
+                            </div> 
+                            <div class="mb-3">
+                                <label>Subject:</label>
+                                <textarea v-model="form.subject" placeholder="Create Subject" class="form-control"></textarea>
+                                <div class="text-danger" v-if="form.errors.subject">
+                                    {{ form.errors.subject }}
+                                </div>
+                            </div> 
+                            <div class="mb-3">
+                                <label>Message:</label>
+                                <textarea v-model="form.message" placeholder="Create Message" class="form-control"></textarea>
+                                <div class="text-danger" v-if="form.errors.message">
+                                    {{ form.errors.message }}
+                                </div>
+                            </div> 
                         </div>
 
                         <div class="modal-footer">
@@ -97,22 +110,47 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitUpdate">
                         <div class="modal-header">
-                            <h5 class="modal-title">Stay Update Edit Form</h5>
+                            <h5 class="modal-title">Contact Us Edit Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
-                            
+                            <div class="mb-3">
+                                <label>Name:</label>
+                                <input v-model="form.name" type="text" placeholder="Create Name"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.name">
+                                    {{ form.errors.name }}
+                                </div>
+                            </div>
 
                             <div class="mb-3">
                                 <label>Email:</label>
-                                <input v-model="form.email" type="email" placeholder="Enter email"
+                                <input v-model="form.email" type="email" placeholder="Create Email"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.email">
                                     {{ form.errors.email }}
                                 </div>
-                            </div>
- 
+                            </div> 
+
+                            <div class="mb-3">
+                                <label>Subject:</label>
+                                <input v-model="form.subject" type="text" placeholder="Create Subject"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.subject">
+                                    {{ form.errors.subject }}
+                                </div>
+                            </div> 
+
+                            <div class="mb-3">
+                                <label>Message:</label>
+                                <textarea v-model="form.message" placeholder="Create Message" class="form-control"></textarea>
+                                <div class="text-danger" v-if="form.errors.message">
+                                    {{ form.errors.message }}
+                                </div>
+                            </div>  
+
+                           
                         </div>
 
                         <div class="modal-footer">
@@ -138,25 +176,31 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "email"];
+const searchField = ["id", "name","email", "subject", "message"];
 const searchValue = ref();
 
 const page = usePage();
 
-const items = computed(() => page.props.stayupdates || []);
+const items = computed(() => page.props.ContactUs || []);
 const headers = [
     { text: "ID", value: "id" }, 
-    { text: "Email", value: "email" },
+    { text: "Name", value: "name" },
+    { text: "Email", value: "email" }, 
+    { text: "Subject", value: "subject" }, 
+    { text: "Message", value: "message" }, 
     { text: "Action", value: "action" },
 
 ];
 const form = useForm({
-    id: null, 
-    email: "",
+    id: null,
+    name: "",
+    email: "", 
+    subject: "",
+    message: ""
 });
 
 const submitcreate = () => {
-    form.post("/stayupdate", {
+    form.post("/contactus", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -179,12 +223,15 @@ const submitcreate = () => {
         },
     });
 
-    swal("Good job!", "This Stay Update will be added", "success");
+    swal("Good job!", "This contact us message will be added", "success");
 };
 
 function edit(item) {
-    form.id = item.id;
+    form.id = item.id; 
+    form.name = item.name;
     form.email = item.email;
+    form.subject = item.subject;
+    form.message = item.message;
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);
@@ -207,7 +254,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/stayupdate/${form.id}`, {
+        .post(`/contactus/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -222,14 +269,14 @@ function submitUpdate() {
 
         });
 
-    swal("Good job!", "This Stay Update will be updated", "success");
+    swal("Good job!", "This contact us message will be updated", "success");
 }
 
 function remove(data) {
 
     swal({
         title: "Are you sure?",
-        text: "This Stay Update will be deleted!",
+        text: "This contact us message will be deleted!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -237,7 +284,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/stayupdate/${data.id}`, {
+            router.delete(`/contactus/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",
