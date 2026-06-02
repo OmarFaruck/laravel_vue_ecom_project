@@ -1,16 +1,18 @@
 <?php
- 
+
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\BrandController;
-use App\Http\Controllers\Admin\CategoryController; 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\ContactAddressController;
 use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomeSliderController;
 use App\Http\Controllers\Admin\JustArrivedController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewsLetterController;
+use App\Http\Controllers\Admin\PageSettingController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -54,7 +56,7 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
         ->name('HomeProductPage');
 });
 
- 
+
 
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -168,3 +170,20 @@ Route::post('/contactaddress', [ContactAddressController::class, 'store'])->name
 Route::get('/contactaddress/{id}/edit', [ContactAddressController::class, 'edit'])->name('contact_address.edit');
 Route::put('/contactaddress/{id}', [ContactAddressController::class, 'update'])->name('contact_address.update');
 Route::delete('/contactaddress/{id}', [ContactAddressController::class, 'destroy'])->name('contact_address.destroy');
+
+
+// Coupon Code Page
+Route::get('/CouponCode', [CouponController::class, 'index'])->name('coupon_code.index');
+Route::get('/CouponCode/create', [CouponController::class, 'create'])->name('coupon_code.create');
+Route::post('/CouponCode', [CouponController::class, 'store'])->name('coupon_code.store');
+Route::get('/CouponCode/{id}/edit', [CouponController::class, 'edit'])->name('coupon_code.edit');
+Route::put('/CouponCode/{id}', [CouponController::class, 'update'])->name('coupon_code.update');
+Route::delete('/CouponCode/{id}', [CouponController::class, 'destroy'])->name('coupon_code.destroy');
+
+// Contact Address Page
+Route::get('/PageSetting', [PageSettingController::class, 'index'])->name('page_setting.index');
+Route::get('/PageSetting/create', [PageSettingController::class, 'create'])->name('page_setting.create');
+Route::post('/PageSetting', [PageSettingController::class, 'store'])->name('page_setting.store');
+Route::get('/PageSetting/{id}/edit', [PageSettingController::class, 'edit'])->name('page_setting.edit');
+Route::put('/PageSetting/{id}', [PageSettingController::class, 'update'])->name('page_setting.update');
+Route::delete('/PageSetting/{id}', [PageSettingController::class, 'destroy'])->name('page_setting.destroy');

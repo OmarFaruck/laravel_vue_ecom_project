@@ -215,6 +215,32 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/CouponCode"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/CouponCode'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-ticket-alt"></i>
+                                <p>CouponCode</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
+                                href="/PageSetting"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/PageSetting'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-cog"></i>
+                                <p>Page Setting</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
