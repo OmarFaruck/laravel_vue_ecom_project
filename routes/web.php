@@ -17,10 +17,14 @@ use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TrendyProductController;
+use App\Http\Controllers\Admin\PickupPointController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\middleware\SessionAuthenticate;
 use Illuminate\Support\Facades\Route;
+ 
+
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -180,10 +184,20 @@ Route::get('/CouponCode/{id}/edit', [CouponController::class, 'edit'])->name('co
 Route::put('/CouponCode/{id}', [CouponController::class, 'update'])->name('coupon_code.update');
 Route::delete('/CouponCode/{id}', [CouponController::class, 'destroy'])->name('coupon_code.destroy');
 
-// Contact Address Page
+// Page Setting Page
 Route::get('/PageSetting', [PageSettingController::class, 'index'])->name('page_setting.index');
 Route::get('/PageSetting/create', [PageSettingController::class, 'create'])->name('page_setting.create');
 Route::post('/PageSetting', [PageSettingController::class, 'store'])->name('page_setting.store');
 Route::get('/PageSetting/{id}/edit', [PageSettingController::class, 'edit'])->name('page_setting.edit');
 Route::put('/PageSetting/{id}', [PageSettingController::class, 'update'])->name('page_setting.update');
 Route::delete('/PageSetting/{id}', [PageSettingController::class, 'destroy'])->name('page_setting.destroy');
+
+// Page Setting Page
+Route::get('/PickupPoint', [PickupPointController::class, 'index'])->name('pickup_point.index');
+Route::get('/PickupPoint/create', [PickupPointController::class, 'create'])->name('pickup_point.create');
+Route::post('/PickupPoint', [PickupPointController::class, 'store'])->name('pickup_point.store');
+Route::get('/PickupPoint/{id}/edit', [PickupPointController::class, 'edit'])->name('pickup_point.edit');
+Route::put('/PickupPoint/{id}', [PickupPointController::class, 'update'])->name('pickup_point.update');
+Route::delete('/PickupPoint/{id}', [PickupPointController::class, 'destroy'])->name('pickup_point.destroy');
+
+ 

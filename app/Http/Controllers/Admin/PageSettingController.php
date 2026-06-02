@@ -33,7 +33,7 @@ class PageSettingController extends Controller
             'meta_description' => 'required|string',
             'meta_keywords' => 'required|string',
             'page_position' => 'required|integer',
-            'status' => 'required|boolean',
+            'status' => 'required|in:1,2',
         ]);
 
         PageSetting::create([
@@ -55,7 +55,7 @@ class PageSettingController extends Controller
     {
         $PageSetting = PageSetting::findOrFail($id);
          return Inertia::render('Admin/PageSetting/PageSettingPage',[
-          'PageSetting' => PageSetting::all()
+          'PageSetting' => $PageSetting,
         ]);
     }
 
@@ -70,7 +70,7 @@ class PageSettingController extends Controller
             'meta_description' => 'required|string',
             'meta_keywords' => 'required|string',
             'page_position' => 'required|integer',
-            'status' => 'required|boolean',
+            'status' => 'required|in:1,2',
         ]);
 
         $PageSetting = PageSetting::findOrFail($id);

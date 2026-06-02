@@ -241,6 +241,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/PickupPoint"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/PickupPoint'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-car"></i>
+                                <p>Pickup Point</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
