@@ -18,12 +18,13 @@ use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\TrendyProductController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\middleware\SessionAuthenticate;
 use Illuminate\Support\Facades\Route;
- 
+
 
 
 
@@ -209,4 +210,14 @@ Route::get('/SeoPage/{id}/edit', [SeoController::class, 'edit'])->name('seo_page
 Route::put('/SeoPage/{id}', [SeoController::class, 'update'])->name('seo_page.update');
 Route::delete('/SeoPage/{id}', [SeoController::class, 'destroy'])->name('seo_page.destroy');
 
- 
+
+
+// TicketController  Page
+Route::get('/TicketPage', [TicketController::class, 'index'])->name('ticket_page.index');
+Route::get('/TicketPage/create', [TicketController::class, 'create'])->name('ticket_page.create');
+Route::post('/TicketPage', [TicketController::class, 'store'])->name('ticket_page.store');
+Route::get('/TicketPage/{id}/edit', [TicketController::class, 'edit'])->name('ticket_page.edit');
+Route::put('/TicketPage/{id}', [TicketController::class, 'update'])->name('ticket_page.update');
+Route::delete('/TicketPage/{id}', [TicketController::class, 'destroy'])->name('ticket_page.destroy');
+
+

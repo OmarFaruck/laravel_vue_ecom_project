@@ -267,6 +267,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/TicketPage"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/TicketPage'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-ticket"></i>
+                                <p>Ticket Page</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
