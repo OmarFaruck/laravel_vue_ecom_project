@@ -13,11 +13,12 @@ use App\Http\Controllers\Admin\JustArrivedController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\PageSettingController;
+use App\Http\Controllers\Admin\PickupPointController;
 use App\Http\Controllers\Admin\RegisterController;
+use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TrendyProductController;
-use App\Http\Controllers\Admin\PickupPointController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\middleware\SessionAuthenticate;
@@ -192,12 +193,20 @@ Route::get('/PageSetting/{id}/edit', [PageSettingController::class, 'edit'])->na
 Route::put('/PageSetting/{id}', [PageSettingController::class, 'update'])->name('page_setting.update');
 Route::delete('/PageSetting/{id}', [PageSettingController::class, 'destroy'])->name('page_setting.destroy');
 
-// Page Setting Page
+// Pickup Point Page
 Route::get('/PickupPoint', [PickupPointController::class, 'index'])->name('pickup_point.index');
 Route::get('/PickupPoint/create', [PickupPointController::class, 'create'])->name('pickup_point.create');
 Route::post('/PickupPoint', [PickupPointController::class, 'store'])->name('pickup_point.store');
 Route::get('/PickupPoint/{id}/edit', [PickupPointController::class, 'edit'])->name('pickup_point.edit');
 Route::put('/PickupPoint/{id}', [PickupPointController::class, 'update'])->name('pickup_point.update');
 Route::delete('/PickupPoint/{id}', [PickupPointController::class, 'destroy'])->name('pickup_point.destroy');
+
+// SeoController  Page
+Route::get('/SeoPage', [SeoController::class, 'index'])->name('seo_page.index');
+Route::get('/SeoPage/create', [SeoController::class, 'create'])->name('seo_page.create');
+Route::post('/SeoPage', [SeoController::class, 'store'])->name('seo_page.store');
+Route::get('/SeoPage/{id}/edit', [SeoController::class, 'edit'])->name('seo_page.edit');
+Route::put('/SeoPage/{id}', [SeoController::class, 'update'])->name('seo_page.update');
+Route::delete('/SeoPage/{id}', [SeoController::class, 'destroy'])->name('seo_page.destroy');
 
  

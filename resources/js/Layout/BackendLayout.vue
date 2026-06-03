@@ -254,6 +254,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/SeoPage"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/SeoPage'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-globe"></i>
+                                <p>Seo Page</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
