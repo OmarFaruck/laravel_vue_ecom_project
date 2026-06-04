@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
@@ -16,4 +17,9 @@ class Ticket extends Model
         'attachment_image',
         'admin_reply',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

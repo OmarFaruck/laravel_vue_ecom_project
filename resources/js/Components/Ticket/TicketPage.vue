@@ -46,9 +46,10 @@
                     </button>
                 </template>
 
-                <template #item-image="item">
-                    <img :src="`/storage/ticket/${item.image}`" width="80" height="60" class="rounded" />
+                <template #item-attachment_image="item">
+                    <img :src="`/storage/ticket/${item.attachment_image}`" width="80" height="60" class="rounded" />
                 </template>
+                
             </Vue3EasyDataTable>
         </div>
 
@@ -105,10 +106,10 @@
                             <div class="mb-3">
                                 <label for="coupon_subject">priority</label>
 
-                                <select id="coupon_subject" class="form-control" v-model="form.priority" required>
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
+                                <select id="coupon_subject" class="form-control" type="text" v-model="form.priority" required>
+                                    <option value="low">low</option>
+                                    <option value="medium">medium</option>
+                                    <option value="high">high</option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.priority">
                                     {{ form.errors.priority }}
@@ -118,12 +119,11 @@
                             <div class="mb-3">
                                 <label for="coupon_subject">status</label>
 
-                                <select id="coupon_subject" class="form-control" v-model="form.status" required>
-                                    <option value="Open">Open</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Resolved">Resolved</option>
-                                    <option value="Resolved">Resolved</option>
-                                    <option value="Closed">Closed</option>
+                                <select id="coupon_subject" class="form-control" type="text" v-model="form.status" required>
+                                    <option value="open">open</option>
+                                    <option value="pending">pending</option>
+                                    <option value="resolved">resolved</option>
+                                    <option value="closed">closed</option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.status">
                                     {{ form.errors.status }}
@@ -213,9 +213,9 @@
                                 <label for="coupon_subject">priority</label>
 
                                 <select id="coupon_subject" class="form-control" v-model="form.priority" required>
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
+                                    <option value="low">low</option>
+                                    <option value="medium">medium</option>
+                                    <option value="high">high</option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.priority">
                                     {{ form.errors.priority }}
@@ -226,11 +226,10 @@
                                 <label for="coupon_subject">status</label>
 
                                 <select id="coupon_subject" class="form-control" v-model="form.status" required>
-                                    <option value="Open">Open</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Resolved">Resolved</option>
-                                    <option value="Resolved">Resolved</option>
-                                    <option value="Closed">Closed</option>
+                                    <option value="open">open</option>
+                                    <option value="pending">pending</option>
+                                    <option value="resolved">resolved</option>
+                                    <option value="closed">closed</option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.status">
                                     {{ form.errors.status }}
@@ -281,17 +280,18 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "ticket_number", "user_id", "subject", "priority", "status","attachment_image","admin_reply"];
+const searchField = ["id", "ticket_number", "user_id", "subject", "message", "priority", "status","attachment_image","admin_reply"];
 const searchValue = ref();
 
 const page = usePage();
 
-const items = computed(() => page.props.TicketPage || []);
+const items = computed(() => page.props.Ticket || []);
 const headers = [
     { text: "ID", value: "id" },
     { text: "ticket_number", value: "ticket_number" },
     { text: "user_id", value: "user_id" },
     { text: "subject", value: "subject" },
+    { text: "message", value: "message" },
     { text: "priority", value: "priority" },
     { text: "status", value: "status" },
     { text: "attachment_image", value: "attachment_image" },
@@ -304,6 +304,7 @@ const form = useForm({
     ticket_number: "",
     user_id: "",
     subject: "",
+    message: "",
     priority: "",
     status: "",
     attachment_image:null,
@@ -342,6 +343,7 @@ function edit(item) {
     form.ticket_number = item.ticket_number;
     form.user_id = item.user_id;
     form.subject = item.subject;
+    form.message = item.message;
     form.priority = item.priority;
     form.status = item.status;
     form.attachment_image = item.attachment_image;

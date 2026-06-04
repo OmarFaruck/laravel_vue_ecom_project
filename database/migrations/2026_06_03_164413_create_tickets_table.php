@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('message');
             $table->enum('priority', ['low', 'medium', 'high'])->default('low');
-            $table->enum('status', ['open', 'in_progress', 'closed'])->default('open');
+            $table->enum('status', ['open', 'pending', 'resolved','closed'])->default('open');
             $table->string('attachment_image')->nullable();
             $table->text('admin_reply')->nullable();
             $table->timestamps();
