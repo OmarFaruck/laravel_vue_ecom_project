@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\TrendyProductController;
+use App\Http\Controllers\Admin\WareHouseController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\middleware\SessionAuthenticate;
@@ -219,5 +220,15 @@ Route::post('/TicketPage', [TicketController::class, 'store'])->name('ticket_pag
 Route::get('/TicketPage/{id}/edit', [TicketController::class, 'edit'])->name('ticket_page.edit');
 Route::put('/TicketPage/{id}', [TicketController::class, 'update'])->name('ticket_page.update');
 Route::delete('/TicketPage/{id}', [TicketController::class, 'destroy'])->name('ticket_page.destroy');
+
+
+
+// WareHouseController  Page
+Route::get('/WareHousePage', [WareHouseController::class, 'index'])->name('warehouse_page.index');
+Route::get('/WareHousePage/create', [WareHouseController::class, 'create'])->name('warehouse_page.create');
+Route::post('/WareHousePage', [WareHouseController::class, 'store'])->name('warehouse_page.store');
+Route::get('/WareHousePage/{id}/edit', [WareHouseController::class, 'edit'])->name('warehouse_page.edit');
+Route::put('/WareHousePage/{id}', [WareHouseController::class, 'update'])->name('warehouse_page.update');
+Route::delete('/WareHousePage/{id}', [WareHouseController::class, 'destroy'])->name('warehouse_page.destroy');
 
 

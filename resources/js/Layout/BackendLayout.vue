@@ -280,6 +280,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/WareHousePage"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/WareHousePage'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-warehouse"></i>
+                                <p>WareHouse Page</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
