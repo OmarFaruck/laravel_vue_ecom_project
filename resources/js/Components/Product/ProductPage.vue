@@ -46,10 +46,14 @@
                     </button>
                 </template>
 
-                <template #item-attachment_image="item">
-                    <img :src="`/storage/product/${item.attachment_image}`" width="80" height="60" class="rounded" />
+                <template #item-product_video="item">
+                    <img :src="`/storage/product/${item.product_video}`" width="80" height="60" class="rounded" />
                 </template>
-                
+
+                <template #item-product_thumbnail="item">
+                    <img :src="`/storage/product/${item.product_thumbnail}`" width="80" height="60" class="rounded" />
+                </template>
+
             </Vue3EasyDataTable>
         </div>
 
@@ -67,84 +71,269 @@
                         <div class="modal-body">
 
                             <div class="mb-3">
-                                <label>ticket_number:</label>
-                                <input v-model="form.ticket_number" type="number" placeholder="Create ticket_number"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.ticket_number">
-                                    {{ form.errors.ticket_number }}
+                                <label>Category</label>
+
+                                <select v-model="form.category_id" class="form-control" name="category_id">
+                                    <option value="">Select Category</option>
+                                    <option v-for="category in categories" :key="category.id" :value="category.id">
+                                        {{ category.id }} - {{ category.name }}
+                                    </option>
+                                </select>
+
+                                <div class="text-danger" v-if="form.errors.category_id">
+                                    {{ form.errors.category_id }}
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label>subcategory_id:</label>
+                                <select v-model="form.subcategory_id" class="form-control" name="subcategory_id">
+                                    <option value="">Select Subcategory</option>
+                                    <option v-for="subcategory in subcategories" :key="subcategory.id"
+                                        :value="subcategory.id">
+                                        {{ subcategory.id }} - {{ subcategory.name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.subcategory_id">
+                                    {{ form.errors.subcategory_id }}
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label>brand_id:</label>
+                                <select v-model="form.brand_id" class="form-control" name="brand_id">
+                                    <option value="">Select Brand</option>
+                                    <option v-for="brand in brands" :key="brand.id" :value="brand.id">
+                                        {{ brand.id }} - {{ brand.name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.brand_id">
+                                    {{ form.errors.brand_id }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>pickup_point_id:</label>
+                                <select v-model="form.pickup_point_id" class="form-control" name="pickup_point_id">
+                                    <option value="">Select Pickup Point</option>
+                                    <option v-for="pickupPoint in pickupPoints" :key="pickupPoint.id"
+                                        :value="pickupPoint.id">
+                                        {{ pickupPoint.id }} - {{ pickupPoint.pickup_point_name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.pickup_point_id">
+                                    {{ form.errors.pickup_point_id }}
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label>product_slug:</label>
+                                <input v-model="form.product_slug" type="text" placeholder="Create product_slug"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_slug">
+                                    {{ form.errors.product_slug }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_view:</label>
+                                <input v-model="form.product_view" type="text" placeholder="Create product_view"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_view">
+                                    {{ form.errors.product_view }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_weight:</label>
+                                <input v-model="form.product_weight" type="text" placeholder="Create product_weight"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_weight">
+                                    {{ form.errors.product_weight }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_name:</label>
+                                <input v-model="form.product_name" type="text" placeholder="Create product_name"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_name">
+                                    {{ form.errors.product_name }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_code:</label>
+                                <input v-model="form.product_code" type="number" placeholder="Create product_code"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_code">
+                                    {{ form.errors.product_code }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_tags:</label>
+                                <input v-model="form.product_tags" type="number" placeholder="Create product_tags"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_tags">
+                                    {{ form.errors.product_tags }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Product Video:</label>
+
+                                <input type="file" accept="video/*"
+                                    @change="form.product_video = $event.target.files[0]" class="form-control" />
+
+                                <div class="text-danger" v-if="form.errors.product_video">
+                                    {{ form.errors.product_video }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_thumbnail:</label>
+                                <input @input="form.product_thumbnail = $event.target.files[0]" type="file"
+                                    accept="image/*" class="dropify form-control" />
+                                <div class="text-danger" v-if="form.errors.product_thumbnail">
+                                    {{ form.errors.product_thumbnail }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_heading:</label>
+                                <input v-model="form.product_heading" type="text" placeholder="Create product_heading"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_heading">
+                                    {{ form.errors.product_heading }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_description:</label>
+                                <input v-model="form.product_description" type="text"
+                                    placeholder="Create product_description" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_description">
+                                    {{ form.errors.product_description }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_warranty:</label>
+                                <input v-model="form.product_warranty" type="text" placeholder="Create product_warranty"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_warranty">
+                                    {{ form.errors.product_warranty }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_warranty_duration:</label>
+                                <input v-model="form.product_warranty_duration" type="text"
+                                    placeholder="Create product_warranty_duration" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_warranty_duration">
+                                    {{ form.errors.product_warranty_duration }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_return_policy:</label>
+                                <input v-model="form.product_return_policy" type="text"
+                                    placeholder="Create product_return_policy" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_return_policy">
+                                    {{ form.errors.product_return_policy }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_purchase_price:</label>
+                                <input v-model="form.product_purchase_price" type="text"
+                                    placeholder="Create product_purchase_price" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_purchase_price">
+                                    {{ form.errors.product_purchase_price }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_selling_price:</label>
+                                <input v-model="form.product_selling_price" type="text"
+                                    placeholder="Create product_selling_price" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_selling_price">
+                                    {{ form.errors.product_selling_price }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>warehouse:</label>
+                                <select v-model="form.warehouse" class="form-control" name="warehouse">
+                                    <option value="">Select Warehouse</option>
+                                    <option v-for="warehouse in warehouses" :key="warehouse.id" :value="warehouse.id">
+                                        {{ warehouse.id }} - {{ warehouse.warehouse_name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.warehouse">
+                                    {{ form.errors.warehouse }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>featured:</label>
+                                <input v-model="form.featured" type="text" placeholder="Create featured"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.featured">
+                                    {{ form.errors.featured }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>today_deal:</label>
+                                <input v-model="form.today_deal" type="text" placeholder="Create today_deal"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.today_deal">
+                                    {{ form.errors.today_deal }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>trendy_product:</label>
+                                <select v-model="form.trendy_product" class="form-control" name="trendy_product">
+                                    <option value="">Select Trendy Product</option>
+                                    <option v-for="trendy_product in trendyProducts" :key="trendy_product.id"
+                                        :value="trendy_product.id">
+                                        {{ trendy_product.id }} - {{ trendy_product.heading }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.trendy_product">
+                                    {{ form.errors.trendy_product }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="coupon_subject">product_status</label>
+
+                                <select id="coupon_subject" class="form-control" type="text"
+                                    v-model="form.product_status" required>
+                                    <option value="active">active</option>
+                                    <option value="inactive">inactive</option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_status">
+                                    {{ form.errors.product_status }}
+                                </div>
+                            </div>
+
 
                             <div class="mb-3">
                                 <label>user_id:</label>
-                                <input v-model="form.user_id" type="number" placeholder="Create user_id"
-                                    class="form-control" />
+                                <select v-model="form.user_id" class="form-control" name="user_id">
+                                    <option>Select User</option>
+                                    <option v-for="user in users" :key="user.id" :value="user.id">
+                                        {{ user.id }} - {{ user.name }}
+                                    </option>
+                                </select>
                                 <div class="text-danger" v-if="form.errors.user_id">
                                     {{ form.errors.user_id }}
-                                </div>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label>subject:</label>
-                                <input v-model="form.subject" type="text" placeholder="Create subject"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.subject">
-                                    {{ form.errors.subject }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label>message:</label>
-                                <input v-model="form.message" type="text" placeholder="Create message"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.message">
-                                    {{ form.errors.message }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="coupon_subject">priority</label>
-
-                                <select id="coupon_subject" class="form-control" type="text" v-model="form.priority" required>
-                                    <option value="low">low</option>
-                                    <option value="medium">medium</option>
-                                    <option value="high">high</option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.priority">
-                                    {{ form.errors.priority }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="coupon_subject">status</label>
-
-                                <select id="coupon_subject" class="form-control" type="text" v-model="form.status" required>
-                                    <option value="open">open</option>
-                                    <option value="pending">pending</option>
-                                    <option value="resolved">resolved</option>
-                                    <option value="closed">closed</option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.status">
-                                    {{ form.errors.status }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label>attachment_image:</label>
-                                <input @input="form.attachment_image = $event.target.files[0]" type="file"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.attachment_image">
-                                    {{ form.errors.attachment_image }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label>admin_reply:</label>
-                                <input v-model="form.admin_reply" type="text" placeholder="Create admin_reply"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.admin_reply">
-                                    {{ form.errors.admin_reply }}
                                 </div>
                             </div>
 
@@ -173,84 +362,269 @@
                         <div class="modal-body">
 
                             <div class="mb-3">
-                                <label>ticket_number:</label>
-                                <input v-model="form.ticket_number" subject="number" placeholder="Create ticket_number"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.ticket_number">
-                                    {{ form.errors.ticket_number }}
+                                <label>Category</label>
+
+                                <select v-model="form.category_id" class="form-control" name="category_id">
+                                    <option value="">Select Category</option>
+                                    <option v-for="category in categories" :key="category.id" :value="category.id">
+                                        {{ category.id }} - {{ category.name }}
+                                    </option>
+                                </select>
+
+                                <div class="text-danger" v-if="form.errors.category_id">
+                                    {{ form.errors.category_id }}
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label>subcategory_id:</label>
+                                <select v-model="form.subcategory_id" class="form-control" name="subcategory_id">
+                                    <option value="">Select Subcategory</option>
+                                    <option v-for="subcategory in subcategories" :key="subcategory.id"
+                                        :value="subcategory.id">
+                                        {{ subcategory.id }} - {{ subcategory.name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.subcategory_id">
+                                    {{ form.errors.subcategory_id }}
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label>brand_id:</label>
+                                <select v-model="form.brand_id" class="form-control" name="brand_id">
+                                    <option value="">Select Brand</option>
+                                    <option v-for="brand in brands" :key="brand.id" :value="brand.id">
+                                        {{ brand.id }} - {{ brand.name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.brand_id">
+                                    {{ form.errors.brand_id }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>pickup_point_id:</label>
+                                <select v-model="form.pickup_point_id" class="form-control" name="pickup_point_id">
+                                    <option value="">Select Pickup Point</option>
+                                    <option v-for="pickupPoint in pickupPoints" :key="pickupPoint.id"
+                                        :value="pickupPoint.id">
+                                        {{ pickupPoint.id }} - {{ pickupPoint.pickup_point_name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.pickup_point_id">
+                                    {{ form.errors.pickup_point_id }}
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label>product_slug:</label>
+                                <input v-model="form.product_slug" type="text" placeholder="Create product_slug"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_slug">
+                                    {{ form.errors.product_slug }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_view:</label>
+                                <input v-model="form.product_view" type="text" placeholder="Create product_view"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_view">
+                                    {{ form.errors.product_view }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_weight:</label>
+                                <input v-model="form.product_weight" type="text" placeholder="Create product_weight"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_weight">
+                                    {{ form.errors.product_weight }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_name:</label>
+                                <input v-model="form.product_name" type="text" placeholder="Create product_name"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_name">
+                                    {{ form.errors.product_name }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_code:</label>
+                                <input v-model="form.product_code" type="number" placeholder="Create product_code"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_code">
+                                    {{ form.errors.product_code }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_tags:</label>
+                                <input v-model="form.product_tags" type="number" placeholder="Create product_tags"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_tags">
+                                    {{ form.errors.product_tags }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Product Video:</label>
+
+                                <input type="file" accept="video/*"
+                                    @change="form.product_video = $event.target.files[0]" class="form-control" />
+
+                                <div class="text-danger" v-if="form.errors.product_video">
+                                    {{ form.errors.product_video }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_thumbnail:</label>
+                                <input @input="form.product_thumbnail = $event.target.files[0]" type="file"
+                                    accept="image/*" class="dropify form-control" />
+                                <div class="text-danger" v-if="form.errors.product_thumbnail">
+                                    {{ form.errors.product_thumbnail }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_heading:</label>
+                                <input v-model="form.product_heading" type="text" placeholder="Create product_heading"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_heading">
+                                    {{ form.errors.product_heading }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_description:</label>
+                                <input v-model="form.product_description" type="text"
+                                    placeholder="Create product_description" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_description">
+                                    {{ form.errors.product_description }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_warranty:</label>
+                                <input v-model="form.product_warranty" type="text" placeholder="Create product_warranty"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_warranty">
+                                    {{ form.errors.product_warranty }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_warranty_duration:</label>
+                                <input v-model="form.product_warranty_duration" type="text"
+                                    placeholder="Create product_warranty_duration" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_warranty_duration">
+                                    {{ form.errors.product_warranty_duration }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_return_policy:</label>
+                                <input v-model="form.product_return_policy" type="text"
+                                    placeholder="Create product_return_policy" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_return_policy">
+                                    {{ form.errors.product_return_policy }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_purchase_price:</label>
+                                <input v-model="form.product_purchase_price" type="text"
+                                    placeholder="Create product_purchase_price" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_purchase_price">
+                                    {{ form.errors.product_purchase_price }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_selling_price:</label>
+                                <input v-model="form.product_selling_price" type="text"
+                                    placeholder="Create product_selling_price" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_selling_price">
+                                    {{ form.errors.product_selling_price }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>warehouse:</label>
+                                <select v-model="form.warehouse" class="form-control" name="warehouse">
+                                    <option value="">Select Warehouse</option>
+                                    <option v-for="warehouse in warehouses" :key="warehouse.id" :value="warehouse.id">
+                                        {{ warehouse.id }} - {{ warehouse.warehouse_name }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.warehouse">
+                                    {{ form.errors.warehouse }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>featured:</label>
+                                <input v-model="form.featured" type="text" placeholder="Create featured"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.featured">
+                                    {{ form.errors.featured }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>today_deal:</label>
+                                <input v-model="form.today_deal" type="text" placeholder="Create today_deal"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.today_deal">
+                                    {{ form.errors.today_deal }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>trendy_product:</label>
+                                <select v-model="form.trendy_product" class="form-control" name="trendy_product">
+                                    <option value="">Select Trendy Product</option>
+                                    <option v-for="trendy_product in trendyProducts" :key="trendy_product.id"
+                                        :value="trendy_product.id">
+                                        {{ trendy_product.id }} - {{ trendy_product.heading }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.trendy_product">
+                                    {{ form.errors.trendy_product }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="coupon_subject">product_status</label>
+
+                                <select id="coupon_subject" class="form-control" type="text"
+                                    v-model="form.product_status" required>
+                                    <option value="active">active</option>
+                                    <option value="inactive">inactive</option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_status">
+                                    {{ form.errors.product_status }}
+                                </div>
+                            </div>
+
 
                             <div class="mb-3">
                                 <label>user_id:</label>
-                                <input v-model="form.user_id" subject="number" placeholder="Create user_id"
-                                    class="form-control" />
+                                <select v-model="form.user_id" class="form-control" name="user_id">
+                                    <option>Select User</option>
+                                    <option v-for="user in users" :key="user.id" :value="user.id">
+                                        {{ user.id }} - {{ user.name }}
+                                    </option>
+                                </select>
                                 <div class="text-danger" v-if="form.errors.user_id">
                                     {{ form.errors.user_id }}
-                                </div>
-                            </div>
-
-
-                            <div class="mb-3">
-                                <label>subject:</label>
-                                <input v-model="form.subject" subject="text" placeholder="Create subject"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.subject">
-                                    {{ form.errors.subject }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label>message:</label>
-                                <input v-model="form.message" subject="text" placeholder="Create message"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.message">
-                                    {{ form.errors.message }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="coupon_subject">priority</label>
-
-                                <select id="coupon_subject" class="form-control" v-model="form.priority" required>
-                                    <option value="low">low</option>
-                                    <option value="medium">medium</option>
-                                    <option value="high">high</option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.priority">
-                                    {{ form.errors.priority }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="coupon_subject">status</label>
-
-                                <select id="coupon_subject" class="form-control" v-model="form.status" required>
-                                    <option value="open">open</option>
-                                    <option value="pending">pending</option>
-                                    <option value="resolved">resolved</option>
-                                    <option value="closed">closed</option>
-                                </select>
-                                <div class="text-danger" v-if="form.errors.status">
-                                    {{ form.errors.status }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label>attachment_image:</label>
-                                <input @input="form.attachment_image = $event.target.files[0]" type="file"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.attachment_image">
-                                    {{ form.errors.attachment_image }}
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label>admin_reply:</label>
-                                <input v-model="form.admin_reply" subject="text" placeholder="Create admin_reply"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.admin_reply">
-                                    {{ form.errors.admin_reply }}
                                 </div>
                             </div>
 
@@ -280,39 +654,88 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "ticket_number", "user_id", "subject", "message", "priority", "status","attachment_image","admin_reply"];
+const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_slug", "product_view", "product_weight", "product_name", "product_code", "product_tags", "product_video", "product_thumbnail", "product_heading", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_return_policy", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product", "product_status", "user_id"];
 const searchValue = ref();
 
 const page = usePage();
 
-const items = computed(() => page.props.Ticket || []);
+
+
+const items = computed(() => page.props.ProductPage || []);
 const headers = [
     { text: "ID", value: "id" },
-    { text: "ticket_number", value: "ticket_number" },
+    { text: "category_id", value: "category_id" },
+    { text: "subcategory_id", value: "subcategory_id" },
+    { text: "brand_id", value: "brand_id" },
+    { text: "pickup_point_id", value: "pickup_point_id" },
+    { text: "product_slug", value: "product_slug" },
+    { text: "product_view", value: "product_view" },
+    { text: "product_weight", value: "product_weight" },
+    { text: "product_name", value: "product_name" },
+    { text: "product_code", value: "product_code" },
+    { text: "product_tags", value: "product_tags" },
+    { text: "product_video", value: "product_video" },
+    { text: "product_thumbnail", value: "product_thumbnail" },
+    { text: "product_heading", value: "product_heading" },
+    { text: "product_description", value: "product_description" },
+    { text: "product_warranty", value: "product_warranty" },
+    { text: "product_warranty_duration", value: "product_warranty_duration" },
+    { text: "product_warranty_conditions", value: "product_warranty_conditions" },
+    { text: "product_return_policy", value: "product_return_policy" },
+    { text: "product_purchase_price", value: "product_purchase_price" },
+    { text: "product_selling_price", value: "product_selling_price" },
+    { text: "warehouse", value: "warehouse" },
+    { text: "featured", value: "featured" },
+    { text: "today_deal", value: "today_deal" },
+    { text: "trendy_product", value: "trendy_product" },
+    { text: "product_status", value: "product_status" },
     { text: "user_id", value: "user_id" },
-    { text: "subject", value: "subject" },
-    { text: "message", value: "message" },
-    { text: "priority", value: "priority" },
-    { text: "status", value: "status" },
-    { text: "attachment_image", value: "attachment_image" },
-    { text: "admin_reply", value: "admin_reply" },
     { text: "Action", value: "action" },
 
 ];
 const form = useForm({
     id: null,
-    ticket_number: "",
+    category_id: "",
+    subcategory_id: "",
+    brand_id: "",
+    pickup_point_id: "",
+    product_slug: "",
+    product_view: "",
+    product_weight: "",
+    product_name: "",
+    product_code: "",
+    product_tags: "",
+    product_video: null,
+    product_thumbnail: null,
+    product_heading: "",
+    product_description: "",
+    product_warranty: "",
+    product_warranty_duration: "",
+    product_warranty_conditions: "",
+    product_return_policy: "",
+    product_purchase_price: "",
+    product_selling_price: "",
+    warehouse: "",
+    featured: "",
+    today_deal: "",
+    trendy_product: "",
+    product_status: "",
     user_id: "",
-    subject: "",
-    message: "",
-    priority: "",
-    status: "",
-    attachment_image:null,
-    admin_reply:""
+});
+
+const props = defineProps({
+    ProductPage : Array,
+    categories: Array,
+    subcategories: Array,
+    brands: Array,
+    pickupPoints: Array,
+    warehouses: Array,
+    trendyProducts: Array,
+    users: Array,
 });
 
 const submitcreate = () => {
-    form.post("/TicketPage", {
+    form.post("/ProductPage", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -335,19 +758,39 @@ const submitcreate = () => {
         },
     });
 
-    swal("Good job!", "This TicketPage will be added", "success");
+    swal("Good job!", "This ProductPage will be added", "success");
 };
+
+
 
 function edit(item) {
     form.id = item.id;
-    form.ticket_number = item.ticket_number;
+    form.category_id = item.category_id;
+    form.subcategory_id = item.subcategory_id;
+    form.brand_id = item.brand_id;
+    form.pickup_point_id = item.pickup_point_id;
+    form.product_slug = item.product_slug;
+    form.product_view = item.product_view;
+    form.product_weight = item.product_weight;
+    form.product_name = item.product_name;
+    form.product_code = item.product_code;
+    form.product_tags = item.product_tags;
+    form.product_video = item.product_video;
+    form.product_thumbnail = item.product_thumbnail;
+    form.product_heading = item.product_heading;
+    form.product_description = item.product_description;
+    form.product_warranty = item.product_warranty;
+    form.product_warranty_duration = item.product_warranty_duration;
+    form.product_warranty_conditions = item.product_warranty_conditions;
+    form.product_return_policy = item.product_return_policy;
+    form.product_purchase_price = item.product_purchase_price;
+    form.product_selling_price = item.product_selling_price;
+    form.warehouse = item.warehouse;
+    form.featured = item.featured;
+    form.today_deal = item.today_deal;
+    form.trendy_product = item.trendy_product;
+    form.product_status = item.product_status;
     form.user_id = item.user_id;
-    form.subject = item.subject;
-    form.message = item.message;
-    form.priority = item.priority;
-    form.status = item.status;
-    form.attachment_image = item.attachment_image;
-    form.admin_reply = item.admin_reply;
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);
@@ -370,7 +813,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/TicketPage/${form.id}`, {
+        .post(`/ProductPage/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -385,14 +828,14 @@ function submitUpdate() {
 
         });
 
-    swal("Good job!", "This TicketPage will be updated", "success");
+    swal("Good job!", "This ProductPage will be updated", "success");
 }
 
 function remove(data) {
 
     swal({
         title: "Are you sure?",
-        text: "This TicketPage will be deleted!",
+        text: "This ProductPage will be deleted!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -400,7 +843,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/TicketPage/${data.id}`, {
+            router.delete(`/ProductPage/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

@@ -4,8 +4,12 @@ namespace App\Models;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\HomeSlider;
 use App\Models\PickupPoint;
 use App\Models\SubCategory;
+use App\Models\TrendyProduct;
+use App\Models\User;
+use App\Models\WareHouse;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -14,8 +18,7 @@ class Product extends Model
         'category_id',
         'subcategory_id',
         'brand_id',
-        'pickup_point_id',
-        'product_slider',
+        'pickup_point_id', 
         'product_slug',
         'product_view',
         'product_weight', 
@@ -42,21 +45,38 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id' ,'id');
     }
 
     public function subcategory()
     {
-        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+        return $this->belongsTo(SubCategory::class, 'subcategory_id' ,'id');
     }
 
     public function brand()
     {
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->belongsTo(Brand::class, 'brand_id' ,'id');
     }
 
     public function pickupPoint()
     {
-        return $this->belongsTo(PickupPoint::class, 'pickup_point_id');
+        return $this->belongsTo(PickupPoint::class, 'pickup_point_id' ,'id');
     }
+
+    public function trendyproduct()
+    {
+        return $this->belongsTo(TrendyProduct::class, 'trendy_product' ,'id');
+    }
+    public function warehouse()
+    {
+        return $this->belongsTo(WareHouse::class, 'warehouse' ,'id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id' ,'id');
+    }
+
+ 
+
+
 }

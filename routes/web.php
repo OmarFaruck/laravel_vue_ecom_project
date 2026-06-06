@@ -233,7 +233,7 @@ Route::put('/WareHousePage/{id}', [WareHouseController::class, 'update'])->name(
 Route::delete('/WareHousePage/{id}', [WareHouseController::class, 'destroy'])->name('warehouse_page.destroy');
 
 
-// ProductVariantController  Page
+// ProductVariantController  Page not yet done
 Route::get('/ProductVariantPage', [ProductVariantController::class, 'index'])->name('product_variant_page.index');
 Route::get('/ProductVariantPage/create', [ProductVariantController::class, 'create'])->name('product_variant_page.create');
 Route::post('/ProductVariantPage', [ProductVariantController::class, 'store'])->name('product_variant_page.store');
@@ -242,7 +242,7 @@ Route::put('/ProductVariantPage/{id}', [ProductVariantController::class, 'update
 Route::delete('/ProductVariantPage/{id}', [ProductVariantController::class, 'destroy'])->name('product_variant_page.destroy');
 
 
-// ProductController  Page  not yet complete
+// ProductController  Page 
 Route::get('/ProductPage', [ProductController::class, 'index'])->name('product_page.index');
 Route::get('/ProductPage/create', [ProductController::class, 'create'])->name('product_page.create');
 Route::post('/ProductPage', [ProductController::class, 'store'])->name('product_page.store');

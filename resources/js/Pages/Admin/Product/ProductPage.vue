@@ -1,6 +1,7 @@
 <template>
-<ProductPage :Product="Product"/>
- <!-- <h1>category page</h1> -->
+  <ProductPage :ProductPage="ProductPage" :categories="categories" :subcategories="subcategories" :brands="brands"
+    :pickupPoints="pickupPoints" :warehouses="warehouses" :trendyProducts="trendyProducts" :users="users" />
+  <!-- <h1>category page</h1> -->
 </template>
 
 <script setup>
@@ -12,7 +13,14 @@ defineOptions({
 });
 
 defineProps({
-  Product: Array,
+  ProductPage: Array,
+  users: Array,
+  categories: Array,
+  subcategories: Array,
+  brands: Array,
+  pickupPoints: Array,
+  warehouses: Array,
+  trendyProducts: Array, 
 });
 
 </script>
