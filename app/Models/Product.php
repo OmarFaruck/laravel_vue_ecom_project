@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\PickupPoint;
+use App\Models\SubCategory;
+use Illuminate\Database\Eloquent\Model;
+
+class Product extends Model
+{
+    protected $fillable = [
+        'category_id',
+        'subcategory_id',
+        'brand_id',
+        'pickup_point_id',
+        'product_slider',
+        'product_slug',
+        'product_view',
+        'product_weight', 
+        'product_name',
+        'product_code',  
+        'product_tags', 
+        'product_video',
+        'product_thumbnail', 
+        'product_heading',
+        'product_description',
+        'product_warranty',
+        'product_warranty_duration',
+        'product_warranty_conditions',
+        'product_return_policy',
+        'product_purchase_price',
+        'product_selling_price', 
+        'warehouse',
+        'featured',
+        'today_deal', 
+        'trendy_product',
+        'product_status',
+        'user_id',
+    ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function pickupPoint()
+    {
+        return $this->belongsTo(PickupPoint::class, 'pickup_point_id');
+    }
+}

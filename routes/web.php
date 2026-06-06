@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\PageSettingController;
 use App\Http\Controllers\Admin\PickupPointController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductVariantController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\StayUpdateController;
@@ -222,7 +224,6 @@ Route::put('/TicketPage/{id}', [TicketController::class, 'update'])->name('ticke
 Route::delete('/TicketPage/{id}', [TicketController::class, 'destroy'])->name('ticket_page.destroy');
 
 
-
 // WareHouseController  Page
 Route::get('/WareHousePage', [WareHouseController::class, 'index'])->name('warehouse_page.index');
 Route::get('/WareHousePage/create', [WareHouseController::class, 'create'])->name('warehouse_page.create');
@@ -230,5 +231,23 @@ Route::post('/WareHousePage', [WareHouseController::class, 'store'])->name('ware
 Route::get('/WareHousePage/{id}/edit', [WareHouseController::class, 'edit'])->name('warehouse_page.edit');
 Route::put('/WareHousePage/{id}', [WareHouseController::class, 'update'])->name('warehouse_page.update');
 Route::delete('/WareHousePage/{id}', [WareHouseController::class, 'destroy'])->name('warehouse_page.destroy');
+
+
+// ProductVariantController  Page
+Route::get('/ProductVariantPage', [ProductVariantController::class, 'index'])->name('product_variant_page.index');
+Route::get('/ProductVariantPage/create', [ProductVariantController::class, 'create'])->name('product_variant_page.create');
+Route::post('/ProductVariantPage', [ProductVariantController::class, 'store'])->name('product_variant_page.store');
+Route::get('/ProductVariantPage/{id}/edit', [ProductVariantController::class, 'edit'])->name('product_variant_page.edit');
+Route::put('/ProductVariantPage/{id}', [ProductVariantController::class, 'update'])->name('product_variant_page.update');
+Route::delete('/ProductVariantPage/{id}', [ProductVariantController::class, 'destroy'])->name('product_variant_page.destroy');
+
+
+// ProductController  Page  not yet complete
+Route::get('/ProductPage', [ProductController::class, 'index'])->name('product_page.index');
+Route::get('/ProductPage/create', [ProductController::class, 'create'])->name('product_page.create');
+Route::post('/ProductPage', [ProductController::class, 'store'])->name('product_page.store');
+Route::get('/ProductPage/{id}/edit', [ProductController::class, 'edit'])->name('product_page.edit');
+Route::put('/ProductPage/{id}', [ProductController::class, 'update'])->name('product_page.update');
+Route::delete('/ProductPage/{id}', [ProductController::class, 'destroy'])->name('product_page.destroy');
 
 

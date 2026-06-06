@@ -293,6 +293,32 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/ProductVariantPage"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/ProductVariantPage'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-box"></i>
+                                <p>Product Variant Page</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
+                                href="/ProductPage"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/ProductPage'),
+                                }"
+                            >
+                              <i class="nav-icon fas fa-product-hunt"></i>
+                                <p>Product Page</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{
