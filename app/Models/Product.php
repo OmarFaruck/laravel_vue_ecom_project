@@ -3,8 +3,7 @@
 namespace App\Models;
 
 use App\Models\Brand;
-use App\Models\Category;
-use App\Models\HomeSlider;
+use App\Models\Category; 
 use App\Models\PickupPoint;
 use App\Models\SubCategory;
 use App\Models\TrendyProduct;

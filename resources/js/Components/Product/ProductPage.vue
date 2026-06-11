@@ -11,7 +11,7 @@
                 <h2>Product Page</h2>
 
 
-                <button subject="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     Add Product Page
                 </button>
@@ -41,17 +41,19 @@
                     <button @click="edit(item)" class="btn btn-sm btn-success me-2">
                         <SquarePen /> Edit
                     </button>
-                    <button subject="button" @click="remove(item)" class="btn btn-sm btn-danger">
+                    <button type="button" @click="remove(item)" class="btn btn-sm btn-danger">
                         <Trash2 /> Delete
                     </button>
                 </template>
 
                 <template #item-product_video="item">
-                    <img :src="`/storage/product/${item.product_video}`" width="80" height="60" class="rounded" />
+                    <video controls width="200">
+                        <source :src="'/storage/' + item.product_video" type="video/mp4">
+                    </video>
                 </template>
 
                 <template #item-product_thumbnail="item">
-                    <img :src="`/storage/product/${item.product_thumbnail}`" width="80" height="60" class="rounded" />
+                    <img :src="'/storage/' + item.product_thumbnail" width="80" height="60" class="rounded" />
                 </template>
 
             </Vue3EasyDataTable>
@@ -65,7 +67,7 @@
                     <form @submit.prevent="submitcreate">
                         <div class="modal-header">
                             <h5 class="modal-title">Product Create Form</h5>
-                            <button subject="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
@@ -139,7 +141,7 @@
 
                             <div class="mb-3">
                                 <label>product_view:</label>
-                                <input v-model="form.product_view" type="text" placeholder="Create product_view"
+                                <input v-model="form.product_view" type="number" placeholder="Create product_view"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_view">
                                     {{ form.errors.product_view }}
@@ -148,7 +150,7 @@
 
                             <div class="mb-3">
                                 <label>product_weight:</label>
-                                <input v-model="form.product_weight" type="text" placeholder="Create product_weight"
+                                <input v-model="form.product_weight" type="number" placeholder="Create product_weight"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_weight">
                                     {{ form.errors.product_weight }}
@@ -195,7 +197,7 @@
 
                             <div class="mb-3">
                                 <label>product_thumbnail:</label>
-                                <input @input="form.product_thumbnail = $event.target.files[0]" type="file"
+                                <input @change="form.product_thumbnail = $event.target.files[0]" type="file"
                                     accept="image/*" class="dropify form-control" />
                                 <div class="text-danger" v-if="form.errors.product_thumbnail">
                                     {{ form.errors.product_thumbnail }}
@@ -222,8 +224,8 @@
 
                             <div class="mb-3">
                                 <label>product_warranty:</label>
-                                <input v-model="form.product_warranty" type="text" placeholder="Create product_warranty"
-                                    class="form-control" />
+                                <input v-model="form.product_warranty" type="number"
+                                    placeholder="Create product_warranty" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_warranty">
                                     {{ form.errors.product_warranty }}
                                 </div>
@@ -231,10 +233,19 @@
 
                             <div class="mb-3">
                                 <label>product_warranty_duration:</label>
-                                <input v-model="form.product_warranty_duration" type="text"
+                                <input v-model="form.product_warranty_duration" type="number"
                                     placeholder="Create product_warranty_duration" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_warranty_duration">
                                     {{ form.errors.product_warranty_duration }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_warranty_conditions:</label>
+                                <input v-model="form.product_warranty_conditions" type="text"
+                                    placeholder="Create product_warranty_conditions" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_warranty_conditions">
+                                    {{ form.errors.product_warranty_conditions }}
                                 </div>
                             </div>
 
@@ -249,7 +260,7 @@
 
                             <div class="mb-3">
                                 <label>product_purchase_price:</label>
-                                <input v-model="form.product_purchase_price" type="text"
+                                <input v-model="form.product_purchase_price" type="number"
                                     placeholder="Create product_purchase_price" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_purchase_price">
                                     {{ form.errors.product_purchase_price }}
@@ -258,7 +269,7 @@
 
                             <div class="mb-3">
                                 <label>product_selling_price:</label>
-                                <input v-model="form.product_selling_price" type="text"
+                                <input v-model="form.product_selling_price" type="number"
                                     placeholder="Create product_selling_price" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_selling_price">
                                     {{ form.errors.product_selling_price }}
@@ -280,7 +291,7 @@
 
                             <div class="mb-3">
                                 <label>featured:</label>
-                                <input v-model="form.featured" type="text" placeholder="Create featured"
+                                <input v-model="form.featured" type="number" placeholder="Create featured"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.featured">
                                     {{ form.errors.featured }}
@@ -289,7 +300,7 @@
 
                             <div class="mb-3">
                                 <label>today_deal:</label>
-                                <input v-model="form.today_deal" type="text" placeholder="Create today_deal"
+                                <input v-model="form.today_deal" type="number" placeholder="Create today_deal"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.today_deal">
                                     {{ form.errors.today_deal }}
@@ -313,8 +324,7 @@
                             <div class="mb-3">
                                 <label for="coupon_subject">product_status</label>
 
-                                <select id="coupon_subject" class="form-control" type="text"
-                                    v-model="form.product_status" required>
+                                <select id="coupon_subject" class="form-control" v-model="form.product_status" required>
                                     <option value="active">active</option>
                                     <option value="inactive">inactive</option>
                                 </select>
@@ -355,8 +365,8 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitUpdate">
                         <div class="modal-header">
-                            <h5 class="modal-title">Contact Address Edit Form</h5>
-                            <button subject="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <h5 class="modal-title">Product Edit Form</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
                         <div class="modal-body">
@@ -430,7 +440,7 @@
 
                             <div class="mb-3">
                                 <label>product_view:</label>
-                                <input v-model="form.product_view" type="text" placeholder="Create product_view"
+                                <input v-model="form.product_view" type="number" placeholder="Create product_view"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_view">
                                     {{ form.errors.product_view }}
@@ -439,7 +449,7 @@
 
                             <div class="mb-3">
                                 <label>product_weight:</label>
-                                <input v-model="form.product_weight" type="text" placeholder="Create product_weight"
+                                <input v-model="form.product_weight" type="number" placeholder="Create product_weight"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_weight">
                                     {{ form.errors.product_weight }}
@@ -486,7 +496,7 @@
 
                             <div class="mb-3">
                                 <label>product_thumbnail:</label>
-                                <input @input="form.product_thumbnail = $event.target.files[0]" type="file"
+                                <input @change="form.product_thumbnail = $event.target.files[0]" type="file"
                                     accept="image/*" class="dropify form-control" />
                                 <div class="text-danger" v-if="form.errors.product_thumbnail">
                                     {{ form.errors.product_thumbnail }}
@@ -513,8 +523,8 @@
 
                             <div class="mb-3">
                                 <label>product_warranty:</label>
-                                <input v-model="form.product_warranty" type="text" placeholder="Create product_warranty"
-                                    class="form-control" />
+                                <input v-model="form.product_warranty" type="number"
+                                    placeholder="Create product_warranty" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_warranty">
                                     {{ form.errors.product_warranty }}
                                 </div>
@@ -522,10 +532,19 @@
 
                             <div class="mb-3">
                                 <label>product_warranty_duration:</label>
-                                <input v-model="form.product_warranty_duration" type="text"
+                                <input v-model="form.product_warranty_duration" type="number"
                                     placeholder="Create product_warranty_duration" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_warranty_duration">
                                     {{ form.errors.product_warranty_duration }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_warranty_conditions:</label>
+                                <input v-model="form.product_warranty_conditions" type="text"
+                                    placeholder="Create product_warranty_conditions" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.product_warranty_conditions">
+                                    {{ form.errors.product_warranty_conditions }}
                                 </div>
                             </div>
 
@@ -540,7 +559,7 @@
 
                             <div class="mb-3">
                                 <label>product_purchase_price:</label>
-                                <input v-model="form.product_purchase_price" type="text"
+                                <input v-model="form.product_purchase_price" type="number"
                                     placeholder="Create product_purchase_price" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_purchase_price">
                                     {{ form.errors.product_purchase_price }}
@@ -549,7 +568,7 @@
 
                             <div class="mb-3">
                                 <label>product_selling_price:</label>
-                                <input v-model="form.product_selling_price" type="text"
+                                <input v-model="form.product_selling_price" type="number"
                                     placeholder="Create product_selling_price" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_selling_price">
                                     {{ form.errors.product_selling_price }}
@@ -571,7 +590,7 @@
 
                             <div class="mb-3">
                                 <label>featured:</label>
-                                <input v-model="form.featured" type="text" placeholder="Create featured"
+                                <input v-model="form.featured" type="number" placeholder="Create featured"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.featured">
                                     {{ form.errors.featured }}
@@ -580,7 +599,7 @@
 
                             <div class="mb-3">
                                 <label>today_deal:</label>
-                                <input v-model="form.today_deal" type="text" placeholder="Create today_deal"
+                                <input v-model="form.today_deal" type="number" placeholder="Create today_deal"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.today_deal">
                                     {{ form.errors.today_deal }}
@@ -604,8 +623,7 @@
                             <div class="mb-3">
                                 <label for="coupon_subject">product_status</label>
 
-                                <select id="coupon_subject" class="form-control" type="text"
-                                    v-model="form.product_status" required>
+                                <select id="coupon_subject" class="form-control" v-model="form.product_status" required>
                                     <option value="active">active</option>
                                     <option value="inactive">inactive</option>
                                 </select>
@@ -724,7 +742,7 @@ const form = useForm({
 });
 
 const props = defineProps({
-    ProductPage : Array,
+    ProductPage: Array,
     categories: Array,
     subcategories: Array,
     brands: Array,
