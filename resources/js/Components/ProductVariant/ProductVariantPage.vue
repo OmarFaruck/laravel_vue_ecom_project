@@ -46,7 +46,7 @@
                     </button>
                 </template>
 
-                <template #item-product_image="item">
+                <template #item-product_image="item"> 
                     <img :src="`/storage/product_image/${item.product_image}`" width="80" height="60" class="rounded" />
                 </template>
                 
@@ -115,8 +115,12 @@
 
                             <div class="mb-3">
                                 <label>product_id:</label>
-                                <input v-model="form.product_id" type="text" placeholder="Create product_id"
-                                    class="form-control" />
+                                 <select v-model="form.product_id" name="product_id" id="product_id" class="form-control">
+                                    <option value="">Select a Product</option>
+                                    <option v-for="product in Product" :key="product.id" :value="product.id">
+                                        {{ product.id }} -- {{ product.product_name }}
+                                    </option>
+                                </select>
                                 <div class="text-danger" v-if="form.errors.product_id">
                                     {{ form.errors.product_id }}
                                 </div>
@@ -195,8 +199,12 @@
 
                             <div class="mb-3">
                                 <label>product_id:</label>
-                                <input v-model="form.product_id" type="text" placeholder="Create product_id"
-                                    class="form-control" />
+                                 <select v-model="form.product_id" name="product_id" id="product_id" class="form-control">
+                                    <option value="">Select a Product</option>
+                                    <option v-for="product in Product" :key="product.id" :value="product.id">
+                                        {{ product.id }} -- {{ product.product_name }}
+                                    </option>
+                                </select>
                                 <div class="text-danger" v-if="form.errors.product_id">
                                     {{ form.errors.product_id }}
                                 </div>
@@ -255,8 +263,13 @@ const form = useForm({
     product_id: "", 
 });
 
+const props = defineProps({
+    ProductVariant: Array,
+    Product: Array,
+});
+
 const submitcreate = () => {
-    form.post("/ProductVariantPage", {
+    form.post("/ProductVariant", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -312,7 +325,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/ProductVariantPage/${form.id}`, {
+        .post(`/ProductVariant/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -342,7 +355,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/ProductVariantPage/${data.id}`, {
+            router.delete(`/ProductVariant/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

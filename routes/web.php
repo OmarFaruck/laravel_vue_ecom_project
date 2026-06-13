@@ -232,16 +232,6 @@ Route::get('/WareHousePage/{id}/edit', [WareHouseController::class, 'edit'])->na
 Route::put('/WareHousePage/{id}', [WareHouseController::class, 'update'])->name('warehouse_page.update');
 Route::delete('/WareHousePage/{id}', [WareHouseController::class, 'destroy'])->name('warehouse_page.destroy');
 
-
-// ProductVariantController  Page not yet done
-Route::get('/ProductVariantPage', [ProductVariantController::class, 'index'])->name('product_variant_page.index');
-Route::get('/ProductVariantPage/create', [ProductVariantController::class, 'create'])->name('product_variant_page.create');
-Route::post('/ProductVariantPage', [ProductVariantController::class, 'store'])->name('product_variant_page.store');
-Route::get('/ProductVariantPage/{id}/edit', [ProductVariantController::class, 'edit'])->name('product_variant_page.edit');
-Route::put('/ProductVariantPage/{id}', [ProductVariantController::class, 'update'])->name('product_variant_page.update');
-Route::delete('/ProductVariantPage/{id}', [ProductVariantController::class, 'destroy'])->name('product_variant_page.destroy');
-
-
 // ProductController  Page 
 Route::get('/ProductPage', [ProductController::class, 'index'])->name('product_page.index');
 Route::get('/ProductPage/create', [ProductController::class, 'create'])->name('product_page.create');
@@ -249,5 +239,16 @@ Route::post('/ProductPage', [ProductController::class, 'store'])->name('product_
 Route::get('/ProductPage/{id}/edit', [ProductController::class, 'edit'])->name('product_page.edit');
 Route::put('/ProductPage/{id}', [ProductController::class, 'update'])->name('product_page.update');
 Route::delete('/ProductPage/{id}', [ProductController::class, 'destroy'])->name('product_page.destroy');
+
+
+// ProductVariantController  Page not yet done
+Route::get('/ProductVariant', [ProductVariantController::class, 'index'])->name('product_variant_page.index');
+Route::get('/ProductVariant/create', [ProductVariantController::class, 'create'])->name('product_variant_page.create');
+Route::post('/ProductVariant', [ProductVariantController::class, 'store'])->name('product_variant_page.store');
+Route::get('/ProductVariant/{id}/edit', [ProductVariantController::class, 'edit'])->name('product_variant_page.edit');
+Route::put('/ProductVariant/{id}', [ProductVariantController::class, 'update'])->name('product_variant_page.update');
+Route::delete('/ProductVariant/{id}', [ProductVariantController::class, 'destroy'])->name('product_variant_page.destroy');
+
+
 
 

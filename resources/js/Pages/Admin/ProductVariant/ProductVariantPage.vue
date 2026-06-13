@@ -1,10 +1,10 @@
 <template>
-<ProductVariantPage :ProductVariant="ProductVariant"/>
+<ProductVariant :ProductVariant="ProductVariant" :Product="Product" />
  <!-- <h1>category page</h1> -->
 </template>
 
 <script setup>
-import ProductVariantPage from "@/Components/ProductVariant/ProductVariantPage.vue";
+import ProductVariant from "@/Components/ProductVariant/ProductVariantPage.vue";
 import BackendLayout from "@/Layout/BackendLayout.vue";
 
 defineOptions({
@@ -13,6 +13,7 @@ defineOptions({
 
 defineProps({
   ProductVariant: Array,
+  Product: Array,
 });
 
 </script>

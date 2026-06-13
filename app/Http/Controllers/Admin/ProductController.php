@@ -160,6 +160,7 @@ class ProductController extends Controller
             'pickupPoints' => PickupPoint::all(),
             'warehouses' => WareHouse::all(),
             'trendyProducts' => TrendyProduct::all(), 
+            'users' => User::all(),
         ]);
 
     }
