@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,17 +16,31 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next): Response
     {
-            $role = $request->session()->get('role', 'default');
+        //     $role = $request->session()->get('role', 'default');
         
-        if ($role !== 'admin') {
-            // return redirect('/admin/dashboard')->with([
-            return redirect('/')->with([
-                'message' => 'Access denied. Admin privileges required.',
-                'status' => false,
-                'error' => 'You do not have permission to access this page.'
-            ]);
-        }
+        // if ($role !== 'admin') {
+        //     // return redirect('/admin/dashboard')->with([
+        //     return redirect('/')->with([
+        //         'message' => 'Access denied. Admin privileges required.',
+        //         'status' => false,
+        //         'error' => 'You do not have permission to access this page.'
+        //     ]);
+        // }
         
-        return $next($request);
+        // return $next($request);
+
+         $userId = $request->session()->get('user_id');
+
+    $user = User::find($userId);
+
+    if (!$user || $user->usertype != 1) {
+        return redirect('/')->with([
+            'message' => 'Access denied. Admin privileges required.',
+            'status' => false,
+            'error' => 'You do not have permission to access this page.'
+        ]);
+    }
+
+    return $next($request);
     }
 }

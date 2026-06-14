@@ -58,11 +58,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/category"
+                            <Link v-if="isAdmin"
+                                href="/admin/category"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/category'),
+                                    active: $page.url.startsWith('/admin/category'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-th"></i>
@@ -71,11 +71,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/subcategory"
+                            <Link v-if="isAdmin"
+                                href="/admin/subcategory"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/subcategory'),
+                                    active: $page.url.startsWith('/admin/subcategory'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-th"></i>
@@ -84,11 +84,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/page_create"
+                            <Link v-if="isAdmin"
+                                href="/admin/page_create"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/page_create'),
+                                    active: $page.url.startsWith('/admin/page_create'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-book"></i>
@@ -97,11 +97,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/homeslider"
+                            <Link v-if="isAdmin"
+                                href="/admin/homeslider"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/homeslider'),
+                                    active: $page.url.startsWith('/admin/homeslider'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-home"></i>
@@ -110,11 +110,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/brandpage"
+                            <Link v-if="isAdmin"
+                                href="/admin/brandpage"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/brandpage'),
+                                    active: $page.url.startsWith('/admin/brandpage'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-tag"></i>
@@ -123,11 +123,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/trendyproducts"
+                            <Link v-if="isAdmin"
+                                href="/admin/trendyproducts"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/trendyproducts'),
+                                    active: $page.url.startsWith('/admin/trendyproducts'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-fire"></i>
@@ -136,11 +136,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/collection"
+                            <Link v-if="isAdmin"
+                                href="/admin/collection"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/collection'),
+                                    active: $page.url.startsWith('/admin/collection'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-book"></i>
@@ -149,11 +149,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/stayupdate"
+                            <Link v-if="isAdmin"
+                                href="/admin/stayupdate"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/stayupdate'),
+                                    active: $page.url.startsWith('/admin/stayupdate'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-envelope"></i>
@@ -162,11 +162,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/justarrived"
+                            <Link v-if="isAdmin"
+                                href="/admin/justarrived"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/justarrived'),
+                                    active: $page.url.startsWith('/admin/justarrived'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-fire"></i>
@@ -175,11 +175,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/newsletter"
+                            <Link v-if="isAdmin"
+                                href="/admin/newsletter"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/newsletter'),
+                                    active: $page.url.startsWith('/admin/newsletter'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-newspaper"></i>
@@ -214,11 +214,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/CouponCode"
+                            <Link v-if="isAdmin"
+                                href="/admin/CouponCode"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/CouponCode'),
+                                    active: $page.url.startsWith('/admin/CouponCode'),
                                 }"
                             >
                               <i class="nav-icon fas fa-ticket-alt"></i>
@@ -227,11 +227,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/PageSetting"
+                            <Link v-if="isAdmin"
+                                href="/admin/PageSetting"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/PageSetting'),
+                                    active: $page.url.startsWith('/admin/PageSetting'),
                                 }"
                             >
                               <i class="nav-icon fas fa-cog"></i>
@@ -240,11 +240,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/PickupPoint"
+                            <Link v-if="isAdmin"
+                                href="/admin/PickupPoint"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/PickupPoint'),
+                                    active: $page.url.startsWith('/admin/PickupPoint'),
                                 }"
                             >
                               <i class="nav-icon fas fa-car"></i>
@@ -253,11 +253,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/SeoPage"
+                            <Link v-if="isAdmin"
+                                href="/admin/SeoPage"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/SeoPage'),
+                                    active: $page.url.startsWith('/admin/SeoPage'),
                                 }"
                             >
                               <i class="nav-icon fas fa-globe"></i>
@@ -266,11 +266,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/TicketPage"
+                            <Link v-if="isAdmin"
+                                href="/admin/TicketPage"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/TicketPage'),
+                                    active: $page.url.startsWith('/admin/TicketPage'),
                                 }"
                             >
                               <i class="nav-icon fas fa-ticket"></i>
@@ -279,11 +279,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/WareHousePage"
+                            <Link v-if="isAdmin"
+                                href="/admin/WareHousePage"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/WareHousePage'),
+                                    active: $page.url.startsWith('/admin/WareHousePage'),
                                 }"
                             >
                               <i class="nav-icon fas fa-warehouse"></i>
@@ -292,11 +292,11 @@
                         </li>
 
                         <li class="nav-item">
-                            <Link
-                                href="/ProductPage"
+                            <Link v-if="isAdmin"
+                                href="/admin/ProductPage"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/ProductPage'),
+                                    active: $page.url.startsWith('/admin/ProductPage'),
                                 }"
                             >
                               <i class="nav-icon fas fa-product-hunt"></i>
@@ -305,11 +305,11 @@
                         </li>
 
                           <li class="nav-item">
-                            <Link
-                                href="/ProductVariant"
+                            <Link v-if="isAdmin"
+                                href="/admin/ProductVariant"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/ProductVariant'),
+                                    active: $page.url.startsWith('/admin/ProductVariant'),
                                 }"
                             >
                               <i class="nav-icon fas fa-box"></i>
@@ -344,10 +344,19 @@
 </template>
 
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
+import { Link, usePage} from "@inertiajs/vue3";
+import { computed } from 'vue';
 import NavberLayout from "./NavberLayout.vue";
 import myimgs from "@/Assets/css/backend/img/myimg.jpg";
 import AdminLTELogo from "@/Assets/css/backend/img/AdminLTELogo.png";
+
+  
+const page = usePage();
+ 
+const isAdmin = computed(() => {
+    return page.props.auth.user?.usertype == 1
+})
+
 </script>
 
 <style scoped>
