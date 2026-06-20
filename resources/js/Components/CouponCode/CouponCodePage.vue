@@ -244,7 +244,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/CouponCode", {
+    form.post("/admin/CouponCode", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -299,7 +299,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/CouponCode/${form.id}`, {
+        .post(`/admin/CouponCode/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -329,7 +329,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/CouponCode/${data.id}`, {
+            router.delete(`/admin/CouponCode/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

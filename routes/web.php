@@ -54,6 +54,9 @@ Route::get('/auth/{provider}', [SocialController::class, 'redirect'])->name('soc
 Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->name('social.callback');
 
 
+Route::get('/', [PageController::class, 'home'])->name('home');
+
+
 Route::middleware([SessionAuthenticate::class])->group(function () {
     // ✅ Admin route
     Route::get('/admin/dashboard', [DashboardController::class, 'AdminPage'])
@@ -64,7 +67,6 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
     //     ->name('homePage');
     Route::get('/homeproduct/pages', [PageController::class, 'homeproductpage'])
         ->name('HomeProductPage');
-
 
         //Admin Only Routes
         Route::prefix('admin')->middleware(AdminOnly::class)->group(function () {
@@ -233,24 +235,23 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
 });
  
 
-            // Contact Us Page
-            Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_us.index');
-            Route::get('/contactus/create', [ContactUsController::class, 'create'])->name('contact_us.create');
-            Route::post('/contactus', [ContactUsController::class, 'store'])->name('contact_us.store');
-            Route::get('/contactus/{id}/edit', [ContactUsController::class, 'edit'])->name('contact_us.edit');
-            Route::put('/contactus/{id}', [ContactUsController::class, 'update'])->name('contact_us.update');
-            Route::delete('/contactus/{id}', [ContactUsController::class, 'destroy'])->name('contact_us.destroy');
+    // Contact Us Page
+    Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_us.index');
+    Route::get('/contactus/create', [ContactUsController::class, 'create'])->name('contact_us.create');
+    Route::post('/contactus', [ContactUsController::class, 'store'])->name('contact_us.store');
+    Route::get('/contactus/{id}/edit', [ContactUsController::class, 'edit'])->name('contact_us.edit');
+    Route::put('/contactus/{id}', [ContactUsController::class, 'update'])->name('contact_us.update');
+    Route::delete('/contactus/{id}', [ContactUsController::class, 'destroy'])->name('contact_us.destroy');
 
 
-            // Contact Address Page
-            Route::get('/contactaddress', [ContactAddressController::class, 'index'])->name('contact_address.index');
-            Route::get('/contactaddress/create', [ContactAddressController::class, 'create'])->name('contact_address.create');
-            Route::post('/contactaddress', [ContactAddressController::class, 'store'])->name('contact_address.store');
-            Route::get('/contactaddress/{id}/edit', [ContactAddressController::class, 'edit'])->name('contact_address.edit');
-            Route::put('/contactaddress/{id}', [ContactAddressController::class, 'update'])->name('contact_address.update');
-            Route::delete('/contactaddress/{id}', [ContactAddressController::class, 'destroy'])->name('contact_address.destroy');
+    // Contact Address Page
+    Route::get('/contactaddress', [ContactAddressController::class, 'index'])->name('contact_address.index');
+    Route::get('/contactaddress/create', [ContactAddressController::class, 'create'])->name('contact_address.create');
+    Route::post('/contactaddress', [ContactAddressController::class, 'store'])->name('contact_address.store');
+    Route::get('/contactaddress/{id}/edit', [ContactAddressController::class, 'edit'])->name('contact_address.edit');
+    Route::put('/contactaddress/{id}', [ContactAddressController::class, 'update'])->name('contact_address.update');
+    Route::delete('/contactaddress/{id}', [ContactAddressController::class, 'destroy'])->name('contact_address.destroy');
 
 
            
 
-Route::get('/', [PageController::class, 'home'])->name('home');

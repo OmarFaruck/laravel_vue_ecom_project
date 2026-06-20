@@ -191,7 +191,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/collection", {
+    form.post("/admin/collection", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -244,7 +244,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/collection/${form.id}`, {
+        .post(`/admin/collection/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -274,7 +274,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/collection/${data.id}`, {
+            router.delete(`/admin/collection/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

@@ -269,7 +269,7 @@ const props = defineProps({
 });
 
 const submitcreate = () => {
-    form.post("/ProductVariant", {
+    form.post("/admin/ProductVariant", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -325,7 +325,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/ProductVariant/${form.id}`, {
+        .post(`/admin/ProductVariant/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -355,7 +355,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/ProductVariant/${data.id}`, {
+            router.delete(`/admin/ProductVariant/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

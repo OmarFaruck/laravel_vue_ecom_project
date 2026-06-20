@@ -170,7 +170,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/newsletter", {
+    form.post("/admin/newsletter", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -222,7 +222,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/newsletter/${form.id}`, {
+        .post(`/admin/newsletter/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -252,7 +252,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/newsletter/${data.id}`, {
+            router.delete(`/admin/newsletter/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

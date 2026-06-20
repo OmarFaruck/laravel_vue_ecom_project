@@ -191,7 +191,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/homeslider", {
+    form.post("/admin/homeslider", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -244,7 +244,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/homeslider/${form.id}`, {
+        .post(`/admin/homeslider/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -274,7 +274,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/homeslider/${data.id}`, {
+            router.delete(`/admin/homeslider/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

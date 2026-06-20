@@ -2,7 +2,7 @@
  
 <FrontendLayout>
    <HomeProductPage/>
-   <Categories/>
+   <Categories :category="category" :pages="pages" />
    <Offer/>
    <Products/>
    <Subscribe/>
@@ -21,6 +21,11 @@ import Products from '@/Components/User/Products.vue';
 import Subscribe from '@/Components/User/Subscribe.vue';
 import Productpage from '@/Components/User/Productpage.vue';
 import Vendor from '@/Components/User/Vendor.vue';
- 
+
+
+ defineProps({
+    category: Array,
+    pages: Array
+})
 
 </script>

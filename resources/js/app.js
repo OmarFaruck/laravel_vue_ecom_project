@@ -5,6 +5,7 @@ import NProgress from "nprogress";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import swal from 'sweetalert';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 // ✅ Dynamic CSS/JS Loader Function
 const loadPageSpecificAssets = async (pageName) => {

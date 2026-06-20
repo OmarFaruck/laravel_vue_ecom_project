@@ -179,7 +179,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/page_create", {
+    form.post("/admin/page_create", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -234,7 +234,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/page_create/${form.id}`, {
+        .post(`/admin/page_create/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -264,7 +264,7 @@ function remove(data: { id: any; }) {
 
         if (willDelete) {
 
-            router.delete(`/page_create/${data.id}`, {
+            router.delete(`/admin/page_create/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

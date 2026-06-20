@@ -463,7 +463,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/WareHousePage", {
+    form.post("/admin/WareHousePage", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -525,7 +525,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/WareHousePage/${form.id}`, {
+        .post(`/admin/WareHousePage/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -555,7 +555,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/WareHousePage/${data.id}`, {
+            router.delete(`/admin/WareHousePage/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

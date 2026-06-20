@@ -604,7 +604,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/SeoPage", {
+    form.post("/admin/SeoPage", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -680,7 +680,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/SeoPage/${form.id}`, {
+        .post(`/admin/SeoPage/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -710,7 +710,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/SeoPage/${data.id}`, {
+            router.delete(`/admin/SeoPage/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

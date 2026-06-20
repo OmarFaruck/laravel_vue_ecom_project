@@ -198,7 +198,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/subcategory", {
+    form.post("/admin/subcategory", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -253,7 +253,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/subcategory/${form.id}`, {
+        .post(`/admin/subcategory/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -283,7 +283,7 @@ function remove(data: { id: any; }) {
 
         if (willDelete) {
 
-            router.delete(`/subcategory/${data.id}`, {
+            router.delete(`/admin/subcategory/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

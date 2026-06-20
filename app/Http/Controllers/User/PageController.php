@@ -2,20 +2,35 @@
 
 namespace App\Http\Controllers\User;
 
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Category; 
+use App\Models\Page;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 
 class PageController extends Controller
 {
     public function home(Request $request){
-         return Inertia::render("User/UserPage");
+    
+    $category = Category::with('subcategory')->get();
+    $pages = Page::get();
+
+         return Inertia::render("User/UserPage",[
+          'category' => $category,
+          'pages' => $pages 
+         ]);
          
     }
+
     public function homeproductpage(Request $request){
-         return Inertia::render("User/UserPage");
+      $category = Category::with('subcategory')->get();
+     $page = Page::get();
+
+         return Inertia::render("User/UserPage",[
+          'category' => $category,
+          'pages' => $pages 
+         ]);
          
     }
  

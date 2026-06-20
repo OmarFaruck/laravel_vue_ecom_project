@@ -191,7 +191,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/brandpage", {
+    form.post("/admin/brandpage", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -244,7 +244,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/brandpage/${form.id}`, {
+        .post(`/admin/brandpage/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -274,7 +274,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/brandpage/${data.id}`, {
+            router.delete(`/admin/brandpage/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

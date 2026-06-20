@@ -312,7 +312,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/TicketPage", {
+    form.post("/admin/TicketPage", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -370,7 +370,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/TicketPage/${form.id}`, {
+        .post(`/admin/TicketPage/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -400,7 +400,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/TicketPage/${data.id}`, {
+            router.delete(`/admin/TicketPage/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

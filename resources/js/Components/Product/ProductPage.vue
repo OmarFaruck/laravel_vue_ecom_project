@@ -753,7 +753,7 @@ const props = defineProps({
 });
 
 const submitcreate = () => {
-    form.post("/ProductPage", {
+    form.post("/admin/ProductPage", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -831,7 +831,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/ProductPage/${form.id}`, {
+        .post(`/admin/ProductPage/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -861,7 +861,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/ProductPage/${data.id}`, {
+            router.delete(`/admin/ProductPage/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

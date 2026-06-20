@@ -318,7 +318,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/PageSetting", {
+    form.post("/admin/PageSetting", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -377,7 +377,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/PageSetting/${form.id}`, {
+        .post(`/admin/PageSetting/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -407,7 +407,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/PageSetting/${data.id}`, {
+            router.delete(`/admin/PageSetting/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",
