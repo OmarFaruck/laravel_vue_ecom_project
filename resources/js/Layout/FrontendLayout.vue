@@ -147,33 +147,33 @@
 
                 </nav>
 
-
+                
                 <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active" style="height: 410px;">
-                            <!-- <img class="img-fluid" src="img/carousel-1.jpg" alt="Image"> -->
-                            <img class="img-fluid" :src="carouselImage1" alt="Image">
+
+                        <div v-for="(slider, index) in homeslider" :key="slider.id" class="carousel-item"
+                            :class="{ active: index === 0 }" style="height: 410px;">
+                            <img class="img-fluid w-100 h-100" :src="`storage/homeslider/${slider.image}`"
+                                :alt="slider.title" style="object-fit: cover;">
+
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
-                                        Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+                                <div class="p-3" style="max-width:700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">
+                                        {{ slider.offer }}
+                                    </h4>
+
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">
+                                        {{ slider.heading }}
+                                    </h3>
+
+                                    <!-- <a :href="slider.button_link" class="btn btn-light py-2 px-3">
+                                        {{ slider.button_text }}
+                                    </a> -->
+                                    <Link href="" class="btn btn-light py-2 px-3">Shop Now</Link>
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item" style="height: 410px;">
-                            <!-- <img class="img-fluid" src="img/carousel-2.jpg" alt="Image"> -->
-                            <img class="img-fluid" :src="carouselImage2" alt="Image" />
-                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                                <div class="p-3" style="max-width: 700px;">
-                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
-                                        Order</h4>
-                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
@@ -186,7 +186,6 @@
                         <span class="carousel-control-next-icon"></span>
                     </button>
                 </div>
-                <!-- <UserPage/> -->
             </div>
         </div>
     </div>
@@ -296,6 +295,7 @@ const page = usePage()
 
 const category = computed(() => page.props.category || [])
 const pages = computed(() => page.props.pages || [])
+const homeslider = computed(() => page.props.homeslider || [])
 </script>
 
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Brand;
 use App\Models\Category; 
 use App\Models\PickupPoint;
+use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use App\Models\TrendyProduct;
 use App\Models\User;
@@ -74,6 +75,12 @@ class Product extends Model
     {
         return $this->belongsTo(User::class, 'user_id' ,'id');
     }
+
+
+public function productvarient()
+{
+    return $this->hasMany(ProductVariant::class, 'product_id');
+}
 
  
 

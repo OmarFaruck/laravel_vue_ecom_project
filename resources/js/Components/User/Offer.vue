@@ -1,32 +1,31 @@
 <template>
     <!-- Offer Start -->
-    <div class="container-fluid offer pt-5">
+    <div class="container-fluid offer pt-5"> 
         <div class="row px-xl-5">
-            <div class="col-md-6 pb-4">
+            <div v-for="item in collections" class="col-md-6 pb-4">
                 <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
-                    <img :src="offer1" alt="">
+                    <img :src="`/storage/collection/${item.image}`" alt="collection.title">
                     <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Spring Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
+                        <h5 class="text-uppercase text-primary mb-3">{{ item.heading }}</h5>
+                        <h1 class="mb-4 font-weight-semi-bold">{{ item.title }}</h1>
+                        <Link href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</Link>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
-                    <img :src="offer2" alt="">
-                    <div class="position-relative" style="z-index: 1;">
-                        <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
-                        <h1 class="mb-4 font-weight-semi-bold">Winter Collection</h1>
-                        <a href="" class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
-                    </div>
-                </div>
-            </div>
+        
         </div>
     </div>  
     <!-- Offer End -->
 </template>
-<script setup> 
-import offer1 from '@/Assets/css/fontend/img/offer-1.png'; 
-import offer2 from '@/Assets/css/fontend/img/offer-2.png'; 
+<script setup>
+import { Link, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue'
+ 
+
+const page=usePage();
+
+const collections = computed(() => page.props.collections || [])
+
+// import offer1 from '@/Assets/css/fontend/img/offer-1.png'; 
+// import offer2 from '@/Assets/css/fontend/img/offer-2.png'; 
 </script>
