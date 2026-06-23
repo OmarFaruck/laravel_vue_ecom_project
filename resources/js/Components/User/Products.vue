@@ -2,7 +2,7 @@
   <!-- Products Start -->
   <div class="container-fluid pt-5">
         <div class="text-center mb-4">
-            <h2 class="section-title px-5"><span class="px-2">{{ heading }}</span></h2>
+            <h2 class="section-title px-5"><span class="px-2">{{ trendyproducts.heading }}</span></h2>
         </div>
         <div class="row px-xl-5 pb-3">
 
@@ -38,5 +38,6 @@ import { computed } from 'vue';
 const page=usePage();
 
 const trendyproduct= computed(()=> page.props.trendyproduct  || [])
+const trendyproducts= computed(()=> page.props.trendyproducts  || [])
  
 </script>

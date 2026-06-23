@@ -124,6 +124,7 @@
                             </template>
                         </div>
 
+                        <!-- user login  -->
                         <div class="navbar-nav ml-auto py-0">
 
                             <!-- ❌ User NOT logged in -->
@@ -147,7 +148,7 @@
 
                 </nav>
 
-                
+                <!-- home page slider -->
                 <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
 
@@ -262,15 +263,23 @@
                         <h5 class="font-weight-bold text-dark mb-4">
                             Newsletter
                         </h5>
-                        <form action="">
+                        <form @submit.prevent="submitcreate">
                             <div class="form-group">
                                 <!-- <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" /> -->
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" />
+                                <input v-model="form.name" type="text" class="form-control border-0 py-4"
+                                    placeholder="Your Name" />
+                            </div>
+                            <div class="text-danger" v-if="form.errors.name">
+                                {{ form.errors.name }}
                             </div>
                             <div class="form-group">
                                 <!-- <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
                                     required="required" /> -->
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email" />
+                                <input v-model="form.email" type="email" class="form-control border-0 py-4"
+                                    placeholder="Your Email" />
+                            </div>
+                            <div class="text-danger" v-if="form.errors.email">
+                                {{ form.errors.email }}
                             </div>
                             <div>
                                 <button class="btn btn-primary btn-block border-0 py-3" type="submit">
@@ -289,38 +298,45 @@
 
 <script setup>
 import { computed } from 'vue'
-import { Link, usePage } from '@inertiajs/vue3'
+import { Link, usePage, useForm, router } from '@inertiajs/vue3'
+
 
 const page = usePage()
 
 const category = computed(() => page.props.category || [])
 const pages = computed(() => page.props.pages || [])
 const homeslider = computed(() => page.props.homeslider || [])
+
+const form = useForm({
+    id: null,
+    name: "",
+    email: "",
+});
+
+const submitcreate = () => {
+    form.post('/user_newsletter', {
+        preserveScroll: true,
+
+        onSuccess: () => {
+            form.reset();
+
+            swal(
+                "Success!",
+                "Newsletter subscribed successfully.",
+                "success"
+            );
+        },
+
+        onError: () => {
+            swal(
+                "Error!",
+                "Please check the form fields.",
+                "error"
+            );
+        },
+    });
+};
 </script>
 
 
-<script>
-import { computed } from 'vue';
-import carouselImage1 from '@/Assets/css/fontend/img/carousel-1.jpg';
-import carouselImage2 from "@/Assets/css/fontend/img/carousel-2.jpg";
-
-
-
-
-export default {
-    data() {
-        return {
-            carouselImage1,
-            carouselImage2
-        }
-    }
-}
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     const myCarousel = document.querySelector("#header-carousel");
-//     new bootstrap.Carousel(myCarousel, {
-//         interval: 3000, // 3 seconds
-//         ride: "carousel",
-//     });
-// });
-</script>
+ 

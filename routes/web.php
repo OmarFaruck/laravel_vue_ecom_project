@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\TrendyProductController;
 use App\Http\Controllers\Admin\WareHouseController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
+use App\Http\Controllers\User\UserNewsLetterController;
 use App\Http\Middleware\AdminOnly;
 use App\Http\middleware\SessionAuthenticate;
 use Illuminate\Support\Facades\Route;
@@ -54,8 +55,9 @@ Route::get('/auth/{provider}', [SocialController::class, 'redirect'])->name('soc
 Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->name('social.callback');
 
 
-Route::get('/', [PageController::class, 'home'])->name('home');
-
+Route::get('/', [PageController::class, 'home'])->name('home');  
+Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');  
+Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');  
 
 Route::middleware([SessionAuthenticate::class])->group(function () {
     // ✅ Admin route
@@ -125,18 +127,7 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
             Route::put('/collection/{id}', [CollectionController::class, 'update'])->name('collection.update');
             Route::delete('/collection/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
 
-
-
-
-            // Stay Update Page
-            Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
-            Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
-            Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
-            Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
-            Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
-            Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
-
-
+ 
             // Trendy Products Page
             Route::get('/trendyproducts', [TrendyProductController::class, 'index'])->name('trendy_products.index');
             Route::get('/trendyproducts/create', [TrendyProductController::class, 'create'])->name('trendy_products.create');
@@ -154,14 +145,6 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
             Route::put('/justarrived/{id}', [JustArrivedController::class, 'update'])->name('just_arrived.update');
             Route::delete('/justarrived/{id}', [JustArrivedController::class, 'destroy'])->name('just_arrived.destroy');
 
-
-            // Newsletter Page
-            Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');
-            Route::get('/newsletter/create', [NewsLetterController::class, 'create'])->name('news_letter.create');
-            Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store');
-            Route::get('/newsletter/{id}/edit', [NewsLetterController::class, 'edit'])->name('news_letter.edit');
-            Route::put('/newsletter/{id}', [NewsLetterController::class, 'update'])->name('news_letter.update');
-            Route::delete('/newsletter/{id}', [NewsLetterController::class, 'destroy'])->name('news_letter.destroy');
 
              // Coupon Code Page
             Route::get('/CouponCode', [CouponController::class, 'index'])->name('coupon_code.index');
@@ -194,8 +177,6 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
             Route::get('/SeoPage/{id}/edit', [SeoController::class, 'edit'])->name('seo_page.edit');
             Route::put('/SeoPage/{id}', [SeoController::class, 'update'])->name('seo_page.update');
             Route::delete('/SeoPage/{id}', [SeoController::class, 'destroy'])->name('seo_page.destroy');
-
-
 
             // TicketController  Page
             Route::get('/TicketPage', [TicketController::class, 'index'])->name('ticket_page.index');
@@ -233,7 +214,23 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
 
         });
 });
- 
+
+
+         // Stay Update Page
+            Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
+            Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
+            Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
+            Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
+            Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
+            Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
+
+      // Newsletter Page
+            Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');
+            Route::get('/newsletter/create', [NewsLetterController::class, 'create'])->name('news_letter.create');
+            Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store'); 
+            Route::get('/newsletter/{id}/edit', [NewsLetterController::class, 'edit'])->name('news_letter.edit');
+            Route::put('/newsletter/{id}', [NewsLetterController::class, 'update'])->name('news_letter.update');
+            Route::delete('/newsletter/{id}', [NewsLetterController::class, 'destroy'])->name('news_letter.destroy');
 
     // Contact Us Page
     Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_us.index');

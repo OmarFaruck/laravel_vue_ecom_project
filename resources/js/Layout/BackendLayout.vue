@@ -150,10 +150,10 @@
 
                         <li class="nav-item">
                             <Link v-if="isAdmin"
-                                href="/admin/stayupdate"
+                                href="/stayupdate"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/admin/stayupdate'),
+                                    active: $page.url.startsWith('/stayupdate'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-envelope"></i>
@@ -176,10 +176,10 @@
 
                         <li class="nav-item">
                             <Link v-if="isAdmin"
-                                href="/admin/newsletter"
+                                href="/newsletter"
                                 class="nav-link"
                                 :class="{
-                                    active: $page.url.startsWith('/admin/newsletter'),
+                                    active: $page.url.startsWith('/newsletter'),
                                 }"
                             >
                                 <i class="nav-icon fas fa-newspaper"></i>

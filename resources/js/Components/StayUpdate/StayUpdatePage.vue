@@ -156,7 +156,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/admin/stayupdate", {
+    form.post("/stayupdate", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -207,7 +207,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/admin/stayupdate/${form.id}`, {
+        .post(`/stayupdate/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -237,7 +237,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/admin/stayupdate/${data.id}`, {
+            router.delete(`/stayupdate/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

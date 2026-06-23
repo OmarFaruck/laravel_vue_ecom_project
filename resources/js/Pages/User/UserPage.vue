@@ -6,8 +6,8 @@
    <Offer :collections="collections"/>
    <Products :subcategory="subcategory" :trendyproduct="trendyproduct"/>
    <Subscribe/>
-   <Productpage/>
-   <Vendor/>
+   <Productpage :justarrived="justarrived"/>
+   <Vendor :brand="brand"/>
 </FrontendLayout>
 
                 
@@ -30,6 +30,8 @@ import Vendor from '@/Components/User/Vendor.vue';
     collections: Array,
     subcategory: Array,
     trendyproduct: Array,
+    justarrived: Array,
+    brand: Array,
 })
 
 </script>
