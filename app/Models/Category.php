@@ -2,6 +2,7 @@
 
 namespace App\Models;
  
+use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +16,11 @@ class Category extends Model
     public function subcategory()
     {
         return $this->hasMany(SubCategory::class);
+    }
+
+       public function productvarient()
+    {
+        return $this->hasMany(ProductVariant::class, 'product_id');
     }
 
   

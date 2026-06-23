@@ -23,9 +23,9 @@ class ProductVariant extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function subcategory()
+public function subcategory()
 {
-    return $this->belongsTo(SubCategory::class, 'subcategory_id');
+    return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
 }
 
     public function category()

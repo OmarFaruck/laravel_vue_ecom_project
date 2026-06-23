@@ -313,11 +313,53 @@
                                     <option value="">Select Trendy Product</option>
                                     <option v-for="trendy_product in trendyProducts" :key="trendy_product.id"
                                         :value="trendy_product.id">
-                                        {{ trendy_product.id }} - {{ trendy_product.heading }}
+                                        {{ trendy_product.id }} - {{ trendy_product.title }}
                                     </option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.trendy_product">
                                     {{ form.errors.trendy_product }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_color:</label>
+                                <select v-model="form.product_color" class="form-control" name="product_color">
+                                    <option value="">Select product_color</option>
+                                    <option v-for="product_color in product_color" :key="product_color.id"
+                                        :value="product_color.id">
+                                        {{ product_color.id }} - {{ product_color.product_color }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_color">
+                                    {{ form.errors.product_color }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_size:</label>
+                                <select v-model="form.product_size" class="form-control" name="product_size">
+                                    <option value="">Select product_size</option>
+                                    <option v-for="product_size in product_size" :key="product_size.id"
+                                        :value="product_size.id">
+                                         {{ product_size.product_size }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_size">
+                                    {{ form.errors.product_size }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_quantity:</label>
+                                <select v-model="form.product_quantity" class="form-control" name="product_quantity">
+                                    <option value="">Select product_quantity</option>
+                                    <option v-for="product_quantity in product_quantity" :key="product_quantity.id"
+                                        :value="product_quantity.id">
+                                         {{ product_quantity.product_quantity }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_quantity">
+                                    {{ form.errors.product_quantity }}
                                 </div>
                             </div>
 
@@ -612,11 +654,53 @@
                                     <option value="">Select Trendy Product</option>
                                     <option v-for="trendy_product in trendyProducts" :key="trendy_product.id"
                                         :value="trendy_product.id">
-                                        {{ trendy_product.id }} - {{ trendy_product.heading }}
+                                        {{ trendy_product.id }} - {{ trendy_product.title }}
                                     </option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.trendy_product">
                                     {{ form.errors.trendy_product }}
+                                </div>
+                            </div>
+
+                               <div class="mb-3">
+                                <label>product_color:</label>
+                                <select v-model="form.product_color" class="form-control" name="product_color">
+                                    <option value="">Select product_color</option>
+                                    <option v-for="product_color in product_color" :key="product_color.id"
+                                        :value="product_color.id">
+                                        {{ product_color.id }} - {{ product_color.product_color }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_color">
+                                    {{ form.errors.product_color }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_size:</label>
+                                <select v-model="form.product_size" class="form-control" name="product_size">
+                                    <option value="">Select product_size</option>
+                                    <option v-for="product_size in product_size" :key="product_size.id"
+                                        :value="product_size.id">
+                                         {{ product_size.product_size }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_size">
+                                    {{ form.errors.product_size }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product_quantity:</label>
+                                <select v-model="form.product_quantity" class="form-control" name="product_quantity">
+                                    <option value="">Select product_quantity</option>
+                                    <option v-for="product_quantity in product_quantity" :key="product_quantity.id"
+                                        :value="product_quantity.id">
+                                         {{ product_quantity.product_quantity }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_quantity">
+                                    {{ form.errors.product_quantity }}
                                 </div>
                             </div>
 
@@ -672,7 +756,7 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_slug", "product_view", "product_weight", "product_name", "product_code", "product_tags", "product_video", "product_thumbnail", "product_heading", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_return_policy", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product", "product_status", "user_id"];
+const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_slug", "product_view", "product_weight", "product_name", "product_code", "product_tags", "product_video", "product_thumbnail", "product_heading", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_return_policy", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product","product_color","product_size", "product_quantity","product_status", "user_id"];
 const searchValue = ref();
 
 const page = usePage();
@@ -706,6 +790,9 @@ const headers = [
     { text: "featured", value: "featured" },
     { text: "today_deal", value: "today_deal" },
     { text: "trendy_product", value: "trendy_product" },
+    { text: "product_color", value: "product_color" },
+    { text: "product_size", value: "product_size" },
+    { text: "product_quantity", value: "product_quantity" },
     { text: "product_status", value: "product_status" },
     { text: "user_id", value: "user_id" },
     { text: "Action", value: "action" },
@@ -737,6 +824,9 @@ const form = useForm({
     featured: "",
     today_deal: "",
     trendy_product: "",
+    product_color: "",
+    product_size: "",
+    product_quantity: "",
     product_status: "",
     user_id: "",
 });
@@ -750,6 +840,9 @@ const props = defineProps({
     warehouses: Array,
     trendyProducts: Array,
     users: Array,
+    product_color: Array,
+    product_size: Array,
+    product_quantity: Array,
 });
 
 const submitcreate = () => {
@@ -807,6 +900,9 @@ function edit(item) {
     form.featured = item.featured;
     form.today_deal = item.today_deal;
     form.trendy_product = item.trendy_product;
+    form.product_color = item.product_color;
+    form.product_size = item.product_size;
+    form.product_quantity = item.product_quantity;
     form.product_status = item.product_status;
     form.user_id = item.user_id;
     const modalEl = document.getElementById("editModal");

@@ -154,7 +154,7 @@
 
                         <div v-for="(slider, index) in homeslider" :key="slider.id" class="carousel-item"
                             :class="{ active: index === 0 }" style="height: 410px;">
-                            <img class="img-fluid w-100 h-100" :src="`storage/homeslider/${slider.image}`"
+                            <img class="img-fluid w-100 h-100" :src="`/storage/homeslider/${slider.image}`"
                                 :alt="slider.title" style="object-fit: cover;">
 
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">

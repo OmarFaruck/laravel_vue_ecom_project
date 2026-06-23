@@ -39,6 +39,12 @@ class Product extends Model
         'featured',
         'today_deal', 
         'trendy_product',
+
+        'product_color',
+        'product_size',
+        'product_quantity',
+
+        'product_selling_price',
         'product_status',
         'user_id',
     ];
@@ -77,10 +83,10 @@ class Product extends Model
     }
 
 
-public function productvarient()
-{
-    return $this->hasMany(ProductVariant::class, 'product_id');
-}
+    public function productvarient()
+    {
+        return $this->belongsTo(ProductVariant::class);
+    }
 
  
 

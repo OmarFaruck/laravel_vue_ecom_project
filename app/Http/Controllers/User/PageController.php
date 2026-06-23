@@ -9,6 +9,7 @@ use App\Models\Collection;
 use App\Models\HomeSlider;
 use App\Models\JustArrived;
 use App\Models\Page;
+use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use App\Models\TrendyProduct;
 use Illuminate\Http\Request;
@@ -28,9 +29,11 @@ class PageController extends Controller
     $trendyproducts = TrendyProduct::first();  //name
     $justarrived = JustArrived::get();  
     $justarriveds = JustArrived::first();  //name
-    $brand = Brand::get();    
+    $brand = Brand::get(); 
+    $productvarient = ProductVariant::get();  
+    // $productvarient = ProductVariant::with(['product', 'subcategory'])->get();
  
-    // dd($trendyproduct);
+     
          return Inertia::render("User/UserPage",[
           'category' => $category,
           'pages' => $pages,
@@ -42,21 +45,26 @@ class PageController extends Controller
           'justarrived' => $justarrived,   
           'justarriveds' => $justarriveds,   //name
           'brand' => $brand,   
+          'productvarient' => $productvarient,   
          ]);
          
     }
 
     public function homeproductpage(Request $request){
-     $category = Category::with('subcategory')->get();
-     $subcategory = SubCategory::with('product')->get();  // not complete
-     $page = Page::get();
-     $homeslider = HomeSlider::get();
-     $trendyproduct = TrendyProduct::get();
-     $trendyproducts = TrendyProduct::first();  //name
-     $justarrived = JustArrived::get();  
-     $justarriveds = JustArrived::first();  //name
-     $brand = Brand::get(); 
 
+        $category = Category::with('subcategory')->get();
+        $subcategory = SubCategory::with('product')->get(); //not complete
+        $pages = Page::get();
+        $homeslider = HomeSlider::get();
+        $collections = Collection::get();
+        $trendyproduct = TrendyProduct::get(); 
+        $trendyproducts = TrendyProduct::first();  //name
+        $justarrived = JustArrived::get();  
+        $justarriveds = JustArrived::first();  //name
+        $brand = Brand::get(); 
+        $productvarient = ProductVariant::get();   
+ 
+   
          return Inertia::render("User/UserPage",[
           'category' => $category,
           'pages' => $pages,
@@ -64,10 +72,11 @@ class PageController extends Controller
           'collections' => $collections,
           'subcategory' => $subcategory,
           'trendyproduct' => $trendyproduct,
-          'trendyproducts' => $trendyproducts,  //name
+          'trendyproducts' => $trendyproducts,   //name
           'justarrived' => $justarrived,   
-          'justarriveds' => $justarriveds,  //name
-           'brand' => $brand
+          'justarriveds' => $justarriveds,   //name
+          'brand' => $brand,
+          'productvarient' => $productvarient,   
          ]);
          
     }

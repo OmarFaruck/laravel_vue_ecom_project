@@ -3,14 +3,14 @@
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
 
-            <div v-for="item in subcategory" class="col-lg-4 col-md-6 pb-1">
+            <div v-for="item in productvarient" class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
-                    <p class="text-right">15 Products</p>
+                    <p class="text-right">{{ item.product_quantity }}</p>
                     <Link href="" class="cat-img position-relative overflow-hidden mb-3">
-                        <img class="img-fluid" :src="`/storage/product_image/${item.product_thumbnail}`"
+                        <img class="img-fluid" :src="`/storage/product_image/${item.product_image}`"
                             alt="item.title">
-                    </Link>
-                    <h5 class="font-weight-semi-bold m-0">{{ item.name }}</h5>
+                    </Link> 
+                    <h5 class="font-weight-semi-bold m-0">{{ item.product_color }}</h5>
                 </div>
             </div>
  
@@ -26,7 +26,7 @@ import { computed } from 'vue';
 
 const page = usePage();
 
-const subcategory = computed(() => page.props.subcategory || [])
+const productvarient = computed(() => page.props.productvarient || [])
 
 
 </script>

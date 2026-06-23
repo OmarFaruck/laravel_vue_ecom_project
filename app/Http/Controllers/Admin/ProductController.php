@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category; 
 use App\Models\PickupPoint;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use App\Models\TrendyProduct;
 use App\Models\User;
@@ -27,6 +28,9 @@ class ProductController extends Controller
             'warehouses' => WareHouse::all(),
             'trendyProducts' => TrendyProduct::all(),
             'users' => User::all(), 
+            'product_color' => ProductVariant::all(), 
+            'product_size' => ProductVariant::all(), 
+            'product_quantity' => ProductVariant::all(), 
         ]);
     }
 
@@ -83,6 +87,10 @@ class ProductController extends Controller
         'today_deal' => 'required',
         'trendy_product' => 'required',
 
+        'product_color' => 'required',
+        'product_size' => 'required',
+        'product_quantity' => 'required',
+
         'product_status' => 'required',
         'user_id' => 'required',
     ]);
@@ -135,6 +143,10 @@ class ProductController extends Controller
         'today_deal' => $data['today_deal'],
         'trendy_product' => $data['trendy_product'],
 
+        'product_color' => $data['product_color'],
+        'product_size' => $data['product_size'],
+        'product_quantity' => $data['product_quantity'],
+
         'product_status' => $data['product_status'],
         'user_id' => $data['user_id'],
     ]);
@@ -161,6 +173,9 @@ class ProductController extends Controller
             'warehouses' => WareHouse::all(),
             'trendyProducts' => TrendyProduct::all(), 
             'users' => User::all(),
+             'product_color' => ProductVariant::all(), 
+            'product_size' => ProductVariant::all(), 
+            'product_quantity' => ProductVariant::all(), 
         ]);
 
     }
@@ -203,6 +218,10 @@ class ProductController extends Controller
                 'featured' => 'required',
                 'today_deal' => 'required',
                 'trendy_product' => 'required',
+
+                 'product_color' => 'required',
+                 'product_size' => 'required',
+                 'product_quantity' => 'required',
     
                 'product_status' => 'required',
                 'user_id' => 'required',
@@ -260,6 +279,10 @@ class ProductController extends Controller
                 'featured' => $productdata['featured'],
                 'today_deal' => $productdata['today_deal'],
                 'trendy_product' => $productdata['trendy_product'],
+
+                'product_color' => $productdata['product_color'],
+                'product_size' => $productdata['product_size'],
+                'product_quantity' => $productdata['product_quantity'],
     
                 'product_status' => $productdata['product_status'],
                 'user_id' => $productdata['user_id'],
