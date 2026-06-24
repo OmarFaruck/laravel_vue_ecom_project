@@ -7,7 +7,7 @@
    <Products :subcategory="subcategory" :trendyproduct="trendyproduct"/>
    <Subscribe/>
    <Productpage :justarrived="justarrived"/>
-   <Vendor :brand="brand"/>
+   <Vendor :brand="brand"/> 
 </FrontendLayout>
 
                 
@@ -20,7 +20,7 @@ import Offer from '@/Components/User/Offer.vue';
 import Products from '@/Components/User/Products.vue';
 import Subscribe from '@/Components/User/Subscribe.vue';
 import Productpage from '@/Components/User/Productpage.vue';
-import Vendor from '@/Components/User/Vendor.vue';
+import Vendor from '@/Components/User/Vendor.vue'; 
 
 
  defineProps({

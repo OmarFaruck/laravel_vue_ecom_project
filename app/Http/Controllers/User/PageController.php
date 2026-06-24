@@ -80,6 +80,32 @@ class PageController extends Controller
          ]);
          
     }
+
+    //Dynamin Navber Page Open Controller
+    public function pageshow($slug){
+
+       $page = Page::where('slug', $slug)->firstOrFail();
+        //dynamin page create name
+         $pageallowed = [ 'shop','shop_detail','contact' ,'shoping_card','cheack_out'];
+       if (!in_array($slug,$pageallowed)) {
+        abort(404);
+       }
+
+       $pages = Page::get();
+       $category = Category::with('subcategory')->get();
+       $justarrived = JustArrived::get(); 
+       $trendyproduct = TrendyProduct::get(); 
+      
+       return Inertia::render("User/PageShow/{$slug}",[
+        'page'=>$page,
+        'pages' => $pages,
+        'category' => $category,
+        'justarrived' => $justarrived, 
+        'trendyproduct' => $trendyproduct, 
+
+       ]);
+    }
+
  
 
 }

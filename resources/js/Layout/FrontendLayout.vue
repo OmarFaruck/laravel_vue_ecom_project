@@ -117,8 +117,9 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <template v-for="item in pages" :key="item?.id">
-                                <Link href="#" class="nav-item nav-link">
+                            <Link class="nav-item nav-link" href="/">Home</Link>
+                            <template v-for="item in pages" :key="item?.id"> 
+                                <Link :href="`/page/${item.slug}`" class="nav-item nav-link">
                                     {{ item?.name }}
                                 </Link>
                             </template>

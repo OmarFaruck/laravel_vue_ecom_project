@@ -55,7 +55,12 @@ Route::get('/auth/{provider}', [SocialController::class, 'redirect'])->name('soc
 Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->name('social.callback');
 
 
-Route::get('/', [PageController::class, 'home'])->name('home');  
+Route::get('/', [PageController::class, 'home'])->name('home'); 
+
+//Dynamin fontend Navber Page Open Controller
+Route::get('/page/{slug}', [PageController::class, 'pageshow'])->name('page.show');   
+
+
 Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');  
 Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');  
 
