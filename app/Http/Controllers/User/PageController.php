@@ -84,7 +84,7 @@ class PageController extends Controller
     //Dynamin Navber Page Open Controller
     public function pageshow($slug){
 
-       $page = Page::where('slug', $slug)->firstOrFail();
+       $pagename = Page::where('slug', $slug)->firstOrFail();
         //dynamin page create name
          $pageallowed = [ 'shop','shop_detail','contact' ,'shoping_card','cheack_out'];
        if (!in_array($slug,$pageallowed)) {
@@ -97,7 +97,7 @@ class PageController extends Controller
        $trendyproduct = TrendyProduct::get(); 
       
        return Inertia::render("User/PageShow/{$slug}",[
-        'page'=>$page,
+        'pagename'=>$pagename,
         'pages' => $pages,
         'category' => $category,
         'justarrived' => $justarrived, 
