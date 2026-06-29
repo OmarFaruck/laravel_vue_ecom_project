@@ -81,7 +81,7 @@ class PageController extends Controller
          
     }
 
-    //Dynamin Navber Page Open Controller
+    //Dynamic Navber Page Open Controller
     public function pageshow($slug){
 
        $pagename = Page::where('slug', $slug)->firstOrFail();
