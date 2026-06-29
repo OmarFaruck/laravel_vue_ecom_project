@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
+use App\Models\TrendyProduct;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductVariant extends Model
@@ -32,4 +33,11 @@ public function subcategory()
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function trandyproduct()
+    {
+        return $this->belongsTo(TrendyProduct::class);
+    }
+
+
 }

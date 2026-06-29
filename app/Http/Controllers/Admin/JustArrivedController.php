@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\JustArrived;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -13,6 +14,8 @@ class JustArrivedController extends Controller
         {
             return Inertia::render('Admin/JustArrived/JustArrivedPage',[
                 'justarriveds' => JustArrived::all(),
+                  'product_color' => ProductVariant::all(),
+                'product_size' => ProductVariant::all(),
             ]);
         }
 
@@ -29,6 +32,8 @@ class JustArrivedController extends Controller
                 'title' => 'required|string|max:255',
                 'prize' => 'required|string|max:255',
                 'cancelprize' => 'required|string|max:255',
+                'product_color' => 'required|string|max:255',
+                'product_size' => 'required|string|max:255',
 
             ]);
 
@@ -46,6 +51,8 @@ class JustArrivedController extends Controller
                 'title' => $data['title'],
                 'prize' => $data['prize'],
                 'cancelprize' => $data['cancelprize'],
+                 'product_color' => $data['product_color'],
+                'product_size' => $data['product_size'],
             ]);
 
             return redirect()->route('just_arrived.index');
@@ -69,6 +76,8 @@ class JustArrivedController extends Controller
                     'title' => 'required|string|max:255',
                     'prize' => 'required|string|max:255',
                     'cancelprize' => 'required|string|max:255',
+                     'product_color' => 'required|string|max:255',
+                    'product_size' => 'required|string|max:255',
                 ]);
 
                 // image upload

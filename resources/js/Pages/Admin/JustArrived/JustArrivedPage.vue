@@ -1,5 +1,5 @@
 <template>
-  <JustArrivedPage :justarriveds="justarriveds" />
+  <JustArrivedPage :justarriveds="justarriveds" :product_color="product_color" :product_size="product_size"/>
 </template>
 
 <script setup>
@@ -12,5 +12,7 @@ defineOptions({
 
 defineProps({
   justarriveds: Array,
+  product_color: Array,
+  product_size: Array, 
 });
 </script>

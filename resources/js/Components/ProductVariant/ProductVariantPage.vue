@@ -69,7 +69,7 @@
                             <div class="mb-3">
                                 <label>product_color:</label>
                                 <input v-model="form.product_color" type="text" placeholder="Create product_color"
-                                    class="form-control" />
+                                    class="form-control" /> 
                                 <div class="text-danger" v-if="form.errors.product_color">
                                     {{ form.errors.product_color }}
                                 </div>
@@ -77,7 +77,7 @@
 
                             <div class="mb-3">
                                 <label>product_size:</label>
-                                <input v-model="form.product_size" type="number" placeholder="Create product_size"
+                                <input v-model="form.product_size" type="text" placeholder="Create product_size"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_size">
                                     {{ form.errors.product_size }}
@@ -161,7 +161,7 @@
 
                             <div class="mb-3">
                                 <label>product_size:</label>
-                                <input v-model="form.product_size" type="number" placeholder="Create product_size"
+                                <input v-model="form.product_size" type="text" placeholder="Create product_size"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_size">
                                     {{ form.errors.product_size }}

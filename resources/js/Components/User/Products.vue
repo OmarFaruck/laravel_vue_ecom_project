@@ -16,6 +16,9 @@
                         <div class="d-flex justify-content-center">
                             <h6>${{ item.prize }}</h6><h6 class="text-muted ml-2"><del>${{ item.cancelprize }}</del></h6>
                         </div>
+                        <div class="d-flex justify-content-center">
+                            <h6>Product_Color : {{ item.product_color }}</h6><h6 class="text-muted ml-2">Size : {{ item.product_size }}</h6>
+                        </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <Link href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</Link>

@@ -60,7 +60,7 @@
                 <div class="modal-content">
                     <form @submit.prevent="submitcreate">
                         <div class="modal-header">
-                            <h5 class="modal-title">Collection Create Form</h5>
+                            <h5 class="modal-title">Trendy Product Create Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
 
@@ -106,6 +106,36 @@
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.cancelprize">
                                     {{ form.errors.cancelprize }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product color:</label>
+                                <select v-model="form.product_color" class="form-control">
+                                    <option value="">Select Product Color</option>
+                                    <option v-for="product in product_color" :key="product.product_color"
+                                        :value="product.product_color">
+                                         {{ product.product_color }}
+                                        <!-- {{ product.id }} -- {{ product.product_color }} -->
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_color">
+                                    {{ form.errors.product_color }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product size:</label>
+                                <select v-model="form.product_size" class="form-control">
+                                    <option value="">Select Product Size</option>
+                                    <option v-for="product in product_size" :key="product.product_size"
+                                        :value="product.product_size">
+                                         <!-- {{ product.product_size }} -->
+                                        {{ product.id }} -- {{ product.product_size }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_size">
+                                    {{ form.errors.product_size }}
                                 </div>
                             </div>
 
@@ -177,6 +207,37 @@
                                 </div>
                             </div>
 
+                          <div class="mb-3">
+                                <label>product color:</label>
+                                <select v-model="form.product_color" class="form-control">
+                                    <option value="">Select Product Color</option>
+                                    <option v-for="product in product_color" :key="product.product_color"
+                                        :value="product.product_color">
+                                         {{ product.product_color }}
+                                        <!-- {{ product.id }} -- {{ product.product_color }} -->
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_color">
+                                    {{ form.errors.product_color }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product size:</label>
+                                <select v-model="form.product_size" class="form-control">
+                                    <option value="">Select Product Size</option>
+                                    <option v-for="product in product_size" :key="product.product_size"
+                                        :value="product.product_size">
+                                         <!-- {{ product.product_size }} -->
+                                        {{ product.id }} -- {{ product.product_size }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_size">
+                                    {{ form.errors.product_size }}
+                                </div>
+                            </div>
+
+
 
 
                         </div>
@@ -204,29 +265,36 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "image","heading","title","prize","cancelprize"];
+
+const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color","product_size"];
 const searchValue = ref();
 
 const page = usePage();
 
 const items = computed(() => page.props.trendyproducts || []);
+const product_color = computed(() => page.props.product_color || []);
+const product_size = computed(() => page.props.product_size || []);
 const headers = [
     { text: "ID", value: "id" },
-    { text: "Image", value: "image" }, 
+    { text: "Image", value: "image" },
     { text: "Heading", value: "heading" },
     { text: "Title", value: "title" },
     { text: "Prize", value: "prize" },
     { text: "Cancel Prize", value: "cancelprize" },
+    { text: "product_color", value: "product_color" },
+    { text: "product_size", value: "product_size" },
     { text: "Action", value: "action" },
 
 ];
 const form = useForm({
     id: null,
-    image: null, 
+    image: null,
     heading: "",
     title: "",
     prize: "",
     cancelprize: "",
+    product_color: "",
+    product_size: "",
     // image: null,
 });
 
@@ -259,11 +327,13 @@ const submitcreate = () => {
 
 function edit(item) {
     form.id = item.id;
-    form.image = null; 
+    form.image = null;
     form.heading = item.heading;
     form.title = item.title;
     form.prize = item.prize;
     form.cancelprize = item.cancelprize;
+    form.product_color = item.product_color;
+    form.product_size = item.product_size;
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);
@@ -301,14 +371,14 @@ function submitUpdate() {
 
         });
 
-    swal("Good job!", "This Collection will be updated", "success");
+    swal("Good job!", "This trendyproducts will be updated", "success");
 }
 
 function remove(data) {
 
     swal({
         title: "Are you sure?",
-        text: "This Collection will be deleted!",
+        text: "This trendyproducts will be deleted!",
         icon: "warning",
         buttons: true,
         dangerMode: true,

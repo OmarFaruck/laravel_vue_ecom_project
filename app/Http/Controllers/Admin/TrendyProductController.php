@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductVariant;
 use App\Models\TrendyProduct;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -11,8 +12,12 @@ class TrendyProductController extends Controller
 {
     public function index(Request $request)
         {
+             
             return Inertia::render('Admin/TrendyProduct/TrendyProductPage',[
                 'trendyproducts' => TrendyProduct::all(),
+                'product_color' => ProductVariant::all(),
+                'product_size' => ProductVariant::all(),
+
             ]);
         }
 
@@ -23,14 +28,20 @@ class TrendyProductController extends Controller
 
         public function store(Request $request)
         { 
+            
+           
             $data = $request->validate([
                 'image' => 'required|image',
                 'heading' => 'required|string|max:255',
                 'title' => 'required|string|max:255',
                 'prize' => 'required|string|max:255',
                 'cancelprize' => 'required|string|max:255',
+                'product_color' => 'required|string|max:255',
+                'product_size' => 'required|string|max:255',
 
             ]);
+
+            
 
             // image upload
             if ($request->hasFile('image')) {
@@ -38,16 +49,18 @@ class TrendyProductController extends Controller
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $image->storeAs('trendyproducts', $imageName, 'public');
                 $data['image'] = $imageName;
-            }
-
+            } 
             TrendyProduct::create([
                 'image' => $data['image'],
                 'heading' => $data['heading'],
                 'title' => $data['title'],
                 'prize' => $data['prize'],
                 'cancelprize' => $data['cancelprize'],
+                'product_color' => $data['product_color'],
+                'product_size' => $data['product_size'],
             ]);
 
+             
             return redirect()->route('trendy_products.index');
         }
 
@@ -69,6 +82,8 @@ class TrendyProductController extends Controller
                     'title' => 'required|string|max:255',
                     'prize' => 'required|string|max:255',
                     'cancelprize' => 'required|string|max:255',
+                    'product_color' => 'required|string|max:255',
+                    'product_size' => 'required|string|max:255',
                 ]);
 
                 // image upload
@@ -81,7 +96,14 @@ class TrendyProductController extends Controller
                     unset($data['image']);
                 }
 
-                $trendyproduct->update($data);
+                $trendyproduct->update([
+                     'heading' => $data['heading'],
+                     'title' => $data['title'],
+                     'prize' => $data['prize'],
+                     'cancelprize' => $data['cancelprize'],
+                     'product_color' => $data['product_color'],
+                     'product_size' => $data['product_size'],
+                ]);
 
                 return redirect()->route('trendy_products.index');
             }

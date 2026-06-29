@@ -1,5 +1,5 @@
 <template>
-  <TrendyProductPage :TrendyProduct="TrendyProduct" />
+  <TrendyProductPage :TrendyProduct="TrendyProduct" :product_color="product_color" :product_size="product_size"/>
 </template>
 
 <script setup>
@@ -12,5 +12,7 @@ defineOptions({
 
 defineProps({
   TrendyProduct: Array,
+  product_color: Array,
+  product_size: Array, 
 });
 </script>

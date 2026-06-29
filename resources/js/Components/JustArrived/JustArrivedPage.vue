@@ -109,6 +109,36 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3">
+                                <label>product color:</label>
+                                <select v-model="form.product_color" class="form-control">
+                                    <option value="">Select Product Color</option>
+                                    <option v-for="product in product_color" :key="product.product_color"
+                                        :value="product.product_color">
+                                         {{ product.product_color }}
+                                        <!-- {{ product.id }} -- {{ product.product_color }} -->
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_color">
+                                    {{ form.errors.product_color }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product size:</label>
+                                <select v-model="form.product_size" class="form-control">
+                                    <option value="">Select Product Size</option>
+                                    <option v-for="product in product_size" :key="product.product_size"
+                                        :value="product.product_size">
+                                         <!-- {{ product.product_size }} -->
+                                        {{ product.id }} -- {{ product.product_size }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_size">
+                                    {{ form.errors.product_size }}
+                                </div>
+                            </div>
+
 
 
                         </div>
@@ -177,6 +207,36 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3">
+                                <label>product color:</label>
+                                <select v-model="form.product_color" class="form-control">
+                                    <option value="">Select Product Color</option>
+                                    <option v-for="product in product_color" :key="product.product_color"
+                                        :value="product.product_color">
+                                         {{ product.product_color }}
+                                        <!-- {{ product.id }} -- {{ product.product_color }} -->
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_color">
+                                    {{ form.errors.product_color }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>product size:</label>
+                                <select v-model="form.product_size" class="form-control">
+                                    <option value="">Select Product Size</option>
+                                    <option v-for="product in product_size" :key="product.product_size"
+                                        :value="product.product_size">
+                                         <!-- {{ product.product_size }} -->
+                                        {{ product.id }} -- {{ product.product_size }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.product_size">
+                                    {{ form.errors.product_size }}
+                                </div>
+                            </div>
+
 
 
                         </div>
@@ -204,12 +264,14 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "image","heading","title","prize","cancelprize"];
+const searchField = ["id", "image","heading","title","prize","cancelprize", "product_color","product_size"];
 const searchValue = ref();
 
 const page = usePage();
 
 const items = computed(() => page.props.justarriveds || []);
+const product_color = computed(() => page.props.product_color || []);
+const product_size = computed(() => page.props.product_size || []);
 const headers = [
     { text: "ID", value: "id" },
     { text: "Image", value: "image" }, 
@@ -217,6 +279,8 @@ const headers = [
     { text: "Title", value: "title" },
     { text: "Prize", value: "prize" },
     { text: "Cancel Prize", value: "cancelprize" },
+     { text: "product_color", value: "product_color" },
+    { text: "product_size", value: "product_size" },
     { text: "Action", value: "action" },
 
 ];
@@ -227,6 +291,8 @@ const form = useForm({
     title: "",
     prize: "",
     cancelprize: "",
+      product_color: "",
+    product_size: "",
     // image: null,
 });
 
@@ -264,6 +330,8 @@ function edit(item) {
     form.title = item.title;
     form.prize = item.prize;
     form.cancelprize = item.cancelprize;
+      form.product_color = item.product_color;
+    form.product_size = item.product_size;
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);
