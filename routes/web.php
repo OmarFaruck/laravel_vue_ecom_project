@@ -22,7 +22,8 @@ use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\TrendyProductController;
-use App\Http\Controllers\Admin\WareHouseController;
+use App\Http\Controllers\Admin\WareHouseController; 
+use App\Http\Controllers\User\CategoryWisePageController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\Controllers\User\UserNewsLetterController;
@@ -72,8 +73,7 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
     // ✅ User route
     // Route::get('/', [PageController::class, 'home'])
     //     ->name('homePage');
-    Route::get('/homeproduct/pages', [PageController::class, 'homeproductpage'])
-        ->name('HomeProductPage');
+    Route::get('/homeproduct/pages', [PageController::class, 'homeproductpage'])->name('HomeProductPage');
 
         //Admin Only Routes
         Route::prefix('admin')->middleware(AdminOnly::class)->group(function () {
@@ -218,26 +218,29 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
             Route::delete('/ProductVariant/{id}', [ProductVariantController::class, 'destroy'])->name('product_variant_page.destroy');
 
         });
-});
 
+        });
+        
+        // CategoryWisePageController
+        Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');
 
-         // Stay Update Page
-            Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
-            Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
-            Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
-            Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
-            Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
-            Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
+// Stay Update Page
+    Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
+    Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
+    Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
+    Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
+    Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
+    Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
 
-      // Newsletter Page
-            Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');
-            Route::get('/newsletter/create', [NewsLetterController::class, 'create'])->name('news_letter.create');
-            Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store'); 
-            Route::get('/newsletter/{id}/edit', [NewsLetterController::class, 'edit'])->name('news_letter.edit');
-            Route::put('/newsletter/{id}', [NewsLetterController::class, 'update'])->name('news_letter.update');
-            Route::delete('/newsletter/{id}', [NewsLetterController::class, 'destroy'])->name('news_letter.destroy');
+// Newsletter Page
+    Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');
+    Route::get('/newsletter/create', [NewsLetterController::class, 'create'])->name('news_letter.create');
+    Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store'); 
+    Route::get('/newsletter/{id}/edit', [NewsLetterController::class, 'edit'])->name('news_letter.edit');
+    Route::put('/newsletter/{id}', [NewsLetterController::class, 'update'])->name('news_letter.update');
+    Route::delete('/newsletter/{id}', [NewsLetterController::class, 'destroy'])->name('news_letter.destroy');
 
-    // Contact Us Page
+// Contact Us Page
     Route::get('/contactus', [ContactUsController::class, 'index'])->name('contact_us.index');
     Route::get('/contactus/create', [ContactUsController::class, 'create'])->name('contact_us.create');
     Route::post('/contactus', [ContactUsController::class, 'store'])->name('contact_us.store');
@@ -246,14 +249,17 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
     Route::delete('/contactus/{id}', [ContactUsController::class, 'destroy'])->name('contact_us.destroy');
 
 
-    // Contact Address Page
+// Contact Address Page
     Route::get('/contactaddress', [ContactAddressController::class, 'index'])->name('contact_address.index');
     Route::get('/contactaddress/create', [ContactAddressController::class, 'create'])->name('contact_address.create');
     Route::post('/contactaddress', [ContactAddressController::class, 'store'])->name('contact_address.store');
     Route::get('/contactaddress/{id}/edit', [ContactAddressController::class, 'edit'])->name('contact_address.edit');
     Route::put('/contactaddress/{id}', [ContactAddressController::class, 'update'])->name('contact_address.update');
     Route::delete('/contactaddress/{id}', [ContactAddressController::class, 'destroy'])->name('contact_address.destroy');
+    
+    // Categories Wise Product Controller 
+    
 
-
+        
            
 

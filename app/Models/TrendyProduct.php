@@ -15,6 +15,7 @@ class TrendyProduct extends Model
         'cancelprize', 
         'product_color', 
         'product_size', 
+        'slug', 
     ];
 
 

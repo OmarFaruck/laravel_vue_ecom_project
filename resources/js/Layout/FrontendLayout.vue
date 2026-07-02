@@ -76,6 +76,7 @@
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
 
+                <!-- Home Page Sideber Start -->
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0"
                     id="navbar-vertical">
                     <div class="navbar-nav w-100">
@@ -83,20 +84,22 @@
                         <template v-for="cat in category" :key="cat.id">
 
                             <div v-if="cat.subcategory && cat.subcategory.length" class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                <!-- <Link :href="`/user/${cat.slug}`" class="nav-link dropdown-toggle" data-toggle="dropdown"> -->
+                                <!-- <Link :href="`/user/${cat.slug}`" class="nav-link dropdown-toggle"> -->
+                                <Link :href="`/user/${cat.slug}`" class="nav-link">
                                     {{ cat.name }}
-                                </a>
+                                </Link>
 
-                                <ul class="dropdown-menu">
+                                <!-- <ul class="dropdown-menu">
                                     <li v-for="sub in cat.subcategory" :key="sub.id">
-                                        <Link href="#" class="dropdown-item">
+                                        <Link :href="`/user/${sub.slug}`" class="dropdown-item">
                                             {{ sub.name }}
                                         </Link>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </div>
 
-                            <Link v-else href="#" class="nav-item nav-link">
+                            <Link v-else :href="`/user/${cat.slug}`" class="nav-item nav-link">
                                 {{ cat.name }}
                             </Link>
 
@@ -104,7 +107,10 @@
 
                     </div>
                 </nav>
+                <!-- Home Page Sideber end -->
             </div>
+
+            <!-- navber Start -->
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
@@ -189,6 +195,8 @@
                     </button>
                 </div>
             </div>
+            <!-- navber end -->
+
         </div>
     </div>
     <!-- Navbar End -->

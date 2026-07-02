@@ -14,5 +14,6 @@ class JustArrived extends Model
         'cancelprize', 
         'product_color', 
         'product_size', 
+        'slug', 
     ];
 }

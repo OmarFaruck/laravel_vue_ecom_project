@@ -38,6 +38,7 @@ class TrendyProductController extends Controller
                 'cancelprize' => 'required|string|max:255',
                 'product_color' => 'required|string|max:255',
                 'product_size' => 'required|string|max:255',
+                'slug' => 'required|string|max:255',
 
             ]);
 
@@ -58,6 +59,7 @@ class TrendyProductController extends Controller
                 'cancelprize' => $data['cancelprize'],
                 'product_color' => $data['product_color'],
                 'product_size' => $data['product_size'],
+                'slug' => $data['slug'],
             ]);
 
              
@@ -84,6 +86,7 @@ class TrendyProductController extends Controller
                     'cancelprize' => 'required|string|max:255',
                     'product_color' => 'required|string|max:255',
                     'product_size' => 'required|string|max:255',
+                    'slug' => 'required|string|max:255',
                 ]);
 
                 // image upload
@@ -103,6 +106,7 @@ class TrendyProductController extends Controller
                      'cancelprize' => $data['cancelprize'],
                      'product_color' => $data['product_color'],
                      'product_size' => $data['product_size'],
+                     'slug' => $data['slug'],
                 ]);
 
                 return redirect()->route('trendy_products.index');

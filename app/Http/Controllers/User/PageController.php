@@ -21,7 +21,7 @@ class PageController extends Controller
     public function home(Request $request){
     
     $category = Category::with('subcategory')->get();
-    $subcategory = SubCategory::with('product')->get(); //not complete
+    $subcategory = SubCategory::with('product')->get(); 
     $pages = Page::get();
     $homeslider = HomeSlider::get();
     $collections = Collection::get();
@@ -53,7 +53,7 @@ class PageController extends Controller
     public function homeproductpage(Request $request){
 
         $category = Category::with('subcategory')->get();
-        $subcategory = SubCategory::with('product')->get(); //not complete
+        $subcategory = SubCategory::with('product')->get(); 
         $pages = Page::get();
         $homeslider = HomeSlider::get();
         $collections = Collection::get();
@@ -72,9 +72,9 @@ class PageController extends Controller
           'collections' => $collections,
           'subcategory' => $subcategory,
           'trendyproduct' => $trendyproduct,
-          'trendyproducts' => $trendyproducts,   //name
+          'trendyproducts' => $trendyproducts, //name
           'justarrived' => $justarrived,   
-          'justarriveds' => $justarriveds,   //name
+          'justarriveds' => $justarriveds, //name
           'brand' => $brand,
           'productvarient' => $productvarient,   
          ]);

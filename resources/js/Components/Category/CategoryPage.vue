@@ -24,6 +24,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>slug</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,6 +38,7 @@
                     </td> -->
                         <td>{{ category.name }}</td>
                         <td>{{ category.description }}</td>
+                        <td>{{ category.slug }}</td>
                         <td>
                             <button @click="edit(category)" class="btn btn-outline-success me-2">
                                 <SquarePen /> Edit
@@ -76,6 +78,14 @@
                                 <input v-model="form.description" type="text" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.description">
                                     {{ form.errors.description }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>Slug:</label>
+                                <input v-model="form.slug" type="text" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.slug">
+                                    {{ form.errors.slug }}
                                 </div>
                             </div>
 
@@ -125,6 +135,14 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3">
+                                <label>Slug:</label>
+                                <input v-model="form.slug" type="text" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.slug">
+                                    {{ form.errors.slug }}
+                                </div>
+                            </div>
+
                             <!-- <div class="mb-3">
                             <label>Image:</label>
                             <input type="file" @change="uploadImage" class="form-control" />
@@ -154,6 +172,7 @@ import { Modal } from "bootstrap";
 const form = useForm({
     name: "",
     description: "",
+    slug: "",
     // image: null,
 });
 
@@ -187,6 +206,7 @@ function edit(category) {
     form.id = category.id;
     form.name = category.name;
     form.description = category.description;
+    form.slug = category.slug;
     const editModal = new Modal(document.getElementById("editModal"));
     editModal.show();
 }

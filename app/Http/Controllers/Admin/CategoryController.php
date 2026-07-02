@@ -26,12 +26,14 @@ class CategoryController extends Controller
     {
         $data = $request->validate([
             'name'=>'required',
-            'description'=>'nullable'
+            'description'=>'nullable',
+            'slug'=>'nullable'
         ]);
 
         Category::create([
             'name'=>$data['name'],
-            'description'=>$data['description']
+            'description'=>$data['description'],
+            'slug'=>$data['slug']
         ]);
 
       return redirect()
@@ -57,7 +59,8 @@ class CategoryController extends Controller
     {
         $data = $request->validate([
             'name'=>'required',
-            'description'=>'nullable'
+            'description'=>'nullable',
+            'slug'=>'nullable'
         ]);
 
         $category = Category::findOrFail($id);
