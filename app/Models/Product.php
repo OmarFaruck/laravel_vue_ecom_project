@@ -18,14 +18,13 @@ class Product extends Model
         'category_id',
         'subcategory_id',
         'brand_id',
-        'pickup_point_id', 
-        'product_slug',
+        'pickup_point_id',  
         'product_view',
         'product_weight', 
         'product_name',
         'product_code',  
         'product_tags', 
-        'product_video',
+        // 'product_video',
         'product_thumbnail', 
         'product_heading',
         'product_description',
@@ -47,6 +46,7 @@ class Product extends Model
         'product_selling_price',
         'product_status',
         'user_id',
+        'slug',
     ];
 
     public function category()

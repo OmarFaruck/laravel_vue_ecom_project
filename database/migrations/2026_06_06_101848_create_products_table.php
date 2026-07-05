@@ -17,14 +17,13 @@ return new class extends Migration
             $table->foreignId('subcategory_id')->constrained('sub_categories')->onDelete('cascade');
             $table->foreignId('brand_id')->constrained()->onDelete('cascade');
             $table->foreignId('pickup_point_id')->constrained()->onDelete('cascade');
-            $table->string('product_slider')->nullable();
-            $table->string('product_slug')->unique();
+            $table->string('product_slider')->nullable(); 
             $table->integer('product_view')->default(0);
             $table->decimal('product_weight', 10, 2)->nullable(); 
             $table->string('product_name');
             $table->string('product_code')->unique();
             $table->text('product_tags')->nullable(); 
-            $table->string('product_video')->nullable();
+            // $table->string('product_video')->nullable();
             $table->string('product_thumbnail')->nullable(); 
             $table->string('product_heading')->nullable();
             $table->text('product_description')->nullable();

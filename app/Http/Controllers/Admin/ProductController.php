@@ -48,7 +48,7 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    { 
+    {  
         
 
     $data = $request->validate([
@@ -56,8 +56,7 @@ class ProductController extends Controller
         'subcategory_id' => 'required',
         'brand_id' => 'required',
         'pickup_point_id' => 'required',
-
-        'product_slug' => 'required|unique:products,product_slug',
+ 
 
         'product_view' => 'required|integer',
         'product_weight' => 'required|numeric',
@@ -65,9 +64,7 @@ class ProductController extends Controller
         'product_name' => 'required',
 
         'product_code' => 'required|unique:products,product_code',
-        'product_tags' => 'required',
-
-        'product_video' => 'required|file|mimes:mp4,mov,avi|max:51200',
+        'product_tags' => 'required', 
         'product_thumbnail' => 'required|image|max:10240',
 
         'product_heading' => 'required',
@@ -93,14 +90,16 @@ class ProductController extends Controller
 
         'product_status' => 'required',
         'user_id' => 'required',
+        'slug' => 'required',
     ]);
 
+     
     // Upload Video
-    $videoPath = null;
-    if ($request->hasFile('product_video')) {
-        $videoPath = $request->file('product_video')
-            ->store('products/videos', 'public');
-    }
+    // $videoPath = null;
+    // if ($request->hasFile('product_video')) {
+    //     $videoPath = $request->file('product_video')
+    //         ->store('products/videos', 'public');
+    // }
 
     // Upload Thumbnail
     $thumbnailPath = null;
@@ -114,8 +113,7 @@ class ProductController extends Controller
         'subcategory_id' => $data['subcategory_id'],
         'brand_id' => $data['brand_id'],
         'pickup_point_id' => $data['pickup_point_id'],
-
-        'product_slug' => $data['product_slug'],
+ 
         'product_view' => $data['product_view'],
         'product_weight' => $data['product_weight'],
 
@@ -123,7 +121,7 @@ class ProductController extends Controller
         'product_code' => $data['product_code'],
         'product_tags' => $data['product_tags'],
 
-        'product_video' => $videoPath,
+        // 'product_video' => $videoPath,
         'product_thumbnail' => $thumbnailPath,
 
         'product_heading' => $data['product_heading'],
@@ -149,6 +147,7 @@ class ProductController extends Controller
 
         'product_status' => $data['product_status'],
         'user_id' => $data['user_id'],
+        'slug' => $data['slug'],
     ]);
 
 
@@ -188,8 +187,7 @@ class ProductController extends Controller
                 'subcategory_id' => 'required',
                 'brand_id' => 'required',
                 'pickup_point_id' => 'required',
-    
-                'product_slug' => 'required|unique:products,product_slug,' . $request->id,
+     
     
                 'product_view' => 'required|integer',
                 'product_weight' => 'required|numeric',
@@ -199,7 +197,7 @@ class ProductController extends Controller
                 'product_code' => 'required|unique:products,product_code,' . $request->id,
                 'product_tags' => 'required',
     
-                'product_video' => 'nullable|file|mimes:mp4,mov,avi|max:51200',
+                // 'product_video' => 'nullable|file|mimes:mp4,mov,avi|max:51200',
                 'product_thumbnail' => 'nullable|image|max:10240',
     
                 'product_heading' => 'required',
@@ -225,18 +223,19 @@ class ProductController extends Controller
     
                 'product_status' => 'required',
                 'user_id' => 'required',
+                'slug' => 'required',
 
             ]);
     
             $product = Product::findOrFail($request->id);
     
             // Upload Video
-            if ($request->hasFile('product_video')) {
-                $videoPath = $request->file('product_video')
-                    ->store('products/videos', 'public');
-            } else {
-                $videoPath = $product->product_video;
-            }
+            // if ($request->hasFile('product_video')) {
+            //     $videoPath = $request->file('product_video')
+            //         ->store('products/videos', 'public');
+            // } else {
+            //     $videoPath = $product->product_video;
+            // }
     
             // Upload Thumbnail
             if ($request->hasFile('product_thumbnail')) {
@@ -251,8 +250,7 @@ class ProductController extends Controller
                 'subcategory_id' => $productdata['subcategory_id'],
                 'brand_id' => $productdata['brand_id'],
                 'pickup_point_id' => $productdata['pickup_point_id'],
-    
-                'product_slug' => $productdata['product_slug'],
+     
                 'product_view' => $productdata['product_view'],
                 'product_weight' => $productdata['product_weight'],
     
@@ -260,7 +258,7 @@ class ProductController extends Controller
                 'product_code' => $productdata['product_code'],
                 'product_tags' => $productdata['product_tags'],
     
-                'product_video' => $videoPath,
+                // 'product_video' => $videoPath,
                 'product_thumbnail' => $thumbnailPath,
     
                 'product_heading' => $productdata['product_heading'],
@@ -286,6 +284,7 @@ class ProductController extends Controller
     
                 'product_status' => $productdata['product_status'],
                 'user_id' => $productdata['user_id'],
+                'slug' => $productdata['slug'],
             ]);
 
             return redirect()->route('product_page.index');

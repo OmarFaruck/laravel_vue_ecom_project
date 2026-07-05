@@ -1,11 +1,11 @@
 <template>
-  <ProductPage :ProductPage="ProductPage" :categories="categories" :subcategories="subcategories" :brands="brands"
-    :pickupPoints="pickupPoints" :warehouses="warehouses" :trendyProducts="trendyProducts" :users="users" :product_color="product_color" :product_size="product_size " :product_quantity="product_quantity"/>
+  <ProductPageComponent :ProductPage="ProductPage" :categories="categories" :subcategories="subcategories" :brands="brands"
+    :pickupPoints="pickupPoints" :warehouses="warehouses" :trendyProducts="trendyProducts" :users="users" :product_color="product_color" :product_size="product_size" :product_quantity="product_quantity"/>
   <!-- <h1>category page</h1> -->
 </template>
 
 <script setup>
-import ProductPage from "@/Components/Product/ProductPage.vue";
+import ProductPageComponent from "@/Components/Product/ProductPage.vue";
 import BackendLayout from "@/Layout/BackendLayout.vue";
 
 defineOptions({

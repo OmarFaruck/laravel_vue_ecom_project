@@ -46,11 +46,11 @@
                     </button>
                 </template>
 
-                <template #item-product_video="item">
+                <!-- <template #item-product_video="item">
                     <video controls width="200">
                         <source :src="'/storage/' + item.product_video" type="video/mp4">
                     </video>
-                </template>
+                </template> -->
 
                 <template #item-product_thumbnail="item">
                     <img :src="'/storage/' + item.product_thumbnail" width="80" height="60" class="rounded" />
@@ -128,17 +128,7 @@
                                     {{ form.errors.pickup_point_id }}
                                 </div>
                             </div>
-
-
-                            <div class="mb-3">
-                                <label>product_slug:</label>
-                                <input v-model="form.product_slug" type="text" placeholder="Create product_slug"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_slug">
-                                    {{ form.errors.product_slug }}
-                                </div>
-                            </div>
-
+ 
                             <div class="mb-3">
                                 <label>product_view:</label>
                                 <input v-model="form.product_view" type="number" placeholder="Create product_view"
@@ -184,7 +174,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>Product Video:</label>
 
                                 <input type="file" accept="video/*"
@@ -193,7 +183,7 @@
                                 <div class="text-danger" v-if="form.errors.product_video">
                                     {{ form.errors.product_video }}
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label>product_thumbnail:</label>
@@ -389,6 +379,15 @@
                                 </div>
                             </div>
 
+                             <div class="mb-3">
+                                <label>slug:</label>
+                                <input v-model="form.slug" type="text"
+                                    placeholder="Create slug" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.slug">
+                                    {{ form.errors.slug }}
+                                </div>
+                            </div>
+
 
                         </div>
 
@@ -470,16 +469,6 @@
                                 </div>
                             </div>
 
-
-                            <div class="mb-3">
-                                <label>product_slug:</label>
-                                <input v-model="form.product_slug" type="text" placeholder="Create product_slug"
-                                    class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_slug">
-                                    {{ form.errors.product_slug }}
-                                </div>
-                            </div>
-
                             <div class="mb-3">
                                 <label>product_view:</label>
                                 <input v-model="form.product_view" type="number" placeholder="Create product_view"
@@ -525,7 +514,7 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>Product Video:</label>
 
                                 <input type="file" accept="video/*"
@@ -534,7 +523,7 @@
                                 <div class="text-danger" v-if="form.errors.product_video">
                                     {{ form.errors.product_video }}
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label>product_thumbnail:</label>
@@ -730,6 +719,15 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3">
+                                <label>slug:</label>
+                                <input v-model="form.slug" type="text"
+                                    placeholder="Create slug" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.slug">
+                                    {{ form.errors.slug }}
+                                </div>
+                            </div>
+
 
                         </div>
 
@@ -756,7 +754,8 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_slug", "product_view", "product_weight", "product_name", "product_code", "product_tags", "product_video", "product_thumbnail", "product_heading", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_return_policy", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product","product_color","product_size", "product_quantity","product_status", "user_id"];
+const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_view", "product_weight", "product_name", "product_code", "product_tags","product_thumbnail", "product_heading", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_return_policy", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product","product_color","product_size", "product_quantity","product_status", "user_id","slug"// "product_video"
+];
 const searchValue = ref();
 
 const page = usePage();
@@ -769,14 +768,13 @@ const headers = [
     { text: "category_id", value: "category_id" },
     { text: "subcategory_id", value: "subcategory_id" },
     { text: "brand_id", value: "brand_id" },
-    { text: "pickup_point_id", value: "pickup_point_id" },
-    { text: "product_slug", value: "product_slug" },
+    { text: "pickup_point_id", value: "pickup_point_id" }, 
     { text: "product_view", value: "product_view" },
     { text: "product_weight", value: "product_weight" },
     { text: "product_name", value: "product_name" },
     { text: "product_code", value: "product_code" },
     { text: "product_tags", value: "product_tags" },
-    { text: "product_video", value: "product_video" },
+    // { text: "product_video", value: "product_video" },
     { text: "product_thumbnail", value: "product_thumbnail" },
     { text: "product_heading", value: "product_heading" },
     { text: "product_description", value: "product_description" },
@@ -795,6 +793,7 @@ const headers = [
     { text: "product_quantity", value: "product_quantity" },
     { text: "product_status", value: "product_status" },
     { text: "user_id", value: "user_id" },
+    { text: "slug", value: "slug" },
     { text: "Action", value: "action" },
 
 ];
@@ -803,14 +802,13 @@ const form = useForm({
     category_id: "",
     subcategory_id: "",
     brand_id: "",
-    pickup_point_id: "",
-    product_slug: "",
+    pickup_point_id: "", 
     product_view: "",
     product_weight: "",
     product_name: "",
     product_code: "",
     product_tags: "",
-    product_video: null,
+    // product_video: null,
     product_thumbnail: null,
     product_heading: "",
     product_description: "",
@@ -829,6 +827,7 @@ const form = useForm({
     product_quantity: "",
     product_status: "",
     user_id: "",
+    slug: "",
 });
 
 const props = defineProps({
@@ -879,14 +878,13 @@ function edit(item) {
     form.category_id = item.category_id;
     form.subcategory_id = item.subcategory_id;
     form.brand_id = item.brand_id;
-    form.pickup_point_id = item.pickup_point_id;
-    form.product_slug = item.product_slug;
+    form.pickup_point_id = item.pickup_point_id; 
     form.product_view = item.product_view;
     form.product_weight = item.product_weight;
     form.product_name = item.product_name;
     form.product_code = item.product_code;
     form.product_tags = item.product_tags;
-    form.product_video = item.product_video;
+    // form.product_video = item.product_video;
     form.product_thumbnail = item.product_thumbnail;
     form.product_heading = item.product_heading;
     form.product_description = item.product_description;
@@ -905,6 +903,7 @@ function edit(item) {
     form.product_quantity = item.product_quantity;
     form.product_status = item.product_status;
     form.user_id = item.user_id;
+    form.slug = item.slug;
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);

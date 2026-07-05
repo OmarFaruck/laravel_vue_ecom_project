@@ -25,6 +25,8 @@ class ProductVariantController extends Controller
 
     public function store(Request $request)
     {
+        
+
         $data = $request->validate([
             'product_color' => 'required',
             'product_size' => 'required',
