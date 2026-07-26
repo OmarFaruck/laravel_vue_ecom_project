@@ -221,8 +221,8 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
 
         });
         
-        // CategoryWisePageController
-        Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');
+// CategoryWisePageController
+Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');
 
 // Stay Update Page
     Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');

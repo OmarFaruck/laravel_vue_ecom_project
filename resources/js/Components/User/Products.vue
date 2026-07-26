@@ -21,14 +21,14 @@
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <Link href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</Link>
-                        <Link href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
+                        <a href="/page/shop_detail" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                     </div>
                 </div>
             </div>
-           
+
         </div>
-    </div>  
+    </div>
     <!-- Products End -->
 </template>
 
@@ -42,5 +42,5 @@ const page=usePage();
 
 const trendyproduct= computed(()=> page.props.trendyproduct  || [])
 const trendyproducts= computed(()=> page.props.trendyproducts  || [])
- 
+
 </script>
