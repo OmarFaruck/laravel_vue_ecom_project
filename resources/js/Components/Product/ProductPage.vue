@@ -315,8 +315,8 @@
                                 <label>product_color:</label>
                                 <select v-model="form.product_color" class="form-control" name="product_color">
                                     <option value="">Select product_color</option>
-                                    <option v-for="product_color in product_color" :key="product_color.id"
-                                        :value="product_color.id">
+                                    <option v-for="product_color in product_color" :key="product_color.product_color"
+                                        :value="product_color.product_color">
                                         {{ product_color.id }} - {{ product_color.product_color }}
                                     </option>
                                 </select>
@@ -329,8 +329,8 @@
                                 <label>product_size:</label>
                                 <select v-model="form.product_size" class="form-control" name="product_size">
                                     <option value="">Select product_size</option>
-                                    <option v-for="product_size in product_size" :key="product_size.id"
-                                        :value="product_size.id">
+                                    <option v-for="product_size in product_size" :key="product_size.product_size"
+                                        :value="product_size.product_size">
                                          {{ product_size.product_size }}
                                     </option>
                                 </select>
@@ -655,8 +655,8 @@
                                 <label>product_color:</label>
                                 <select v-model="form.product_color" class="form-control" name="product_color">
                                     <option value="">Select product_color</option>
-                                    <option v-for="product_color in product_color" :key="product_color.id"
-                                        :value="product_color.id">
+                                    <option v-for="product_color in product_color" :key="product_color.product_color"
+                                        :value="product_color.product_color">
                                         {{ product_color.id }} - {{ product_color.product_color }}
                                     </option>
                                 </select>
@@ -669,8 +669,8 @@
                                 <label>product_size:</label>
                                 <select v-model="form.product_size" class="form-control" name="product_size">
                                     <option value="">Select product_size</option>
-                                    <option v-for="product_size in product_size" :key="product_size.id"
-                                        :value="product_size.id">
+                                    <option v-for="product_size in product_size" :key="product_size.product_size"
+                                        :value="product_size.product_size">
                                          {{ product_size.product_size }}
                                     </option>
                                 </select>

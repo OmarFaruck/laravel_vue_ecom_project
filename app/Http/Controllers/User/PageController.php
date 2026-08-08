@@ -4,11 +4,12 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use App\Models\Category; 
+use App\Models\Category;
 use App\Models\Collection;
 use App\Models\HomeSlider;
 use App\Models\JustArrived;
 use App\Models\Page;
+use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use App\Models\TrendyProduct;
@@ -19,21 +20,21 @@ use Inertia\Inertia;
 class PageController extends Controller
 {
     public function home(Request $request){
-    
+ 
     $category = Category::with('subcategory')->get();
-    $subcategory = SubCategory::with('product')->get(); 
+    $subcategory = SubCategory::with('product')->get();
     $pages = Page::get();
     $homeslider = HomeSlider::get();
     $collections = Collection::get();
-    $trendyproduct = TrendyProduct::get(); 
+    $trendyproduct = TrendyProduct::get();
     $trendyproducts = TrendyProduct::first();  //name
-    $justarrived = JustArrived::get();  
+    $justarrived = JustArrived::get();
     $justarriveds = JustArrived::first();  //name
-    $brand = Brand::get(); 
-    $productvarient = ProductVariant::get();  
+    $brand = Brand::get();
+    $productvarient = ProductVariant::get();
     // $productvarient = ProductVariant::with(['product', 'subcategory'])->get();
- 
-     
+
+
          return Inertia::render("User/UserPage",[
           'category' => $category,
           'pages' => $pages,
@@ -42,29 +43,29 @@ class PageController extends Controller
           'subcategory' => $subcategory,
           'trendyproduct' => $trendyproduct,
           'trendyproducts' => $trendyproducts,   //name
-          'justarrived' => $justarrived,   
+          'justarrived' => $justarrived,
           'justarriveds' => $justarriveds,   //name
-          'brand' => $brand,   
-          'productvarient' => $productvarient,   
+          'brand' => $brand,
+          'productvarient' => $productvarient,
          ]);
-         
+
     }
 
     public function homeproductpage(Request $request){
 
         $category = Category::with('subcategory')->get();
-        $subcategory = SubCategory::with('product')->get(); 
+        $subcategory = SubCategory::with('product')->get();
         $pages = Page::get();
         $homeslider = HomeSlider::get();
         $collections = Collection::get();
-        $trendyproduct = TrendyProduct::get(); 
+        $trendyproduct = TrendyProduct::get();
         $trendyproducts = TrendyProduct::first();  //name
-        $justarrived = JustArrived::get();  
+        $justarrived = JustArrived::get();
         $justarriveds = JustArrived::first();  //name
-        $brand = Brand::get(); 
-        $productvarient = ProductVariant::get();   
- 
-   
+        $brand = Brand::get();
+        $productvarient = ProductVariant::get();
+
+
          return Inertia::render("User/UserPage",[
           'category' => $category,
           'pages' => $pages,
@@ -73,12 +74,12 @@ class PageController extends Controller
           'subcategory' => $subcategory,
           'trendyproduct' => $trendyproduct,
           'trendyproducts' => $trendyproducts, //name
-          'justarrived' => $justarrived,   
+          'justarrived' => $justarrived,
           'justarriveds' => $justarriveds, //name
           'brand' => $brand,
-          'productvarient' => $productvarient,   
+          'productvarient' => $productvarient,
          ]);
-         
+
     }
 
     //Dynamic Navber Page Open Controller
@@ -93,19 +94,20 @@ class PageController extends Controller
 
        $pages = Page::get();
        $category = Category::with('subcategory')->get();
-       $justarrived = JustArrived::get(); 
-       $trendyproduct = TrendyProduct::get(); 
-      
+       $justarrived = JustArrived::get();
+       $trendyproduct = TrendyProduct::get();
+       $ProductPages = Product::get();
+
        return Inertia::render("User/PageShow/{$slug}",[
         'pagename'=>$pagename,
         'pages' => $pages,
         'category' => $category,
-        'justarrived' => $justarrived, 
-        'trendyproduct' => $trendyproduct, 
+        'justarrived' => $justarrived,
+        'trendyproduct' => $trendyproduct,
+        'ProductPages' => $ProductPages,
 
        ]);
     }
-
  
 
 }

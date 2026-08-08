@@ -78,7 +78,7 @@
                     <!-- Color Start -->
                     <div class="border-bottom mb-4 pb-4">
                         <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
-                        <form> 
+                        <form>
                             <div
                                 class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                                 <input type="radio" class="custom-control-input" id="color-1" value="black"
@@ -234,8 +234,9 @@
 
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <a href="/page/shop_detail" class="btn btn-sm text-dark p-0"><i
-                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <Link :href="`/page/trendy_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>
+                                            View Detail</Link>
                                     <a href="" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                                 </div>
@@ -265,8 +266,9 @@
 
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                     <a href="/page/shop_detail" class="btn btn-sm text-dark p-0"><i
-                                            class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                    <Link :href="`/page/just_arrived_shop_detail/${items.id}`" class="btn btn-sm text-dark p-0"><i
+                                            class="fas fa-eye text-primary mr-1"></i>View Detail
+                                        </Link>
                                     <a href="" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                                 </div>
@@ -425,7 +427,7 @@ const filteredJustArrived = computed(() => {
 })
 
 
-// price count 
+// price count
 const allProducts = computed(() => [
     ...trendyproduct.value,
     ...justarrived.value,

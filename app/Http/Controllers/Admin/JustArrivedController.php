@@ -34,6 +34,7 @@ class JustArrivedController extends Controller
                 'cancelprize' => 'required|string|max:255',
                 'product_color' => 'required|string|max:255',
                 'product_size' => 'required|string|max:255',
+                'description' => 'required|string|max:255',
                 'slug' => 'required|string|max:255',
 
             ]);
@@ -54,6 +55,7 @@ class JustArrivedController extends Controller
                 'cancelprize' => $data['cancelprize'],
                  'product_color' => $data['product_color'],
                 'product_size' => $data['product_size'],
+                'description' => $data['description'],
                 'slug' => $data['slug'],
             ]);
 
@@ -80,6 +82,7 @@ class JustArrivedController extends Controller
                     'cancelprize' => 'required|string|max:255',
                      'product_color' => 'required|string|max:255',
                     'product_size' => 'required|string|max:255',
+                    'description' => 'required|string|max:255',
                     'slug' => 'required|string|max:255',
                 ]);
 

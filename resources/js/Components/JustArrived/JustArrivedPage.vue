@@ -140,6 +140,15 @@
                             </div>
 
                              <div class="mb-3">
+                                <label>Description:</label>
+                                <input v-model="form.description" type="text" placeholder="Create Description"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.description">
+                                    {{ form.errors.description }}
+                                </div>
+                            </div>
+
+                             <div class="mb-3">
                                 <label>slug:</label>
                                 <input v-model="form.slug" type="text" placeholder="Create Slug"
                                     class="form-control" />
@@ -246,6 +255,15 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3">
+                                <label>Description:</label>
+                                <input v-model="form.description" type="text" placeholder="Create Description"
+                                    class="form-control" />
+                                <div class="text-danger" v-if="form.errors.description">
+                                    {{ form.errors.description }}
+                                </div>
+                            </div>
+
                              <div class="mb-3">
                                 <label>slug:</label>
                                 <input v-model="form.slug" type="text" placeholder="Create Slug"
@@ -282,7 +300,7 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "image","heading","title","prize","cancelprize", "product_color","product_size","slug"];
+const searchField = ["id", "image","heading","title","prize","cancelprize", "product_color","product_size","description","slug"];
 const searchValue = ref();
 
 const page = usePage();
@@ -299,6 +317,7 @@ const headers = [
     { text: "Cancel Prize", value: "cancelprize" },
      { text: "product_color", value: "product_color" },
     { text: "product_size", value: "product_size" },
+    { text: "description", value: "description" },
     { text: "slug", value: "slug" },
     { text: "Action", value: "action" },
 
@@ -312,6 +331,7 @@ const form = useForm({
     cancelprize: "",
       product_color: "",
     product_size: "",
+    description: "",
     slug: "",
     // image: null,
 });
@@ -352,6 +372,7 @@ function edit(item) {
     form.cancelprize = item.cancelprize;
       form.product_color = item.product_color;
     form.product_size = item.product_size;
+    form.description = item.description;
     form.slug = item.slug;
     const modalEl = document.getElementById("editModal");
     if (modalEl) {

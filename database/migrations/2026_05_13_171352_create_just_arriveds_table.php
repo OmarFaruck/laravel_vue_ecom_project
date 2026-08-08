@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('just_arriveds', function (Blueprint $table) {
             $table->id();
-             $table->string('image');
+            $table->string('image');
             $table->string('heading');
             $table->string('title');
             $table->decimal('prize', 10, 2);
             $table->decimal('cancelprize', 10, 2);
+            $table->string('product_color');
+            $table->string('product_size');
+            $table->text('description');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

@@ -319,6 +319,19 @@
 
                         <li class="nav-item">
                             <Link
+                                href="/review"
+                                class="nav-link"
+                                :class="{
+                                    active: $page.url.startsWith('/review'),
+                                }"
+                            >
+                                <i class="nav-icon fas fa-comment-dots"></i>
+                                <p>review</p>
+                            </Link>
+                        </li>
+
+                        <li class="nav-item">
+                            <Link
                                 href="/logout"
                                 class="nav-link"
                                 :class="{

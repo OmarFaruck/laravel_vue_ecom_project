@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('today_deal')->default(false);
             $table->string('trendy_product')->default(false);
             $table->string('product_color')->default(false);
-            $table->integer('product_size')->default(false);
+            $table->string('product_size')->default(false);
             $table->integer('product_quantity')->default(false);
             $table->string('product_status')->default(true);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

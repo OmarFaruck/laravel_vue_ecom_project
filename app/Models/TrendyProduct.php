@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\ProductVariant;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Model;
 
 class TrendyProduct extends Model
@@ -15,6 +16,7 @@ class TrendyProduct extends Model
         'cancelprize', 
         'product_color', 
         'product_size', 
+        'description',
         'slug', 
     ];
 
@@ -22,6 +24,11 @@ class TrendyProduct extends Model
     public function productvarient()
     {
         return $this->hasMany(ProductVariant::class);
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class, 'trendyproduct_id', 'id');
     }
 
 

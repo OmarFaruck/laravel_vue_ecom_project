@@ -22,9 +22,11 @@ use App\Http\Controllers\Admin\StayUpdateController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\TrendyProductController;
-use App\Http\Controllers\Admin\WareHouseController; 
+use App\Http\Controllers\Admin\WareHouseController;
 use App\Http\Controllers\User\CategoryWisePageController;
 use App\Http\Controllers\User\PageController;
+use App\Http\Controllers\User\ReviewController;
+use App\Http\Controllers\User\ShopDetailController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\Controllers\User\UserNewsLetterController;
 use App\Http\Middleware\AdminOnly;
@@ -56,14 +58,8 @@ Route::get('/auth/{provider}', [SocialController::class, 'redirect'])->name('soc
 Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->name('social.callback');
 
 
-Route::get('/', [PageController::class, 'home'])->name('home'); 
+Route::get('/', [PageController::class, 'home'])->name('home');
 
-//Dynamin fontend Navber Page Open Controller
-Route::get('/page/{slug}', [PageController::class, 'pageshow'])->name('page.show');   
-
-
-Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');  
-Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');  
 
 Route::middleware([SessionAuthenticate::class])->group(function () {
     // ✅ Admin route
@@ -132,7 +128,7 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
             Route::put('/collection/{id}', [CollectionController::class, 'update'])->name('collection.update');
             Route::delete('/collection/{id}', [CollectionController::class, 'destroy'])->name('collection.destroy');
 
- 
+
             // Trendy Products Page
             Route::get('/trendyproducts', [TrendyProductController::class, 'index'])->name('trendy_products.index');
             Route::get('/trendyproducts/create', [TrendyProductController::class, 'create'])->name('trendy_products.create');
@@ -200,7 +196,7 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
             Route::put('/WareHousePage/{id}', [WareHouseController::class, 'update'])->name('warehouse_page.update');
             Route::delete('/WareHousePage/{id}', [WareHouseController::class, 'destroy'])->name('warehouse_page.destroy');
 
-            // ProductController  Page 
+            // ProductController  Page
             Route::get('/ProductPage', [ProductController::class, 'index'])->name('product_page.index');
             Route::get('/ProductPage/create', [ProductController::class, 'create'])->name('product_page.create');
             Route::post('/ProductPage', [ProductController::class, 'store'])->name('product_page.store');
@@ -220,22 +216,45 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
         });
 
         });
-        
+
 // CategoryWisePageController
 Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');
 
+Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');
+Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');
+
+
+//trendy shop_detail page Controller
+Route::get('/page/trendy_shop_detail/{id}', [ShopDetailController::class, 'trendyshopdetail'])->name('page.trendy_shop_detail');
+
+//justArrived shop_detail page Controller
+Route::get('/page/just_arrived_shop_detail/{id}', [ShopDetailController::class, 'arrivedshopdetail'])->name('page.just_arrived_shop_detail');
+
+
+//justArrived shop_detail page Controller
+Route::get('/page/product_shop_detail/{id}', [ShopDetailController::class, 'productshopdetail'])->name('page.product_shop_detail');
+
+
+
+//ReviewController  Controller
+Route::get('/review/{id}', [ReviewController::class,'review'])->name('review');
+Route::post('/review', [ReviewController::class,'store'])->name('review.store');
+
+//Dynamin fontend Navber Page Open Controller
+Route::get('/page/{slug}', [PageController::class, 'pageshow'])->name('page.show');
+
 // Stay Update Page
-    Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
-    Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
-    Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
-    Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
-    Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
-    Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
+Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
+Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
+Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
+Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
+Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
+Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
 
 // Newsletter Page
     Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');
     Route::get('/newsletter/create', [NewsLetterController::class, 'create'])->name('news_letter.create');
-    Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store'); 
+    Route::post('/newsletter', [NewsLetterController::class, 'store'])->name('news_letter.store');
     Route::get('/newsletter/{id}/edit', [NewsLetterController::class, 'edit'])->name('news_letter.edit');
     Route::put('/newsletter/{id}', [NewsLetterController::class, 'update'])->name('news_letter.update');
     Route::delete('/newsletter/{id}', [NewsLetterController::class, 'destroy'])->name('news_letter.destroy');
@@ -256,10 +275,10 @@ Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage
     Route::get('/contactaddress/{id}/edit', [ContactAddressController::class, 'edit'])->name('contact_address.edit');
     Route::put('/contactaddress/{id}', [ContactAddressController::class, 'update'])->name('contact_address.update');
     Route::delete('/contactaddress/{id}', [ContactAddressController::class, 'destroy'])->name('contact_address.destroy');
-    
-    // Categories Wise Product Controller 
-    
 
-        
-           
+    // Categories Wise Product Controller
+
+
+
+
 

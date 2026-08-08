@@ -20,6 +20,8 @@ return new class extends Migration
             $table->decimal('cancelprize', 10, 2);
             $table->string('product_color');
             $table->string('product_size');
+            $table->text('description');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
