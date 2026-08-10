@@ -65,10 +65,9 @@
                         <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" {{
-                                    trendyproduct.product_size }}>
-                                <label class="custom-control-label" for="size-1">{{ trendyproduct.product_size
-                                }}</label>
+                                <input type="radio" class="custom-control-input" id="size-1" {{ trendyproduct.product_size
+                                    }}>
+                                <label class="custom-control-label" for="size-1">{{ trendyproduct.product_size }}</label>
                             </div>
 
                         </form>
@@ -175,11 +174,12 @@
                         </div>
                         <div class="tab-pane fade" id="tab-pane-3">
                             <div class="row">
+
                                 <div class="col-md-6">
                                     <h4 class="mb-4">{{ trendyproduct.id }}.{{ trendyproduct.title }}</h4>
                                     <div class="media mb-4">
-                                        <img :src="`/storage/trendyproducts/${trendyproduct.image}`"
-                                            :alt="trendyproduct.title" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                        <img :src="`/storage/trendyproducts/${trendyproduct.image}`" :alt="trendyproduct.title"
+                                            class="img-fluid mr-3 mt-1" style="width: 45px;">
                                         <div class="media-body" v-if="review">
                                             <h6>{{ review.name }}<small> - <i>01 Jan 2045</i></small></h6>
                                             <div class="text-primary mb-2">
@@ -243,6 +243,7 @@
                                         </div>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -250,7 +251,57 @@
             </div>
         </div>
 
+        <!-- trendyproduct -->
         <!-- Shop Detail End -->
+
+
+        <!-- Products Start -->
+        <div class="container-fluid py-5">
+            <div class="text-center mb-4">
+                <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
+            </div>
+
+            <div class="px-xl-5 pb-3">
+                <!-- Swiper Slider Container -->
+                <swiper :slides-per-view="1" :space-between="20"
+                    :autoplay="{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }" :loop="true"
+                    :modules="modules" :breakpoints="{
+                        '576': { slidesPerView: 1 },
+                        '768': { slidesPerView: 2 },
+                        '992': { slidesPerView: 4 }
+                    }" class="mySwiper">
+                    <swiper-slide v-for="item in trendyproducts" :key="item.id" class="pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div
+                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid w-100" :src="`/storage/trendyproducts/${item.image}`"
+                                    :alt="item.title">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">{{ item.title }}</h6>
+                                <div class="d-flex justify-content-center">
+                                    <h6>${{ item.prize }}</h6>
+                                    <h6 class="text-muted ml-2"><del>${{ item.cancelprize }}</del></h6>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <h6>Product_Color : {{ item.product_color }}</h6>
+                                    <h6 class="text-muted ml-2">Size : {{ item.product_size }}</h6>
+                                </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-between bg-light border">
+                                <Link :href="`/page/trendy_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                </Link>
+                                <Link href="" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart
+                                </Link>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                </swiper>
+            </div>
+        </div>
+        <!-- Products End -->
 
 
     </FrontendLayout>
@@ -259,33 +310,29 @@
 <script setup>
 import FrontendLayout from '@/Layout/FrontendLayout.vue'
 import { Link, usePage, useForm, router } from '@inertiajs/vue3'
-import { arrow } from '@popperjs/core';
-import { ref, computed } from "vue";
-
+import { ref, computed } from 'vue'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay } from 'swiper/modules'
+// Swiper styles
+import 'swiper/css'
 const page = usePage()
-
-defineProps({
-    trendyproduct: Object,
-    review: Object,
-
-})
-
-
-const form = useForm({
-    message: '',
-    name: '',
-    email: '',
-    rating: 0,
-})
-
+const props = defineProps({ trendyproduct: Object, trendyproducts: Array, review: Object, reviewCount: Number, averageRating: Number })
+const modules = [Autoplay]
+const form = useForm({ message: '', name: '', email: '', rating: 0, })
 const submitReview = () => {
     form.post('/review', {
         onSuccess: () => {
-            form.reset();
+            form.reset()
         }
-    });
+    })
 }
-
-
-
+const getReviewStarClass = (star) => {
+    if (props.averageRating >= star) {
+        return 'fas fa-star'
+    }
+    if (props.averageRating >= star - 0.5) {
+        return 'fas fa-star-half-alt'
+    }
+    return 'far fa-star'
+}
 </script>

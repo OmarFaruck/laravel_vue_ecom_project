@@ -139,28 +139,43 @@
                                 </div>
                             </div>
 
+
                             <div class="mb-3">
                                 <label>description:</label>
-                                <input v-model="form.description" type="text" placeholder="Enter description" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.description">
-                                    {{ form.errors.description }}
+                                <input v-model="form.description" type="text" placeholder="Enter description"
+                                    class="form-control" />
+
+                                <div class="mb-3">
+                                    <label>Description:</label>
+                                    <textarea v-model="form.description" placeholder="Create Description"
+                                        class="form-control"></textarea>
+
+                                    <div class="text-danger" v-if="form.errors.description">
+                                        {{ form.errors.description }}
+                                    </div>
                                 </div>
                             </div>
+
 
                             <div class="mb-3">
-                                <label>Slug:</label>
-                                <input v-model="form.slug" type="text" placeholder="Create Slug" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.slug">
-                                    {{ form.errors.slug }}
+
+
+                                <div class="mb-3">
+                                    <label>Slug:</label>
+                                    <input v-model="form.slug" type="text" placeholder="Create Slug"
+                                        class="form-control" />
+                                    <div class="text-danger" v-if="form.errors.slug">
+                                        {{ form.errors.slug }}
+                                    </div>
                                 </div>
+
+
+
                             </div>
 
-
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button class="btn btn-primary">Save</button>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary">Save</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -253,27 +268,36 @@
                                 </div>
                             </div>
 
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label>description:</label>
-                                <input v-model="form.description" type="text" placeholder="Enter description" class="form-control" />
+                                <input v-model="form.description" type="text" placeholder="Enter description"
+                                    class="form-control" />
+
+                                <label>Description:</label>
+                                <textarea v-model="form.description" placeholder="Create Description"
+                                    class="form-control"></textarea>
+                                >>>>>>> b798c5d (User Product Details & User Contact Complete)
                                 <div class="text-danger" v-if="form.errors.description">
                                     {{ form.errors.description }}
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label>Slug:</label>
-                                <input v-model="form.slug" type="text" placeholder="Create Slug" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.slug">
-                                    {{ form.errors.slug }}
+                                <div class="mb-3">
+                                    <label>Slug:</label>
+                                    <input v-model="form.slug" type="text" placeholder="Create Slug"
+                                        class="form-control" />
+                                    <div class="text-danger" v-if="form.errors.slug">
+                                        {{ form.errors.slug }}
+                                    </div>
                                 </div>
+
+
                             </div>
 
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button class="btn btn-primary">Save</button>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary">Save</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -296,7 +320,11 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
 
-const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color", "product_size","description", "slug"];
+
+const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color", "product_size", "description", "slug"];
+
+// const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color", "product_size", "description", "slug"];
+
 const searchValue = ref();
 
 const page = usePage();
@@ -453,7 +481,3 @@ function remove(data) {
     --easy-table-header-font-size: 24px;
 }
 </style>
-
-
-
-

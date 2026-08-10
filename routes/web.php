@@ -28,9 +28,10 @@ use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\ShopDetailController;
 use App\Http\Controllers\User\SocialController;
+use App\Http\Controllers\User\UserContactController;
 use App\Http\Controllers\User\UserNewsLetterController;
-use App\Http\Middleware\AdminOnly;
-use App\Http\middleware\SessionAuthenticate;
+use App\Http\middleware\AdminOnly;
+use App\Http\middleware\SessionAuthenticate; 
 use Illuminate\Support\Facades\Route;
 
 
@@ -60,6 +61,16 @@ Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 
+ 
+ 
+//Dynamin fontend Navber Page Open Controller
+Route::get('/page/{slug}', [PageController::class, 'pageshow'])->name('page.show');   
+
+
+Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');  
+Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');  
+Route::post('/user_contact', [UserContactController::class, 'usercontact'])->name('user_contact');  
+ 
 
 Route::middleware([SessionAuthenticate::class])->group(function () {
     // ✅ Admin route
@@ -215,16 +226,12 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
 
         });
 
-        });
-
-// CategoryWisePageController
-Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');
-
-Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');
-Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');
-
-
-//trendy shop_detail page Controller
+   
+  });
+  
+// Sideber CategoryWisePage Controller
+Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');  
+ 
 Route::get('/page/trendy_shop_detail/{id}', [ShopDetailController::class, 'trendyshopdetail'])->name('page.trendy_shop_detail');
 
 //justArrived shop_detail page Controller
@@ -233,15 +240,12 @@ Route::get('/page/just_arrived_shop_detail/{id}', [ShopDetailController::class, 
 
 //justArrived shop_detail page Controller
 Route::get('/page/product_shop_detail/{id}', [ShopDetailController::class, 'productshopdetail'])->name('page.product_shop_detail');
-
-
-
+ 
 //ReviewController  Controller
 Route::get('/review/{id}', [ReviewController::class,'review'])->name('review');
 Route::post('/review', [ReviewController::class,'store'])->name('review.store');
 
-//Dynamin fontend Navber Page Open Controller
-Route::get('/page/{slug}', [PageController::class, 'pageshow'])->name('page.show');
+ 
 
 // Stay Update Page
 Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');

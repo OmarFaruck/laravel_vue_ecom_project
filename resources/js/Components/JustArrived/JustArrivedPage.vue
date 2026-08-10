@@ -141,8 +141,12 @@
 
                              <div class="mb-3">
                                 <label>Description:</label>
+<<<<<<< HEAD
                                 <input v-model="form.description" type="text" placeholder="Create Description"
                                     class="form-control" />
+=======
+                                <textarea v-model="form.description" placeholder="Create Description" class="form-control"></textarea>
+>>>>>>> b798c5d (User Product Details & User Contact Complete)
                                 <div class="text-danger" v-if="form.errors.description">
                                     {{ form.errors.description }}
                                 </div>
@@ -259,6 +263,14 @@
                                 <label>Description:</label>
                                 <input v-model="form.description" type="text" placeholder="Create Description"
                                     class="form-control" />
+                                <div class="text-danger" v-if="form.errors.description">
+                                    {{ form.errors.description }}
+                                </div>
+                            </div>
+
+                             <div class="mb-3">
+                                <label>Description:</label>
+                                <textarea v-model="form.description" placeholder="Create Description" class="form-control"></textarea>
                                 <div class="text-danger" v-if="form.errors.description">
                                     {{ form.errors.description }}
                                 </div>

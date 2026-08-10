@@ -234,9 +234,13 @@
 
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <Link :href="`/page/trendy_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i
-                                            class="fas fa-eye text-primary mr-1"></i>
-                                            View Detail</Link>
+                                    
+                                    <Link :href="`/page/trendy_shop_detail/${item.id}`"
+                                        class="btn btn-sm text-dark p-0">
+                                        <i class="fas fa-eye text-primary mr-1"></i>
+                                        View Detail
+                                    </Link>
+
                                     <a href="" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                                 </div>
@@ -266,9 +270,12 @@
 
                                 </div>
                                 <div class="card-footer d-flex justify-content-between bg-light border">
-                                    <Link :href="`/page/just_arrived_shop_detail/${items.id}`" class="btn btn-sm text-dark p-0"><i
+                                    <Link :href="`/page/just_arrived_shop_detail/${items.id}`"
+                                        class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-eye text-primary mr-1"></i>View Detail
-                                        </Link>
+                                    </Link>
+ 
+
                                     <a href="" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                                 </div>

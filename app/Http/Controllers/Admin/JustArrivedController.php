@@ -55,7 +55,9 @@ class JustArrivedController extends Controller
                 'cancelprize' => $data['cancelprize'],
                  'product_color' => $data['product_color'],
                 'product_size' => $data['product_size'],
+ 
                 'description' => $data['description'],
+  
                 'slug' => $data['slug'],
             ]);
 

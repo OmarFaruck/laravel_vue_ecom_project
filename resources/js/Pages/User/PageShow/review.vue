@@ -81,7 +81,10 @@ const page = usePage()
 defineProps({
     trendyproduct: Object,
     review: Object,
-
+ 
+ 
+    reviewCount: Number,
+    averageRating: Number 
 })
 
 

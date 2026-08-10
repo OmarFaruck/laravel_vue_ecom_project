@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Collection;
+use App\Models\ContactAddress;
+use App\Models\ContactUs;
 use App\Models\HomeSlider;
 use App\Models\JustArrived;
 use App\Models\Page;
@@ -94,17 +96,32 @@ class PageController extends Controller
 
        $pages = Page::get();
        $category = Category::with('subcategory')->get();
+ 
        $justarrived = JustArrived::get();
        $trendyproduct = TrendyProduct::get();
        $ProductPages = Product::get();
 
+ 
+       $justarrived = JustArrived::get(); 
+       $trendyproduct = TrendyProduct::get(); 
+       $productpage = Product::get();
+       $contactaddress = ContactAddress::first();
+       $contactus = ContactUs::get();
+       
        return Inertia::render("User/PageShow/{$slug}",[
         'pagename'=>$pagename,
         'pages' => $pages,
         'category' => $category,
+ 
         'justarrived' => $justarrived,
         'trendyproduct' => $trendyproduct,
         'ProductPages' => $ProductPages,
+ 
+        'justarrived' => $justarrived, 
+        'trendyproduct' => $trendyproduct, 
+        'productpage' => $productpage, 
+        'contactaddress' => $contactaddress, 
+        'contactus' => $contactus,  
 
        ]);
     }

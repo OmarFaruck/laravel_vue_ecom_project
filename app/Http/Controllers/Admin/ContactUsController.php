@@ -42,7 +42,7 @@ class ContactUsController extends Controller
     public function edit($id)
     {
         $contactUs = ContactUs::findOrFail($id);
-        return Inertia::render('Admin/ContactUs/ContactUsEdit', [
+        return Inertia::render('/ContactUs/ContactUsEdit', [
             'contactUs' => $contactUs,
         ]);
     }

@@ -1,5 +1,6 @@
 <template>
     <FrontendLayout>
+
         <!-- Page Header Start -->
         <div class="container-fluid bg-secondary mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
@@ -258,41 +259,45 @@
             <div class="text-center mb-4">
                 <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
             </div>
-            <div class="row px-xl-5">
-                <div class="col">
-                    <div class="owl-carousel related-carousel">
-                        <div class="card product-item border-0" v-for="item in justarrived" :key="item.id">
+
+            <div class="px-xl-5 pb-3">
+                <!-- Swiper Slider Container -->
+                <swiper :slides-per-view="1" :space-between="20"
+                    :autoplay="{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }" :loop="true"
+                    :modules="modules" :breakpoints="{
+                        '576': { slidesPerView: 1 },
+                        '768': { slidesPerView: 2 },
+                        '992': { slidesPerView: 4 }
+                    }" class="mySwiper">
+                    <swiper-slide v-for="item in justarriveds" :key="item.id" class="pb-1">
+                        <div class="card product-item border-0 mb-4">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" :src="`/storage/justarrived/${justarrived.image}`"
+                                <img class="img-fluid w-100" :src="`/storage/justarrived/${item.image}`"
                                     :alt="item.title">
                             </div>
-
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                 <h6 class="text-truncate mb-3">{{ item.title }}</h6>
-
                                 <div class="d-flex justify-content-center">
-                                    <h6>৳{{ item.selling_price }}</h6>
-                                    <h6 class="text-muted ml-2">
-                                        <del>৳{{ item.original_price }}</del>
-                                    </h6>
+                                    <h6>${{ item.prize }}</h6>
+                                    <h6 class="text-muted ml-2"><del>${{ item.cancelprize }}</del></h6>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <h6>Product_Color : {{ item.product_color }}</h6>
+                                    <h6 class="text-muted ml-2">Size : {{ item.product_size }}</h6>
                                 </div>
                             </div>
-
                             <div class="card-footer d-flex justify-content-between bg-light border">
-                                <Link :href="`/user/just_arrived_detail/${item.id}`" class="btn btn-sm text-dark p-0">
-                                    <i class="fas fa-eye text-primary mr-1"></i>
-                                    View Detail
+                                <Link :href="`/page/just_arrived_detail/${item.id}`" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
                                 </Link>
-
-                                <button class="btn btn-sm text-dark p-0">
-                                    <i class="fas fa-shopping-cart text-primary mr-1"></i>
-                                    Add To Cart
-                                </button>
+                                <Link href="" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart
+                                </Link>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </swiper-slide>
+                </swiper>
             </div>
         </div>
         <!-- Products End -->
@@ -301,18 +306,33 @@
     </FrontendLayout>
 </template>
 
+
+
+
 <script setup>
+
 import FrontendLayout from '@/Layout/FrontendLayout.vue'
 import { Link } from '@inertiajs/vue3'
 import { arrow } from '@popperjs/core';
 import { usePage, useForm, router } from "@inertiajs/vue3";
 import { Modal } from "bootstrap";
+
 import { ref, computed } from "vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay } from 'swiper/modules';
+
+// Swiper styles
+import 'swiper/css';
+
+const modules = [Autoplay];
+
 const page = usePage()
 
 defineProps({
     justarrived: Object,
     review: Object,
+
+    justarriveds: Array,
 
 })
 
@@ -334,10 +354,11 @@ const submitReview = () => {
 }
 
 
+
 </script>
 
 <style scoped>
-    .card.product-item.border-0 {
+.card.product-item.border-0 {
     width: 282.5px;
     margin-right: 29px;
     /* display: flex; */

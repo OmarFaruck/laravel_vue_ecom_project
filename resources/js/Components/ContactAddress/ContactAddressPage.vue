@@ -271,7 +271,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/admin/contactaddress", {
+    form.post("/contactaddress", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -329,7 +329,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/admin/contactaddress/${form.id}`, {
+        .post(`/contactaddress/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -359,7 +359,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/admin/contactaddress/${data.id}`, {
+            router.delete(`/contactaddress/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

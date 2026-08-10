@@ -200,7 +200,7 @@ const form = useForm({
 });
 
 const submitcreate = () => {
-    form.post("/admin/contactus", {
+    form.post("/contactus", {
         onSuccess: () => {
             // Form এর সব input ফাঁকা করে দেয়
             form.reset();
@@ -254,7 +254,7 @@ function submitUpdate() {
         _method: "put",
     }))
 
-        .post(`/admin/contactus/${form.id}`, {
+        .post(`/contactus/${form.id}`, {
             forceFormData: true,
             onFinish: () => {
                 form.reset();
@@ -284,7 +284,7 @@ function remove(data) {
 
         if (willDelete) {
 
-            router.delete(`/admin/contactus/${data.id}`, {
+            router.delete(`/contactus/${data.id}`, {
                 onSuccess: () => {
                     swal("Deleted successfully!", {
                         icon: "success",

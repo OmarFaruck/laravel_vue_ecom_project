@@ -306,7 +306,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { Link, usePage, useForm, router } from '@inertiajs/vue3'
 
 
@@ -345,6 +345,39 @@ const submitcreate = () => {
         },
     });
 };
+
+
+const search = ref("")   // search by name
+
+const trendyproduct = computed(() => page.props.trendyproduct || [])
+const justarrived = computed(() => page.props.justarrived || [])
+
+const filteredTrendyProduct = computed(() => {
+    return trendyproduct.value.filter(item => {
+
+        const matchSearch = (item.title ?? "")
+            .toLowerCase()
+            .includes(search.value.toLowerCase())
+
+         
+
+        return matchSearch 
+
+    })
+})
+
+const filteredJustArrived = computed(() => {
+    return justarrived.value.filter(item => {
+
+        const matchSearch = (item.title ?? "")
+            .toLowerCase()
+            .includes(search.value.toLowerCase())
+
+         
+
+        return matchSearch
+    })
+})
 </script>
 
 
