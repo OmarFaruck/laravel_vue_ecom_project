@@ -317,7 +317,8 @@
                                     <option value="">Select product_color</option>
                                     <option v-for="product_color in product_color" :key="product_color.product_color"
                                         :value="product_color.product_color">
-                                        {{ product_color.id }} - {{ product_color.product_color }}
+                                        {{ product_color.product_color }}
+                                        <!-- {{ product_color.id }} - {{ product_color.product_color }} -->
                                     </option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.product_color">
@@ -657,7 +658,8 @@
                                     <option value="">Select product_color</option>
                                     <option v-for="product_color in product_color" :key="product_color.product_color"
                                         :value="product_color.product_color">
-                                        {{ product_color.id }} - {{ product_color.product_color }}
+                                         {{ product_color.product_color }}
+                                        <!-- {{ product_color.id }} - {{ product_color.product_color }} -->
                                     </option>
                                 </select>
                                 <div class="text-danger" v-if="form.errors.product_color">

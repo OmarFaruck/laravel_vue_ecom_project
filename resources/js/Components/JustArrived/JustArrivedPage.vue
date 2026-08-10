@@ -115,7 +115,7 @@
                                     <option value="">Select Product Color</option>
                                     <option v-for="product in product_color" :key="product.product_color"
                                         :value="product.product_color">
-                                         {{ product.product_color }}
+                                        {{ product.product_color }}
                                         <!-- {{ product.id }} -- {{ product.product_color }} -->
                                     </option>
                                 </select>
@@ -130,7 +130,7 @@
                                     <option value="">Select Product Size</option>
                                     <option v-for="product in product_size" :key="product.product_size"
                                         :value="product.product_size">
-                                         <!-- {{ product.product_size }} -->
+                                        <!-- {{ product.product_size }} -->
                                         {{ product.id }} -- {{ product.product_size }}
                                     </option>
                                 </select>
@@ -139,23 +139,23 @@
                                 </div>
                             </div>
 
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label>Description:</label>
-<<<<<<< HEAD
+
                                 <input v-model="form.description" type="text" placeholder="Create Description"
                                     class="form-control" />
-=======
-                                <textarea v-model="form.description" placeholder="Create Description" class="form-control"></textarea>
->>>>>>> b798c5d (User Product Details & User Contact Complete)
+
+                                <textarea v-model="form.description" placeholder="Create Description"
+                                    class="form-control"></textarea>
+
                                 <div class="text-danger" v-if="form.errors.description">
                                     {{ form.errors.description }}
                                 </div>
                             </div>
 
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label>slug:</label>
-                                <input v-model="form.slug" type="text" placeholder="Create Slug"
-                                    class="form-control" />
+                                <input v-model="form.slug" type="text" placeholder="Create Slug" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.slug">
                                     {{ form.errors.slug }}
                                 </div>
@@ -235,7 +235,7 @@
                                     <option value="">Select Product Color</option>
                                     <option v-for="product in product_color" :key="product.product_color"
                                         :value="product.product_color">
-                                         {{ product.product_color }}
+                                        {{ product.product_color }}
                                         <!-- {{ product.id }} -- {{ product.product_color }} -->
                                     </option>
                                 </select>
@@ -250,7 +250,7 @@
                                     <option value="">Select Product Size</option>
                                     <option v-for="product in product_size" :key="product.product_size"
                                         :value="product.product_size">
-                                         <!-- {{ product.product_size }} -->
+                                        <!-- {{ product.product_size }} -->
                                         {{ product.id }} -- {{ product.product_size }}
                                     </option>
                                 </select>
@@ -268,18 +268,18 @@
                                 </div>
                             </div>
 
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label>Description:</label>
-                                <textarea v-model="form.description" placeholder="Create Description" class="form-control"></textarea>
+                                <textarea v-model="form.description" placeholder="Create Description"
+                                    class="form-control"></textarea>
                                 <div class="text-danger" v-if="form.errors.description">
                                     {{ form.errors.description }}
                                 </div>
                             </div>
 
-                             <div class="mb-3">
+                            <div class="mb-3">
                                 <label>slug:</label>
-                                <input v-model="form.slug" type="text" placeholder="Create Slug"
-                                    class="form-control" />
+                                <input v-model="form.slug" type="text" placeholder="Create Slug" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.slug">
                                     {{ form.errors.slug }}
                                 </div>
@@ -312,7 +312,7 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "image","heading","title","prize","cancelprize", "product_color","product_size","description","slug"];
+const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color", "product_size", "description", "slug"];
 const searchValue = ref();
 
 const page = usePage();
@@ -322,12 +322,12 @@ const product_color = computed(() => page.props.product_color || []);
 const product_size = computed(() => page.props.product_size || []);
 const headers = [
     { text: "ID", value: "id" },
-    { text: "Image", value: "image" }, 
+    { text: "Image", value: "image" },
     { text: "Heading", value: "heading" },
     { text: "Title", value: "title" },
     { text: "Prize", value: "prize" },
     { text: "Cancel Prize", value: "cancelprize" },
-     { text: "product_color", value: "product_color" },
+    { text: "product_color", value: "product_color" },
     { text: "product_size", value: "product_size" },
     { text: "description", value: "description" },
     { text: "slug", value: "slug" },
@@ -336,12 +336,12 @@ const headers = [
 ];
 const form = useForm({
     id: null,
-    image: null, 
+    image: null,
     heading: "",
     title: "",
     prize: "",
     cancelprize: "",
-      product_color: "",
+    product_color: "",
     product_size: "",
     description: "",
     slug: "",
@@ -377,12 +377,12 @@ const submitcreate = () => {
 
 function edit(item) {
     form.id = item.id;
-    form.image = null; 
+    form.image = null;
     form.heading = item.heading;
     form.title = item.title;
     form.prize = item.prize;
     form.cancelprize = item.cancelprize;
-      form.product_color = item.product_color;
+    form.product_color = item.product_color;
     form.product_size = item.product_size;
     form.description = item.description;
     form.slug = item.slug;

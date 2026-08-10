@@ -61,16 +61,6 @@ Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 
- 
- 
-//Dynamin fontend Navber Page Open Controller
-Route::get('/page/{slug}', [PageController::class, 'pageshow'])->name('page.show');   
-
-
-Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');  
-Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');  
-Route::post('/user_contact', [UserContactController::class, 'usercontact'])->name('user_contact');  
- 
 
 Route::middleware([SessionAuthenticate::class])->group(function () {
     // ✅ Admin route
@@ -229,16 +219,26 @@ Route::middleware([SessionAuthenticate::class])->group(function () {
    
   });
   
-// Sideber CategoryWisePage Controller
+ 
+//Dynamin fontend Navber Page Open Controller
+Route::get('/page/{slug}', [PageController::class, 'pageshow'])->name('page.show');   
+
+
+Route::post('/user_newsletter', [UserNewsLetterController::class, 'usernewsletter'])->name('newsletter');  
+Route::post('/user_subscribe', [UserNewsLetterController::class, 'subscribe'])->name('subscribe');  
+Route::post('/user_contact', [UserContactController::class, 'usercontact'])->name('user_contact');  
+
+  // Sideber CategoryWisePage Controller
 Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');  
  
+//trendy shop_detail page Controller
 Route::get('/page/trendy_shop_detail/{id}', [ShopDetailController::class, 'trendyshopdetail'])->name('page.trendy_shop_detail');
 
 //justArrived shop_detail page Controller
 Route::get('/page/just_arrived_shop_detail/{id}', [ShopDetailController::class, 'arrivedshopdetail'])->name('page.just_arrived_shop_detail');
 
 
-//justArrived shop_detail page Controller
+//Product shop_detail page Controller
 Route::get('/page/product_shop_detail/{id}', [ShopDetailController::class, 'productshopdetail'])->name('page.product_shop_detail');
  
 //ReviewController  Controller

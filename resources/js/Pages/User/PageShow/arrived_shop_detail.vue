@@ -357,10 +357,4 @@ const submitReview = () => {
 
 </script>
 
-<style scoped>
-.card.product-item.border-0 {
-    width: 282.5px;
-    margin-right: 29px;
-    /* display: flex; */
-}
-</style>
+ 

@@ -3,25 +3,38 @@
         <!-- Page Header Start -->
         <div class="container-fluid bg-secondary mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our {{ pagename.name }}</h1>
+                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our {{ product.product_heading }}</h1>
                 <div class="d-inline-flex">
-                    <p class="m-0"><a href="">Home</a></p>
+                    <p class="m-0"><a href="">Shop</a></p>
                     <p class="m-0 px-2">-</p>
-                    <p class="m-0">{{ pagename.name }}</p>
+                    <p class="m-0">{{ product.product_heading }}</p>
                 </div>
             </div>
         </div>
 
+
+
+
         <!-- Shop Detail Start -->
-        <div class="container-fluid py-5">
+         <div class="container-fluid py-5">
             <div class="row px-xl-5">
                 <div class="col-lg-5 pb-5">
-                    <!-- <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner border">
-                            <div v-for="(item, index) in products" :key="item.id" class="carousel-item"
-                                :class="{ active: index === 0 }">
-                                <img class="w-100 h-100" :src="`/storage/products/thumbnails/${item.product_thumbnail}`" :alt="item.name">
+
+                            <div class="carousel-item active">
+                                <img class="w-100 h-100" :src="'/storage/' + product.product_thumbnail"
+                                    :alt="product.product_name">
                             </div>
+                            <div class="carousel-item">
+                                <img class="w-100 h-100" :src="'/storage/' + product.product_thumbnail"
+                                    :alt="product.product_name">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="w-100 h-100" :src="'/storage/' + product.product_thumbnail"
+                                    :alt="product.product_name">
+                            </div>
+
                         </div>
 
                         <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -31,7 +44,7 @@
                         <a class="carousel-control-next" href="#product-carousel" data-slide="next">
                             <i class="fa fa-2x fa-angle-right text-dark"></i>
                         </a>
-                    </div> -->
+                    </div>
                 </div>
 
                 <div class="col-lg-7 pb-5">
@@ -46,31 +59,17 @@
                         </div>
                         <small class="pt-1">(50 Reviews)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                    <p class="mb-4">{{ product.product_description }}</p>
+                    <h3 class="font-weight-semi-bold mb-4">${{ product.product_selling_price }}</h3>
+
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" name="size">
-                                <label class="custom-control-label" for="size-1">XS</label>
+                                <input type="radio" class="custom-control-input" id="size-1" {{ product.product_size
+                                    }}>
+                                <label class="custom-control-label" for="size-1">{{ product.product_size }}</label>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-2" name="size">
-                                <label class="custom-control-label" for="size-2">S</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-3" name="size">
-                                <label class="custom-control-label" for="size-3">M</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-4" name="size">
-                                <label class="custom-control-label" for="size-4">L</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-5" name="size">
-                                <label class="custom-control-label" for="size-5">XL</label>
-                            </div>
+
                         </form>
                     </div>
                     <div class="d-flex mb-4">
@@ -78,24 +77,10 @@
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                <label class="custom-control-label" for="color-1">Black</label>
+                                <label class="custom-control-label" for="color-1">{{ product.product_color
+                                    }}</label>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-2" name="color">
-                                <label class="custom-control-label" for="color-2">White</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-3" name="color">
-                                <label class="custom-control-label" for="color-3">Red</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-4" name="color">
-                                <label class="custom-control-label" for="color-4">Blue</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-5" name="color">
-                                <label class="custom-control-label" for="color-5">Green</label>
-                            </div>
+
                         </form>
                     </div>
                     <div class="d-flex align-items-center mb-4 pt-2">
@@ -144,29 +129,13 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
                             <h4 class="mb-3">Product Description</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
-                                invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
-                                consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum
-                                diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam
-                                sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor
-                                aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam
-                                kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.
+                            <p>{{ product.product_description }}
                             </p>
-                            <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor
-                                consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita
-                                clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit
-                                rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.
-                            </p>
+
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
                             <h4 class="mb-3">Additional Information</h4>
-                            <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam
-                                invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod
-                                consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum
-                                diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam
-                                sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor
-                                aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam
-                                kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.
+                            <p>{{ product.product_additional_info }}
                             </p>
                             <div class="row">
                                 <div class="col-md-6">
@@ -205,12 +174,14 @@
                         </div>
                         <div class="tab-pane fade" id="tab-pane-3">
                             <div class="row">
+
                                 <div class="col-md-6">
-                                    <h4 class="mb-4">1 review for "Colorful Stylish Shirt"</h4>
+                                    <h4 class="mb-4">{{ product.id }}.{{ product.product_name }}</h4>
                                     <div class="media mb-4">
-                                        <img src="" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                        <div class="media-body">
-                                            <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
+                                        <img :src="'/storage/' + product.product_thumbnail" :alt="product.product_name"
+                                            class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                        <div class="media-body" v-if="review">
+                                            <h6>{{ review.name }}<small> - <i>01 Jan 2045</i></small></h6>
                                             <div class="text-primary mb-2">
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
@@ -218,161 +189,120 @@
                                                 <i class="fas fa-star-half-alt"></i>
                                                 <i class="far fa-star"></i>
                                             </div>
-                                            <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam
-                                                ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod
-                                                ipsum.</p>
+                                            <p>{{ review.message }}</p>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <h4 class="mb-4">Leave a review</h4>
                                     <small>Your email address will not be published. Required fields are marked
                                         *</small>
-                                    <div class="d-flex my-3">
+                                    <div class="d-flex my-3 align-items-center">
                                         <p class="mb-0 mr-2">Your Rating * :</p>
-                                        <div class="text-primary">
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                            <i class="far fa-star"></i>
+
+                                        <div>
+                                            <i v-for="star in 5" :key="star" @click="form.rating = star"
+                                                class="fa-star mr-1"
+                                                :class="star <= form.rating ? 'fas text-warning' : 'far text-secondary'"
+                                                style="cursor:pointer; font-size:24px;"></i>
+
+                                            <span class="ml-2">
+                                                {{ form.rating }}/5
+                                            </span>
                                         </div>
                                     </div>
-                                    <form>
+
+                                    <div class="text-danger" v-if="form.errors.rating">
+                                        {{ form.errors.rating }}
+                                    </div>
+                                    <form @submit.prevent="submitReview" class="mt-3">
                                         <div class="form-group">
                                             <label for="message">Your Review *</label>
-                                            <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                            <textarea class="form-control" v-model="form.message"></textarea>
+                                            <div class="text-danger" v-if="form.errors.message">
+                                                {{ form.errors.message }}
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Your Name *</label>
-                                            <input type="text" class="form-control" id="name">
+                                            <input type="text" class="form-control" id="name" v-model="form.name">
+                                            <div class="text-danger" v-if="form.errors.name">
+                                                {{ form.errors.name }}
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Your Email *</label>
-                                            <input type="email" class="form-control" id="email">
+                                            <input type="email" class="form-control" id="email" v-model="form.email">
+                                            <div class="text-danger" v-if="form.errors.email">
+                                                {{ form.errors.email }}
+                                            </div>
                                         </div>
                                         <div class="form-group mb-0">
                                             <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
                                         </div>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
+
         <!-- Shop Detail End -->
 
-
-        <!-- Products Start -->
+         <!-- Products Start -->
         <div class="container-fluid py-5">
             <div class="text-center mb-4">
                 <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
             </div>
-            <div class="row px-xl-5">
-                <div class="col">
-                    <div class="owl-carousel related-carousel">
-                        <div class="card product-item border-0">
+
+            <div class="px-xl-5 pb-3">
+                <!-- Swiper Slider Container -->
+                <swiper :slides-per-view="1" :space-between="20"
+                    :autoplay="{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }" :loop="true"
+                    :modules="modules" :breakpoints="{
+                        '576': { slidesPerView: 1 },
+                        '768': { slidesPerView: 2 },
+                        '992': { slidesPerView: 4 }
+                    }" class="mySwiper">
+                    <swiper-slide v-for="item in product" :key="item.id" class="pb-1">
+                        <div class="card product-item border-0 mb-4">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="" alt="">
+                                <img class="img-fluid w-100" :src="'/storage/' + item.product_thumbnail"
+                                    :alt="item.title">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                                <h6 class="text-truncate mb-3">{{ item.title }}</h6>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <h6 class="text-muted ml-2"><del>${{ item.product_purchase_price }}</del></h6> 
+                                    <h6>${{ item.product_selling_price }}</h6>
+                                </div>
                                 <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                    <h6>Product_Color : {{ item.product_color }}</h6>
+                                    <h6 class="text-muted ml-2">Size : {{ item.product_size }}</h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                <Link :href="`/page/product_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-eye text-primary mr-1"></i>View Detail
+                                </Link>
+                                <Link href="" class="btn btn-sm text-dark p-0">
+                                    <i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart
+                                </Link>
                             </div>
                         </div>
-                        <div class="card product-item border-0">
-                            <div
-                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                        <div class="card product-item border-0">
-                            <div
-                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                        <div class="card product-item border-0">
-                            <div
-                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                        <div class="card product-item border-0">
-                            <div
-                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i
-                                        class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </swiper-slide>
+                </swiper>
             </div>
         </div>
         <!-- Products End -->
+
+
+
 
     </FrontendLayout>
 </template>
@@ -381,15 +311,41 @@
 import FrontendLayout from '@/Layout/FrontendLayout.vue'
 import { Link } from '@inertiajs/vue3'
 import { arrow } from '@popperjs/core';
-import { ref, computed } from 'vue'
-import { usePage } from '@inertiajs/vue3'
+import { usePage, useForm, router } from "@inertiajs/vue3";
+import { Modal } from "bootstrap";
+import { ref, computed } from "vue";
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay } from 'swiper/modules';
+
+// Swiper styles
+import 'swiper/css';
+
+const modules = [Autoplay];
+
 const page = usePage()
 
 defineProps({
-    pagename: Array,
-    // justarrived: Array,
-    trendyproducts: Array,
-    trendyproduct: Array,
-
+    product: Array,
+    // products: Array,
+    review: Object,
+    reviewCount: Number,
+    averageRating: Number
 })
+
+
+const form = useForm({
+    message: '',
+    name: '',
+    email: '',
+    rating: 0,
+})
+
+const submitReview = () => {
+    form.post('/review', {
+        onSuccess: () => {
+            form.reset();
+        }
+    });
+}
+
 </script>

@@ -106,6 +106,7 @@ class ShopDetailController extends Controller
          $reviews = Review::where('trendy_product_id', $id)->get();
          $reviewCount = $reviews->count(); 
          $product = Product::where('id', $id)->firstOrFail();
+         $products = Product::get();
 
        return Inertia::render("User/PageShow/product_shop_detail",[
 
@@ -119,6 +120,7 @@ class ShopDetailController extends Controller
          'reviews' => $reviews,
          'reviewCount' => $reviewCount, 
          'product' => $product,
+         'products' => $products,
 
        ]);
     }

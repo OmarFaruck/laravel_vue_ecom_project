@@ -82,8 +82,6 @@ defineProps({
     justarrived: Array,
 
 })
-
-// search by name
-//const search = ref("")   // search by name
+ 
 
 </script>

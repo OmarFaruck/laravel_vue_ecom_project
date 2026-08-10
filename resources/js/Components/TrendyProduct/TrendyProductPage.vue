@@ -321,9 +321,7 @@ import { computed, ref } from "vue";
 
 
 
-const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color", "product_size", "description", "slug"];
-
-// const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color", "product_size", "description", "slug"];
+const searchField = ["id", "image", "heading", "title", "prize", "cancelprize", "product_color", "product_size", "description", "slug"]; 
 
 const searchValue = ref();
 
