@@ -23,15 +23,15 @@
                         <div class="carousel-inner border">
 
                             <div class="carousel-item active">
-                                <img class="w-100 h-100" :src="'/storage/' + product.product_thumbnail"
+                                <img class="w-100 h-100" :src="product.product_thumbnail ? '/storage/' + product.product_thumbnail : '/images/placeholder.jpg'"
                                     :alt="product.product_name">
                             </div>
                             <div class="carousel-item">
-                                <img class="w-100 h-100" :src="'/storage/' + product.product_thumbnail"
+                                <img class="w-100 h-100" :src="product.product_thumbnail ? '/storage/' + product.product_thumbnail : '/images/placeholder.jpg'"
                                     :alt="product.product_name">
                             </div>
                             <div class="carousel-item">
-                                <img class="w-100 h-100" :src="'/storage/' + product.product_thumbnail"
+                                <img class="w-100 h-100" :src="product.product_thumbnail ? '/storage/' + product.product_thumbnail : '/images/placeholder.jpg'"
                                     :alt="product.product_name">
                             </div>
 
@@ -268,22 +268,22 @@
                         '768': { slidesPerView: 2 },
                         '992': { slidesPerView: 4 }
                     }" class="mySwiper">
-                    <swiper-slide v-for="item in product" :key="item.id" class="pb-1">
+                    <swiper-slide v-for="item in products" :key="item.id" class="pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 <img class="img-fluid w-100" :src="'/storage/' + item.product_thumbnail"
-                                    :alt="item.title">
+                                    :alt="item.product_name">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">{{ item.title }}</h6>
+                                <h6 class="text-truncate mb-3">{{ item.product_name }}</h6>
                                 <div class="d-flex justify-content-center gap-3">
                                     <h6 class="text-muted ml-2"><del>${{ item.product_purchase_price }}</del></h6> 
                                     <h6>${{ item.product_selling_price }}</h6>
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <h6>Product_Color : {{ item.product_color }}</h6>
-                                    <h6 class="text-muted ml-2">Size : {{ item.product_size }}</h6>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <h6>Product_Color:{{ item.product_color }}</h6>
+                                    <h6 class="text-muted">Size:{{ item.product_size }}</h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
@@ -325,8 +325,8 @@ const modules = [Autoplay];
 const page = usePage()
 
 defineProps({
-    product: Array,
-    // products: Array,
+    product: Object,
+    products: Array,
     review: Object,
     reviewCount: Number,
     averageRating: Number

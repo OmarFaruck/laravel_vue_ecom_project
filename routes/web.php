@@ -27,6 +27,7 @@ use App\Http\Controllers\User\CategoryWisePageController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\ShopDetailController;
+use App\Http\Controllers\User\ShopingCardController;
 use App\Http\Controllers\User\SocialController;
 use App\Http\Controllers\User\UserContactController;
 use App\Http\Controllers\User\UserNewsLetterController;
@@ -245,15 +246,23 @@ Route::get('/page/product_shop_detail/{id}', [ShopDetailController::class, 'prod
 Route::get('/review/{id}', [ReviewController::class,'review'])->name('review');
 Route::post('/review', [ReviewController::class,'store'])->name('review.store');
 
+
+//ShopingCardController  Controller
+Route::get('/page/add_to_cart/{id}', [ShopingCardController::class,'shopingcard'])->name('shoping_card');
+// Route::get('/cheack_out', [ShopingCardController::class,'cheack_out'])->name('cheack_out');
+// Route::get('/order_success', [ShopingCardController::class,'order_success'])->name('order_success');
+// Route::get('/order_failed', [ShopingCardController::class,'order_failed'])->name('order_failed');
  
 
+
+
 // Stay Update Page
-Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
-Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
-Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
-Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
-Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
-Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
+    Route::get('/stayupdate', [StayUpdateController::class, 'index'])->name('stay_update.index');
+    Route::get('/stayupdate/create', [StayUpdateController::class, 'create'])->name('stay_update.create');
+    Route::post('/stayupdate', [StayUpdateController::class, 'store'])->name('stay_update.store');
+    Route::get('/stayupdate/{id}/edit', [StayUpdateController::class, 'edit'])->name('stay_update.edit');
+    Route::put('/stayupdate/{id}', [StayUpdateController::class, 'update'])->name('stay_update.update');
+    Route::delete('/stayupdate/{id}', [StayUpdateController::class, 'destroy'])->name('stay_update.destroy');
 
 // Newsletter Page
     Route::get('/newsletter', [NewsLetterController::class, 'index'])->name('news_letter.index');

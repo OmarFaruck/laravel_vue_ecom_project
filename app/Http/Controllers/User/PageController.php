@@ -107,8 +107,8 @@ class PageController extends Controller
        $productpage = Product::get();
        $contactaddress = ContactAddress::first();
        $contactus = ContactUs::get();
-       $product = Product::all();
-        // $products = Product::where('category_id', $id)->first();
+       $product = Product::whereNotNull('product_thumbnail')->first();
+        $products = Product::get();
 
        return Inertia::render("User/PageShow/{$slug}",[
         'pagename'=>$pagename,
@@ -125,7 +125,7 @@ class PageController extends Controller
         'contactaddress' => $contactaddress, 
         'contactus' => $contactus,
         'product' => $product,  
-        // 'products' => $products,
+        'products' => $products,
 
        ]);
     }

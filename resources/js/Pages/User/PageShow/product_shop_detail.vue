@@ -281,9 +281,9 @@
                                     <h6 class="text-muted ml-2"><del>${{ item.product_purchase_price }}</del></h6> 
                                     <h6>${{ item.product_selling_price }}</h6>
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <h6>Product_Color : {{ item.product_color }}</h6>
-                                    <h6 class="text-muted ml-2">Size : {{ item.product_size }}</h6>
+                                <div class="d-flex justify-content-center gap-3">
+                                    <h6>Product_Color:{{ item.product_color }}</h6>
+                                    <h6 class="text-muted ml-2">Size:{{ item.product_size }}</h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
