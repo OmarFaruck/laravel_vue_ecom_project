@@ -29,6 +29,7 @@
         "bootstrap": "^5.3.8",
         "nprogress": "^0.2.0",
         "sweetalert": "^2.1.2",
+        "sweetalert2": "^11.26.25",
         "swiper": "^14.1.0",
         "vue": "^3.5.22",
         "vue3-easy-data-table": "^1.5.47"

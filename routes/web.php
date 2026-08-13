@@ -249,6 +249,8 @@ Route::post('/review', [ReviewController::class,'store'])->name('review.store');
 
 //ShopingCardController  Controller
 Route::get('/page/add_to_cart/{id}', [ShopingCardController::class,'shopingcard'])->name('shoping_card');
+Route::post('/apply-coupon', [ShopingCardController::class, 'applyCoupon'])->name('apply.coupon');
+ Route::post('/remove-from-cart', [ShopingCardController::class, 'removeCardItem'])->name('remove.from.cart');
 // Route::get('/cheack_out', [ShopingCardController::class,'cheack_out'])->name('cheack_out');
 // Route::get('/order_success', [ShopingCardController::class,'order_success'])->name('order_success');
 // Route::get('/order_failed', [ShopingCardController::class,'order_failed'])->name('order_failed');
