@@ -31,30 +31,30 @@ class ProductVariantController extends Controller
             'product_color' => 'required',
             'product_size' => 'required',
             'product_quantity' => 'required|integer',
-            'product_selling_price' => 'required|numeric',
-            'product_image' => 'required|image',
-            'product_id' => 'required|exists:products,id',
+            // 'product_selling_price' => 'required|numeric',
+            // 'product_image' => 'required|image',
+            // 'product_id' => 'required|exists:products,id',
         ]);
 
         // Handle file upload for product_image
-    if ($request->hasFile('product_image')) {
+    // if ($request->hasFile('product_image')) {
 
-        $image = $request->file('product_image');
+    //     $image = $request->file('product_image');
 
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+    //     $imageName = time() . '.' . $image->getClientOriginalExtension();
 
-        $image->storeAs('product_image', $imageName, 'public');
+    //     $image->storeAs('product_image', $imageName, 'public');
 
-        $data['product_image'] = $imageName;
-    }
+    //     $data['product_image'] = $imageName;
+    // }
 
         ProductVariant::create([
             'product_color' => $data['product_color'],
             'product_size' => $data['product_size'],
             'product_quantity' => $data['product_quantity'],
-            'product_selling_price' => $data['product_selling_price'],
-            'product_image' => $data['product_image'],
-            'product_id' => $data['product_id'],
+            // 'product_selling_price' => $data['product_selling_price'],
+            // 'product_image' => $data['product_image'],
+            // 'product_id' => $data['product_id'],
         ]);
 
         return redirect()->route('product_variant_page.index');
@@ -77,31 +77,31 @@ class ProductVariantController extends Controller
             'product_color' => 'required',
             'product_size' => 'required',
             'product_quantity' => 'required|integer',
-            'product_selling_price' => 'required|numeric',
-            'product_image' => 'nullable|image',
-            'product_id' => 'required|exists:products,id',
+            // 'product_selling_price' => 'required|numeric',
+            // 'product_image' => 'nullable|image',
+            // 'product_id' => 'required|exists:products,id',
         ]);
 
         // Handle file upload for product_image
-         if ($request->hasFile('product_image')) {
+    //      if ($request->hasFile('product_image')) {
 
-        $image = $request->file('product_image');
+    //     $image = $request->file('product_image');
 
-        $imageName = time() . '.' . $image->getClientOriginalExtension();
+    //     $imageName = time() . '.' . $image->getClientOriginalExtension();
 
-        $image->storeAs('product_image', $imageName, 'public');
+    //     $image->storeAs('product_image', $imageName, 'public');
 
-        $data['product_image'] = $imageName;
-    }
+    //     $data['product_image'] = $imageName;
+    // }
 
         $productVariant = ProductVariant::findOrFail($id);
         $productVariant->update([
             'product_color' => $data['product_color'],
             'product_size' => $data['product_size'],
             'product_quantity' => $data['product_quantity'],
-            'product_selling_price' => $data['product_selling_price'],
-            'product_image' => $data['product_image'] ?? $productVariant->product_image,
-            'product_id' => $data['product_id'],
+            // 'product_selling_price' => $data['product_selling_price'],
+            // 'product_image' => $data['product_image'] ?? $productVariant->product_image,
+            // 'product_id' => $data['product_id'],
         ]);
 
         return redirect()->route('product_variant_page.index');

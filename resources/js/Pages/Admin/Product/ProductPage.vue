@@ -1,6 +1,6 @@
 <template>
   <ProductPageComponent :ProductPage="ProductPage" :categories="categories" :subcategories="subcategories" :brands="brands"
-    :pickupPoints="pickupPoints" :warehouses="warehouses" :trendyProducts="trendyProducts" :users="users" :product_color="product_color" :product_size="product_size" :product_quantity="product_quantity"/>
+    :pickupPoints="pickupPoints" :warehouses="warehouses" :trendyProducts="trendyProducts" :justarriveds="justarriveds" :users="users" :product_color="product_color" :product_size="product_size" :product_quantity="product_quantity"/>
   <!-- <h1>category page</h1> -->
 </template>
 
@@ -21,6 +21,7 @@ defineProps({
   pickupPoints: Array,
   warehouses: Array,
   trendyProducts: Array, 
+  justarriveds: Array, 
   product_color: Array, 
   product_size: Array, 
   product_quantity: Array, 

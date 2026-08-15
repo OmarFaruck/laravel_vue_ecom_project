@@ -46,9 +46,9 @@
                     </button>
                 </template>
 
-                <template #item-product_image="item"> 
+                <!-- <template #item-product_image="item"> 
                     <img :src="`/storage/product_image/${item.product_image}`" width="80" height="60" class="rounded" />
-                </template>
+                </template> -->
                 
             </Vue3EasyDataTable>
         </div>
@@ -94,26 +94,26 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_selling_price:</label>
                                 <input v-model="form.product_selling_price" type="number" placeholder="Create product_selling_price"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_selling_price">
                                     {{ form.errors.product_selling_price }}
                                 </div>
-                            </div>
+                            </div> -->
 
                           
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_image:</label>
                                 <input @input="form.product_image = $event.target.files[0]" type="file"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_image">
                                     {{ form.errors.product_image }}
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_id:</label>
                                  <select v-model="form.product_id" name="product_id" id="product_id" class="form-control">
                                     <option value="">Select a Product</option>
@@ -124,7 +124,7 @@
                                 <div class="text-danger" v-if="form.errors.product_id">
                                     {{ form.errors.product_id }}
                                 </div>
-                            </div>
+                            </div> -->
 
 
                         </div>
@@ -178,26 +178,26 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_selling_price:</label>
                                 <input v-model="form.product_selling_price" type="number" placeholder="Create product_selling_price"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_selling_price">
                                     {{ form.errors.product_selling_price }}
                                 </div>
-                            </div>
+                            </div> -->
 
                           
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_image:</label>
                                 <input @input="form.product_image = $event.target.files[0]" type="file"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_image">
                                     {{ form.errors.product_image }}
                                 </div>
-                            </div>
+                            </div> -->
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_id:</label>
                                  <select v-model="form.product_id" name="product_id" id="product_id" class="form-control">
                                     <option value="">Select a Product</option>
@@ -208,7 +208,7 @@
                                 <div class="text-danger" v-if="form.errors.product_id">
                                     {{ form.errors.product_id }}
                                 </div>
-                            </div>
+                            </div> -->
 
 
                         </div>
@@ -236,7 +236,11 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "product_color", "product_size", "product_quantity", "product_selling_price", "product_image", "product_id"];
+
+// product_image
+// product_id
+// product_selling_price
+const searchField = ["id", "product_color", "product_size", "product_quantity"];
 const searchValue = ref();
 
 const page = usePage();
@@ -247,9 +251,9 @@ const headers = [
     { text: "product_color", value: "product_color" },
     { text: "product_size", value: "product_size" },
     { text: "product_quantity", value: "product_quantity" },
-    { text: "product_selling_price", value: "product_selling_price" },
-    { text: "product_image", value: "product_image" },
-    { text: "product_id", value: "product_id" }, 
+    // { text: "product_selling_price", value: "product_selling_price" },
+    // { text: "product_image", value: "product_image" },
+    // { text: "product_id", value: "product_id" }, 
     { text: "Action", value: "action" },
 
 ];
@@ -258,9 +262,9 @@ const form = useForm({
     product_color: "",
     product_size: "",
     product_quantity: "",
-    product_selling_price: "",
-    product_image: null,
-    product_id: "", 
+    // product_selling_price: "",
+    // product_image: null,
+    // product_id: "", 
 });
 
 const props = defineProps({
@@ -300,9 +304,9 @@ function edit(item) {
     form.product_color = item.product_color;
     form.product_size = item.product_size;
     form.product_quantity = item.product_quantity;
-    form.product_selling_price = item.product_selling_price;
-    form.product_image = item.product_image;
-    form.product_id = item.product_id; 
+    // form.product_selling_price = item.product_selling_price;
+    // form.product_image = item.product_image;
+    // form.product_id = item.product_id; 
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);
@@ -386,3 +390,5 @@ function remove(data) {
     --easy-table-header-font-size: 24px;
 }
 </style>
+
+ 

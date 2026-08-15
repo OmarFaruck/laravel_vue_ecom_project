@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,6 +19,11 @@ class JustArrived extends Model
         'description',
         'slug', 
     ];
+
+       public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
 
     public function review()
     {

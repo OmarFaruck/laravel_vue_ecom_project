@@ -194,14 +194,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_heading:</label>
                                 <input v-model="form.product_heading" type="text" placeholder="Create product_heading"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_heading">
                                     {{ form.errors.product_heading }}
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label>product_description:</label>
@@ -239,14 +239,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_return_policy:</label>
                                 <input v-model="form.product_return_policy" type="text"
                                     placeholder="Create product_return_policy" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_return_policy">
                                     {{ form.errors.product_return_policy }}
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label>product_purchase_price:</label>
@@ -308,6 +308,20 @@
                                 </select>
                                 <div class="text-danger" v-if="form.errors.trendy_product">
                                     {{ form.errors.trendy_product }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>justarriveds:</label>
+                                <select v-model="form.justarriveds" class="form-control" name="justarriveds">
+                                    <option value="">Select JustArrived Product</option>
+                                    <option v-for="justarriveds in justarriveds" :key="justarriveds.id"
+                                        :value="justarriveds.id">
+                                        {{ justarriveds.id }} - {{ justarriveds.title }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.justarriveds">
+                                    {{ form.errors.justarriveds }}
                                 </div>
                             </div>
 
@@ -535,14 +549,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_heading:</label>
                                 <input v-model="form.product_heading" type="text" placeholder="Create product_heading"
                                     class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_heading">
                                     {{ form.errors.product_heading }}
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label>product_description:</label>
@@ -580,14 +594,14 @@
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <!-- <div class="mb-3">
                                 <label>product_return_policy:</label>
                                 <input v-model="form.product_return_policy" type="text"
                                     placeholder="Create product_return_policy" class="form-control" />
                                 <div class="text-danger" v-if="form.errors.product_return_policy">
                                     {{ form.errors.product_return_policy }}
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="mb-3">
                                 <label>product_purchase_price:</label>
@@ -649,6 +663,20 @@
                                 </select>
                                 <div class="text-danger" v-if="form.errors.trendy_product">
                                     {{ form.errors.trendy_product }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label>justarriveds:</label>
+                                <select v-model="form.justarriveds" class="form-control" name="justarriveds">
+                                    <option value="">Select JustArrived Product</option>
+                                    <option v-for="justarriveds in justarriveds" :key="justarriveds.id"
+                                        :value="justarriveds.id">
+                                        {{ justarriveds.id }} - {{ justarriveds.title }}
+                                    </option>
+                                </select>
+                                <div class="text-danger" v-if="form.errors.justarriveds">
+                                    {{ form.errors.justarriveds }}
                                 </div>
                             </div>
 
@@ -756,7 +784,9 @@ import 'vue3-easy-data-table/dist/style.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { computed, ref } from "vue";
 
-const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_view", "product_weight", "product_name", "product_code", "product_tags","product_thumbnail", "product_heading", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_return_policy", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product","product_color","product_size", "product_quantity","product_status", "user_id","slug"// "product_video"
+// product_return_policy
+// product_heading
+const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_view", "product_weight", "product_name", "product_code", "product_tags","product_thumbnail", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product","justarriveds","product_color","product_size", "product_quantity","product_status", "user_id","slug"// "product_video"
 ];
 const searchValue = ref();
 
@@ -778,18 +808,19 @@ const headers = [
     { text: "product_tags", value: "product_tags" },
     // { text: "product_video", value: "product_video" },
     { text: "product_thumbnail", value: "product_thumbnail" },
-    { text: "product_heading", value: "product_heading" },
+    // { text: "product_heading", value: "product_heading" },
     { text: "product_description", value: "product_description" },
     { text: "product_warranty", value: "product_warranty" },
     { text: "product_warranty_duration", value: "product_warranty_duration" },
     { text: "product_warranty_conditions", value: "product_warranty_conditions" },
-    { text: "product_return_policy", value: "product_return_policy" },
+    // { text: "product_return_policy", value: "product_return_policy" },
     { text: "product_purchase_price", value: "product_purchase_price" },
     { text: "product_selling_price", value: "product_selling_price" },
     { text: "warehouse", value: "warehouse" },
     { text: "featured", value: "featured" },
     { text: "today_deal", value: "today_deal" },
     { text: "trendy_product", value: "trendy_product" },
+    { text: "justarriveds", value: "justarriveds" },
     { text: "product_color", value: "product_color" },
     { text: "product_size", value: "product_size" },
     { text: "product_quantity", value: "product_quantity" },
@@ -812,18 +843,19 @@ const form = useForm({
     product_tags: "",
     // product_video: null,
     product_thumbnail: null,
-    product_heading: "",
+    // product_heading: "",
     product_description: "",
     product_warranty: "",
     product_warranty_duration: "",
     product_warranty_conditions: "",
-    product_return_policy: "",
+    // product_return_policy: "",
     product_purchase_price: "",
     product_selling_price: "",
     warehouse: "",
     featured: "",
     today_deal: "",
     trendy_product: "",
+    justarriveds: "",
     product_color: "",
     product_size: "",
     product_quantity: "",
@@ -840,6 +872,7 @@ const props = defineProps({
     pickupPoints: Array,
     warehouses: Array,
     trendyProducts: Array,
+    justarriveds: Array,
     users: Array,
     product_color: Array,
     product_size: Array,
@@ -888,29 +921,32 @@ function edit(item) {
     form.product_tags = item.product_tags;
     // form.product_video = item.product_video;
     form.product_thumbnail = item.product_thumbnail;
-    form.product_heading = item.product_heading;
+    // form.product_heading = item.product_heading;
     form.product_description = item.product_description;
     form.product_warranty = item.product_warranty;
     form.product_warranty_duration = item.product_warranty_duration;
     form.product_warranty_conditions = item.product_warranty_conditions;
-    form.product_return_policy = item.product_return_policy;
+    // form.product_return_policy = item.product_return_policy;
     form.product_purchase_price = item.product_purchase_price;
     form.product_selling_price = item.product_selling_price;
     form.warehouse = item.warehouse;
     form.featured = item.featured;
     form.today_deal = item.today_deal;
     form.trendy_product = item.trendy_product;
+    form.justarriveds = item.justarriveds;
     form.product_color = item.product_color;
     form.product_size = item.product_size;
     form.product_quantity = item.product_quantity;
     form.product_status = item.product_status;
     form.user_id = item.user_id;
     form.slug = item.slug;
+
     const modalEl = document.getElementById("editModal");
     if (modalEl) {
         const modal = new Modal(modalEl);
         modal.show();
     }
+    
 }
 
 function submitUpdate() {

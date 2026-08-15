@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category; 
+use App\Models\JustArrived;
 use App\Models\PickupPoint;
 use App\Models\Product;
 use App\Models\ProductVariant;
@@ -27,6 +28,7 @@ class ProductController extends Controller
             'pickupPoints' => PickupPoint::all(),
             'warehouses' => WareHouse::all(),
             'trendyProducts' => TrendyProduct::all(),
+             'justarriveds' => JustArrived::all(),
             'users' => User::all(), 
             'product_color' => ProductVariant::all(), 
             'product_size' => ProductVariant::all(), 
@@ -67,14 +69,14 @@ class ProductController extends Controller
         'product_tags' => 'required', 
         'product_thumbnail' => 'required|image|max:10240',
 
-        'product_heading' => 'required',
+        // 'product_heading' => 'required',
         'product_description' => 'required',
 
         'product_warranty' => 'required',
         'product_warranty_duration' => 'required|integer',
         'product_warranty_conditions' => 'required',
 
-        'product_return_policy' => 'required',
+        // 'product_return_policy' => 'required',
 
         'product_purchase_price' => 'required|numeric',
         'product_selling_price' => 'required|numeric',
@@ -83,6 +85,7 @@ class ProductController extends Controller
         'featured' => 'required',
         'today_deal' => 'required',
         'trendy_product' => 'required',
+        'justarriveds' => 'required',
 
         'product_color' => 'required',
         'product_size' => 'required',
@@ -124,14 +127,14 @@ class ProductController extends Controller
         // 'product_video' => $videoPath,
         'product_thumbnail' => $thumbnailPath,
 
-        'product_heading' => $data['product_heading'],
+        // 'product_heading' => $data['product_heading'],
         'product_description' => $data['product_description'],
 
         'product_warranty' => $data['product_warranty'],
         'product_warranty_duration' => $data['product_warranty_duration'],
         'product_warranty_conditions' => $data['product_warranty_conditions'],
 
-        'product_return_policy' => $data['product_return_policy'],
+        // 'product_return_policy' => $data['product_return_policy'],
 
         'product_purchase_price' => $data['product_purchase_price'],
         'product_selling_price' => $data['product_selling_price'],
@@ -140,6 +143,7 @@ class ProductController extends Controller
         'featured' => $data['featured'],
         'today_deal' => $data['today_deal'],
         'trendy_product' => $data['trendy_product'],
+        'justarriveds' => $data['justarriveds'],
 
         'product_color' => $data['product_color'],
         'product_size' => $data['product_size'],
@@ -171,6 +175,7 @@ class ProductController extends Controller
             'pickupPoints' => PickupPoint::all(),
             'warehouses' => WareHouse::all(),
             'trendyProducts' => TrendyProduct::all(), 
+            'justarriveds' => JustArrived::all(),
             'users' => User::all(),
              'product_color' => ProductVariant::all(), 
             'product_size' => ProductVariant::all(), 
@@ -200,14 +205,14 @@ class ProductController extends Controller
                 // 'product_video' => 'nullable|file|mimes:mp4,mov,avi|max:51200',
                 'product_thumbnail' => 'nullable|image|max:10240',
     
-                'product_heading' => 'required',
+                // 'product_heading' => 'required',
                 'product_description' => 'required',
     
                 'product_warranty' => 'required',
                 'product_warranty_duration' => 'required|integer',
                 'product_warranty_conditions' => 'required',
     
-                'product_return_policy' => 'required',
+                // 'product_return_policy' => 'required',
     
                 'product_purchase_price' => 'required|numeric',
                 'product_selling_price' => 'required|numeric',
@@ -216,6 +221,7 @@ class ProductController extends Controller
                 'featured' => 'required',
                 'today_deal' => 'required',
                 'trendy_product' => 'required',
+                'justarriveds' => 'required',
 
                  'product_color' => 'required',
                  'product_size' => 'required',
@@ -261,14 +267,14 @@ class ProductController extends Controller
                 // 'product_video' => $videoPath,
                 'product_thumbnail' => $thumbnailPath,
     
-                'product_heading' => $productdata['product_heading'],
+                // 'product_heading' => $productdata['product_heading'],
                 'product_description' => $productdata['product_description'],
     
                 'product_warranty' => $productdata['product_warranty'],
                 'product_warranty_duration' => $productdata['product_warranty_duration'],
                 'product_warranty_conditions' => $productdata['product_warranty_conditions'],
     
-                'product_return_policy' => $productdata['product_return_policy'],
+                // 'product_return_policy' => $productdata['product_return_policy'],
     
                 'product_purchase_price' => $productdata['product_purchase_price'],
                 'product_selling_price' => $productdata['product_selling_price'],
@@ -277,6 +283,7 @@ class ProductController extends Controller
                 'featured' => $productdata['featured'],
                 'today_deal' => $productdata['today_deal'],
                 'trendy_product' => $productdata['trendy_product'],
+                'justarriveds' => $productdata['justarriveds'],
 
                 'product_color' => $productdata['product_color'],
                 'product_size' => $productdata['product_size'],

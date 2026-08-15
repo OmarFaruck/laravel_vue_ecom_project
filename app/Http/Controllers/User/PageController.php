@@ -12,7 +12,7 @@ use App\Models\HomeSlider;
 use App\Models\JustArrived;
 use App\Models\Page;
 use App\Models\Product;
-use App\Models\ProductVariant;
+// use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use App\Models\TrendyProduct;
 use Illuminate\Http\Request;
@@ -33,7 +33,8 @@ class PageController extends Controller
     $justarrived = JustArrived::get();
     $justarriveds = JustArrived::first();  //name
     $brand = Brand::get();
-    $productvarient = ProductVariant::get();
+    $product = Product::get();
+    // $productvarient = ProductVariant::get();
     // $productvarient = ProductVariant::with(['product', 'subcategory'])->get();
 
 
@@ -48,7 +49,8 @@ class PageController extends Controller
           'justarrived' => $justarrived,
           'justarriveds' => $justarriveds,   //name
           'brand' => $brand,
-          'productvarient' => $productvarient,
+          'product' => $product,
+        //   'productvarient' => $productvarient,
          ]);
 
     }
@@ -65,7 +67,8 @@ class PageController extends Controller
         $justarrived = JustArrived::get();
         $justarriveds = JustArrived::first();  //name
         $brand = Brand::get();
-        $productvarient = ProductVariant::get();
+        $product = product::get();
+        // $productvarient = ProductVariant::get();
 
 
          return Inertia::render("User/UserPage",[
@@ -79,7 +82,8 @@ class PageController extends Controller
           'justarrived' => $justarrived,
           'justarriveds' => $justarriveds, //name
           'brand' => $brand,
-          'productvarient' => $productvarient,
+          'product' => $product,
+        //   'productvarient' => $productvarient,
          ]);
 
     }

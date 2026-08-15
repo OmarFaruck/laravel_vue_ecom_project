@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Brand;
 use App\Models\Category; 
+use App\Models\JustArrived;
 use App\Models\PickupPoint;
 use App\Models\ProductVariant;
 use App\Models\SubCategory;
@@ -38,6 +39,7 @@ class Product extends Model
         'featured',
         'today_deal', 
         'trendy_product',
+        'justarriveds',
 
         'product_color',
         'product_size',
@@ -72,6 +74,10 @@ class Product extends Model
     public function trendyproduct()
     {
         return $this->belongsTo(TrendyProduct::class, 'trendy_product' ,'id');
+    }
+    public function justarriveds()
+    {
+        return $this->belongsTo(JustArrived::class, 'justarriveds' ,'id');
     }
     public function warehouse()
     {

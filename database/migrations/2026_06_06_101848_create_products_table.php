@@ -25,14 +25,14 @@ return new class extends Migration
             $table->text('product_tags')->nullable(); 
             // $table->string('product_video')->nullable();
             $table->string('product_thumbnail')->nullable(); 
-            $table->string('product_heading')->nullable();
+            // $table->string('product_heading')->nullable();
             $table->text('product_description')->nullable();
             $table->string('product_warranty')->nullable();
             $table->integer('product_warranty_duration')->nullable();
             $table->text('product_warranty_conditions')->nullable();
             $table->text('product_return_policy')->nullable();
             $table->decimal('product_purchase_price', 10, 2)->nullable();
-            $table->decimal('product_selling_price', 10, 2)->nullable(); 
+            // $table->decimal('product_selling_price', 10, 2)->nullable(); 
             $table->string('warehouse')->nullable();
             $table->string('featured')->default(false);
             $table->string('today_deal')->default(false);
