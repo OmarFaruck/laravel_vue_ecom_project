@@ -241,6 +241,10 @@ Route::get('/page/just_arrived_shop_detail/{id}', [ShopDetailController::class, 
 
 //Product shop_detail page Controller
 Route::get('/page/product_shop_detail/{id}', [ShopDetailController::class, 'productshopdetail'])->name('page.product_shop_detail');
+
+
+//Final Product detail page Controller
+Route::get('/page/product_detail/{type}/{id}', [ShopDetailController::class, 'productdetail'])->name('page.product_detail');
  
 //ReviewController  Controller
 Route::get('/review/{id}', [ReviewController::class,'review'])->name('review');

@@ -3,11 +3,11 @@
         <!-- Page Header Start -->
         <div class="container-fluid bg-secondary mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our {{ product.product_heading }}</h1>
+                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our {{ product.heading }}</h1>
                 <div class="d-inline-flex">
                     <p class="m-0"><a href="">Shop</a></p>
                     <p class="m-0 px-2">-</p>
-                    <p class="m-0">{{ product.product_heading }}</p>
+                    <p class="m-0">{{ product.heading }}</p>
                 </div>
             </div>
         </div>
@@ -16,31 +16,46 @@
 
 
         <!-- Shop Detail Start -->
-         <div class="container-fluid py-5">
+        <div class="container-fluid py-5">
             <div class="row px-xl-5">
                 <div class="col-lg-5 pb-5">
                     <div id="product-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner border">
 
                             <div class="carousel-item active">
-                                <img class="w-100 h-100" :src="product.product_thumbnail ? '/storage/' + product.product_thumbnail : '/images/placeholder.jpg'"
-                                    :alt="product.product_name">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="w-100 h-100" :src="product.product_thumbnail ? '/storage/' + product.product_thumbnail : '/images/placeholder.jpg'"
-                                    :alt="product.product_name">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="w-100 h-100" :src="product.product_thumbnail ? '/storage/' + product.product_thumbnail : '/images/placeholder.jpg'"
-                                    :alt="product.product_name">
-                            </div>
 
+                                <img class="w-100 h-100" :src="type === 'trendy'
+                                        ? `/storage/trendyproducts/${product.image}`
+                                        : type === 'justarrived'
+                                            ? `/storage/justarrived/${product.image}`
+                                            : `/storage/products/${product.image}`
+                                    " :alt="product.title">
+
+                            </div>
+                            <div class="carousel-item">
+
+                                <img class="w-100 h-100" :src="type === 'trendy'
+                                        ? `/storage/trendyproducts/${product.image}`
+                                        : type === 'justarrived'
+                                            ? `/storage/justarrived/${product.image}`
+                                            : `/storage/products/${product.image}`
+                                    " :alt="product.title">
+
+                            </div>
+                            <div class="carousel-item">
+
+                                <img class="w-100 h-100" :src="type === 'trendy'
+                                        ? `/storage/trendyproducts/${product.image}`
+                                        : type === 'justarrived'
+                                            ? `/storage/justarrived/${product.image}`
+                                            : `/storage/products/${product.image}`
+                                    " :alt="product.title">
+
+                            </div>
                         </div>
-
                         <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                             <i class="fa fa-2x fa-angle-left text-dark"></i>
                         </a>
-
                         <a class="carousel-control-next" href="#product-carousel" data-slide="next">
                             <i class="fa fa-2x fa-angle-right text-dark"></i>
                         </a>
@@ -48,7 +63,7 @@
                 </div>
 
                 <div class="col-lg-7 pb-5">
-                    <h3 class="font-weight-semi-bold">{{ product.product_name }}</h3>
+                    <h3 class="font-weight-semi-bold">{{ product.title }}</h3>
                     <div class="d-flex mb-3">
                         <div class="text-primary mr-2">
                             <small class="fas fa-star"></small>
@@ -59,14 +74,13 @@
                         </div>
                         <small class="pt-1">(50 Reviews)</small>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">${{ product.product_selling_price }}</h3>
+                    <h3 class="font-weight-semi-bold mb-4">${{ product.prize }}</h3>
 
                     <div class="d-flex mb-3">
                         <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                         <form>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" {{ product.product_size
-                                    }}>
+                                <input type="radio" class="custom-control-input" id="size-1" {{ product.product_size }}>
                                 <label class="custom-control-label" for="size-1">{{ product.product_size }}</label>
                             </div>
 
@@ -78,7 +92,7 @@
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="color-1" name="color">
                                 <label class="custom-control-label" for="color-1">{{ product.product_color
-                                    }}</label>
+                                }}</label>
                             </div>
 
                         </form>
@@ -129,7 +143,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
                             <h4 class="mb-3">Product Description</h4>
-                            <p>{{ product.product_description }}
+                            <p>{{ product.description }}
                             </p>
 
                         </div>
@@ -249,11 +263,11 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
         <!-- Shop Detail End -->
 
-         <!-- Products Start -->
+        <!-- Products Start -->
         <div class="container-fluid py-5">
             <div class="text-center mb-4">
                 <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
@@ -272,13 +286,15 @@
                         <div class="card product-item border-0 mb-4">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" :src="'/storage/' + item.product_thumbnail"
-                                    :alt="item.product_name">
+                                <!-- <img class="img-fluid w-100" :src="'/storage/' + item.product_thumbnail"
+                                    :alt="item.product_name"> -->
+                                <img :src="`/storage/${type === 'trendy' ? 'trendyproducts' : 'justarrived'}/${product.image}`"
+                                    :alt="product.title" class="img-fluid">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                 <h6 class="text-truncate mb-3">{{ item.product_name }}</h6>
                                 <div class="d-flex justify-content-center gap-3">
-                                    <h6 class="text-muted ml-2"><del>${{ item.product_purchase_price }}</del></h6> 
+                                    <h6 class="text-muted ml-2"><del>${{ item.product_purchase_price }}</del></h6>
                                     <h6>${{ item.product_selling_price }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-center gap-3">
@@ -320,19 +336,26 @@ import { Autoplay } from 'swiper/modules';
 // Swiper styles
 import 'swiper/css';
 
+const justarrived = computed(() => page.props.justarrived || [])
 const modules = [Autoplay];
 
 const page = usePage()
+const props = defineProps({ trendyproducts: Object, product: Object,justArrived: Object, review: Object, reviewCount: Number, averageRating: Number, type:String })
+// defineProps({
 
-defineProps({
-    product: Object,
-    products: Array,
-    review: Object,
-    reviewCount: Number,
-    averageRating: Number
-})
+//     trendyproducts: Object,
+//     justArrived: Object,
+//     product: Object,
+//     products: Array,
+//     review: Object,
+//     reviewCount: Number,
+//     averageRating: Number,
+//     type:String
+
+// })
 
 
+// review form
 const form = useForm({
     message: '',
     name: '',

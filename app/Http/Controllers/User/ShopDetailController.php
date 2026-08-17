@@ -18,7 +18,7 @@ class ShopDetailController extends Controller
 {
  
 
-    // trendyshopdetail
+    //cancel trendyshopdetail
     public function trendyshopdetail($id){
 
          $trendyproduct = TrendyProduct::where('id', $id)->firstOrFail();
@@ -55,7 +55,7 @@ class ShopDetailController extends Controller
        ]);
     }
 
-    // Just arrived shopdetail
+    //cancel Just arrived shopdetail
     public function arrivedshopdetail($id){
 
          $justarrived = JustArrived::where('id', $id)->firstOrFail();
@@ -93,7 +93,7 @@ class ShopDetailController extends Controller
     }
 
 
-     // Product shop detail
+     //cancel Product shop detail
     public function productshopdetail($id){
 
          $justarrived = JustArrived::where('id', $id)->firstOrFail();
@@ -124,6 +124,42 @@ class ShopDetailController extends Controller
 
        ]);
     }
+
+
+
+
+    //final Product shop detail
+      public function productdetail($type, $id)
+    {
+        if ($type === 'trendy') {
+
+            $product = TrendyProduct::findOrFail($id);
+
+        } elseif ($type === 'justarrived') {
+
+            $product = JustArrived::findOrFail($id);
+
+        } elseif ($type === 'product') {
+          $product = Product::findOrFail($id);
+        }
+        else {
+
+            abort(404);
+        }
+
+        $pages = Page::get();
+         $category = Category::with('subcategory')->get();
+          $reviews = Review::where('trendy_product_id', $id)->get();
+        return Inertia::render('User/PageShow/shop_detail', [
+            'product' => $product,
+            'type' => $type,
+             'pages' => $pages,
+             'category' => $category,
+             'reviews' => $reviews,
+        ]);
+    }
+
+
 }
  
  

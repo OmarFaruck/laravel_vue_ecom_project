@@ -22,7 +22,8 @@
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
  
-                         <Link :href="`/page/just_arrived_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</Link>
+                         <Link :href="`/page/product_detail/justarrived/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</Link>
+                         <!-- <Link :href="`/page/just_arrived_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</Link> -->
   
  
                         <Link href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
