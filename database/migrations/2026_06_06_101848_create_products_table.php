@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('product_slider')->nullable(); 
             $table->integer('product_view')->default(0);
             $table->decimal('product_weight', 10, 2)->nullable(); 
-            $table->string('product_name');
+            $table->string('title');
             $table->string('product_code')->unique();
             $table->text('product_tags')->nullable(); 
             // $table->string('product_video')->nullable();
@@ -31,8 +31,8 @@ return new class extends Migration
             $table->integer('product_warranty_duration')->nullable();
             $table->text('product_warranty_conditions')->nullable();
             $table->text('product_return_policy')->nullable();
-            $table->decimal('product_purchase_price', 10, 2)->nullable();
-            // $table->decimal('product_selling_price', 10, 2)->nullable(); 
+            $table->decimal('cancelprize', 10, 2)->nullable();
+            $table->decimal('prize', 10, 2)->nullable(); 
             $table->string('warehouse')->nullable();
             $table->string('featured')->default(false);
             $table->string('today_deal')->default(false);

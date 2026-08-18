@@ -114,6 +114,9 @@ class PageController extends Controller
        $product = Product::whereNotNull('product_thumbnail')->first();
         $products = Product::get();
 
+
+ 
+
        return Inertia::render("User/PageShow/{$slug}",[
         'pagename'=>$pagename,
         'pages' => $pages,

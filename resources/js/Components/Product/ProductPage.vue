@@ -148,11 +148,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <label>product_name:</label>
-                                <input v-model="form.product_name" type="text" placeholder="Create product_name"
+                                <label>title:</label>
+                                <input v-model="form.title" type="text" placeholder="Create title"
                                     class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_name">
-                                    {{ form.errors.product_name }}
+                                <div class="text-danger" v-if="form.errors.title">
+                                    {{ form.errors.title }}
                                 </div>
                             </div>
 
@@ -249,20 +249,20 @@
                             </div> -->
 
                             <div class="mb-3">
-                                <label>product_purchase_price:</label>
-                                <input v-model="form.product_purchase_price" type="number"
-                                    placeholder="Create product_purchase_price" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_purchase_price">
-                                    {{ form.errors.product_purchase_price }}
+                                <label>cancelprize:</label>
+                                <input v-model="form.cancelprize" type="number"
+                                    placeholder="Create cancelprize" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.cancelprize">
+                                    {{ form.errors.cancelprize }}
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label>product_selling_price:</label>
-                                <input v-model="form.product_selling_price" type="number"
-                                    placeholder="Create product_selling_price" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_selling_price">
-                                    {{ form.errors.product_selling_price }}
+                                <label>prize:</label>
+                                <input v-model="form.prize" type="number"
+                                    placeholder="Create prize" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.prize">
+                                    {{ form.errors.prize }}
                                 </div>
                             </div>
 
@@ -503,11 +503,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <label>product_name:</label>
-                                <input v-model="form.product_name" type="text" placeholder="Create product_name"
+                                <label>title:</label>
+                                <input v-model="form.title" type="text" placeholder="Create title"
                                     class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_name">
-                                    {{ form.errors.product_name }}
+                                <div class="text-danger" v-if="form.errors.title">
+                                    {{ form.errors.title }}
                                 </div>
                             </div>
 
@@ -604,20 +604,20 @@
                             </div> -->
 
                             <div class="mb-3">
-                                <label>product_purchase_price:</label>
-                                <input v-model="form.product_purchase_price" type="number"
-                                    placeholder="Create product_purchase_price" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_purchase_price">
-                                    {{ form.errors.product_purchase_price }}
+                                <label>cancelprize:</label>
+                                <input v-model="form.cancelprize" type="number"
+                                    placeholder="Create cancelprize" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.cancelprize">
+                                    {{ form.errors.cancelprize }}
                                 </div>
                             </div>
 
                             <div class="mb-3">
-                                <label>product_selling_price:</label>
-                                <input v-model="form.product_selling_price" type="number"
-                                    placeholder="Create product_selling_price" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_selling_price">
-                                    {{ form.errors.product_selling_price }}
+                                <label>prize:</label>
+                                <input v-model="form.prize" type="number"
+                                    placeholder="Create prize" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.prize">
+                                    {{ form.errors.prize }}
                                 </div>
                             </div>
 
@@ -786,7 +786,7 @@ import { computed, ref } from "vue";
 
 // product_return_policy
 // product_heading
-const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_view", "product_weight", "product_name", "product_code", "product_tags","product_thumbnail", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "product_purchase_price", "product_selling_price", "warehouse", "featured", "today_deal", "trendy_product","justarriveds","product_color","product_size", "product_quantity","product_status", "user_id","slug"// "product_video"
+const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_view", "product_weight", "title", "product_code", "product_tags","product_thumbnail", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "cancelprize", "prize", "warehouse", "featured", "today_deal", "trendy_product","justarriveds","product_color","product_size", "product_quantity","product_status", "user_id","slug"// "product_video"
 ];
 const searchValue = ref();
 
@@ -803,7 +803,7 @@ const headers = [
     { text: "pickup_point_id", value: "pickup_point_id" }, 
     { text: "product_view", value: "product_view" },
     { text: "product_weight", value: "product_weight" },
-    { text: "product_name", value: "product_name" },
+    { text: "title", value: "title" },
     { text: "product_code", value: "product_code" },
     { text: "product_tags", value: "product_tags" },
     // { text: "product_video", value: "product_video" },
@@ -814,8 +814,8 @@ const headers = [
     { text: "product_warranty_duration", value: "product_warranty_duration" },
     { text: "product_warranty_conditions", value: "product_warranty_conditions" },
     // { text: "product_return_policy", value: "product_return_policy" },
-    { text: "product_purchase_price", value: "product_purchase_price" },
-    { text: "product_selling_price", value: "product_selling_price" },
+    { text: "cancelprize", value: "cancelprize" },
+    { text: "prize", value: "prize" },
     { text: "warehouse", value: "warehouse" },
     { text: "featured", value: "featured" },
     { text: "today_deal", value: "today_deal" },
@@ -838,7 +838,7 @@ const form = useForm({
     pickup_point_id: "", 
     product_view: "",
     product_weight: "",
-    product_name: "",
+    title: "",
     product_code: "",
     product_tags: "",
     // product_video: null,
@@ -849,8 +849,8 @@ const form = useForm({
     product_warranty_duration: "",
     product_warranty_conditions: "",
     // product_return_policy: "",
-    product_purchase_price: "",
-    product_selling_price: "",
+    cancelprize: "",
+    prize: "",
     warehouse: "",
     featured: "",
     today_deal: "",
@@ -916,7 +916,7 @@ function edit(item) {
     form.pickup_point_id = item.pickup_point_id; 
     form.product_view = item.product_view;
     form.product_weight = item.product_weight;
-    form.product_name = item.product_name;
+    form.title = item.title;
     form.product_code = item.product_code;
     form.product_tags = item.product_tags;
     // form.product_video = item.product_video;
@@ -927,8 +927,8 @@ function edit(item) {
     form.product_warranty_duration = item.product_warranty_duration;
     form.product_warranty_conditions = item.product_warranty_conditions;
     // form.product_return_policy = item.product_return_policy;
-    form.product_purchase_price = item.product_purchase_price;
-    form.product_selling_price = item.product_selling_price;
+    form.cancelprize = item.cancelprize;
+    form.prize = item.prize;
     form.warehouse = item.warehouse;
     form.featured = item.featured;
     form.today_deal = item.today_deal;

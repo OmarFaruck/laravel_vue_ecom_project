@@ -232,18 +232,8 @@ Route::post('/user_contact', [UserContactController::class, 'usercontact'])->nam
   // Sideber CategoryWisePage Controller
 Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage'])->name('user.SideberPage');  
  
-//trendy shop_detail page Controller
-Route::get('/page/trendy_shop_detail/{id}', [ShopDetailController::class, 'trendyshopdetail'])->name('page.trendy_shop_detail');
 
-//justArrived shop_detail page Controller
-Route::get('/page/just_arrived_shop_detail/{id}', [ShopDetailController::class, 'arrivedshopdetail'])->name('page.just_arrived_shop_detail');
-
-
-//Product shop_detail page Controller
-Route::get('/page/product_shop_detail/{id}', [ShopDetailController::class, 'productshopdetail'])->name('page.product_shop_detail');
-
-
-//Final Product detail page Controller
+// Product detail page Controller
 Route::get('/page/product_detail/{type}/{id}', [ShopDetailController::class, 'productdetail'])->name('page.product_detail');
  
 //ReviewController  Controller

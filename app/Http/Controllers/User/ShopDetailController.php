@@ -9,156 +9,66 @@ use App\Models\Page;
  
 use App\Models\Product;
   
-use App\Models\Review;
-use App\Models\SubCategory;
+use App\Models\Review; 
 use App\Models\TrendyProduct;
 use Inertia\Inertia;
 
 class ShopDetailController extends Controller
 {
- 
+   
+    public function productdetail($type, $id)
+{
+    if ($type === 'trendy') {
+        $product = TrendyProduct::findOrFail($id);
+        $product->image_url =
+            '/storage/trendyproducts/' . $product->image;
+    } elseif ($type === 'justarrived') {
+        $product = JustArrived::findOrFail($id);
+        $product->image_url =
+            '/storage/justarrived/' . $product->image;
+    } elseif ($type === 'product') {
 
-    //cancel trendyshopdetail
-    public function trendyshopdetail($id){
+       $product = Product::findOrFail($id);
+        $product->image_url =
+            '/storage/' . $product->product_thumbnail;
+    } else {
+        abort(404);
+    }
 
-         $trendyproduct = TrendyProduct::where('id', $id)->firstOrFail();
-         $category = Category::with('subcategory')->get();
-        $subcategory = SubCategory::with('product')->get();
-         $pages = Page::get();
-         $review = Review::get();
+    $pages = Page::get();
+    $category = Category::with('subcategory')->get();
+    $reviews = Review::where('trendy_product_id', $id)->get();
 
-         $trendyproduct = TrendyProduct::where('id', $id)->firstOrFail();
-         $trendyproducts = TrendyProduct::all();
-         $category = Category::with('subcategory')->get();
-        $subcategory = SubCategory::with('product')->get();
-         $pages = Page::get();
-         $reviews = Review::where('trendy_product_id', $id)->get();
-         $reviewCount = $reviews->count();
-          
+    // You May Also Like
+    $trendyProducts = TrendyProduct::get()->map(function ($item) {
+      $item->image_url =
+            '/storage/trendyproducts/' . $item->image;
+        return $item;
+    });
+    $justArrivedProducts = JustArrived::get()->map(function ($item) {
 
-       return Inertia::render("User/PageShow/trendy_shop_detail",[
+        $item->image_url =
+            '/storage/justarrived/' . $item->image;
+        return $item;
+    });
+    $products = Product::get()->map(function ($item) {
 
-        'trendyproduct' => $trendyproduct,
- 
-         'category' => $category,
-         'subcategory' => $subcategory,
-         'pages' => $pages,
-        'review' => $review,
- 
-         'trendyproducts' => $trendyproducts,
-         'category' => $category,
-         'subcategory' => $subcategory,
-         'pages' => $pages,
+        $item->image_url =
+            '/storage/' . $item->product_thumbnail;
+        return $item;
+    });
+
+    return Inertia::render('User/PageShow/shop_detail', [
+        'product' => $product,
+        'type' => $type,
+        'pages' => $pages,
+        'category' => $category,
         'reviews' => $reviews,
-        'reviewCount' => $reviewCount, 
-
-       ]);
-    }
-
-    //cancel Just arrived shopdetail
-    public function arrivedshopdetail($id){
-
-         $justarrived = JustArrived::where('id', $id)->firstOrFail();
- 
-         $category = Category::with('subcategory')->get();
-        $subcategory = SubCategory::with('product')->get();
-         $pages = Page::get();
-         $review = Review::get();
- 
-         $justarriveds = JustArrived::get();
-         $category = Category::with('subcategory')->get();
-        $subcategory = SubCategory::with('product')->get();
-         $pages = Page::get();
-           $reviews = Review::where('trendy_product_id', $id)->get();
-         $reviewCount = $reviews->count(); 
-
-       return Inertia::render("User/PageShow/arrived_shop_detail",[
-
-        'justarrived' => $justarrived,
- 
-         'category' => $category,
-         'subcategory' => $subcategory,
-         'pages' => $pages,
-         'review' => $review,
- 
-         'justarriveds' => $justarriveds,
-         'category' => $category,
-         'subcategory' => $subcategory,
-         'pages' => $pages,
-          'reviews' => $reviews,
-        'reviewCount' => $reviewCount,
- 
-
-       ]);
-    }
-
-
-     //cancel Product shop detail
-    public function productshopdetail($id){
-
-         $justarrived = JustArrived::where('id', $id)->firstOrFail();
-         $category = Category::with('subcategory')->get();
-        $subcategory = SubCategory::with('product')->get();
-         $pages = Page::get();
- 
-         $review = Review::get();
- 
-         $reviews = Review::where('trendy_product_id', $id)->get();
-         $reviewCount = $reviews->count(); 
-         $product = Product::where('id', $id)->firstOrFail();
-         $products = Product::get();
-
-       return Inertia::render("User/PageShow/product_shop_detail",[
-
-        'justarrived' => $justarrived,
-         'category' => $category,
-         'subcategory' => $subcategory,
-         'pages' => $pages,
- 
-         'review' => $review,
- 
-         'reviews' => $reviews,
-         'reviewCount' => $reviewCount, 
-         'product' => $product,
-         'products' => $products,
-
-       ]);
-    }
-
-
-
-
-    //final Product shop detail
-      public function productdetail($type, $id)
-    {
-        if ($type === 'trendy') {
-
-            $product = TrendyProduct::findOrFail($id);
-
-        } elseif ($type === 'justarrived') {
-
-            $product = JustArrived::findOrFail($id);
-
-        } elseif ($type === 'product') {
-          $product = Product::findOrFail($id);
-        }
-        else {
-
-            abort(404);
-        }
-
-        $pages = Page::get();
-         $category = Category::with('subcategory')->get();
-          $reviews = Review::where('trendy_product_id', $id)->get();
-        return Inertia::render('User/PageShow/shop_detail', [
-            'product' => $product,
-            'type' => $type,
-             'pages' => $pages,
-             'category' => $category,
-             'reviews' => $reviews,
-        ]);
-    }
-
+        'trendyProducts' => $trendyProducts,
+        'justArrivedProducts' => $justArrivedProducts,
+        'products' => $products,
+    ]);
+}
 
 }
  

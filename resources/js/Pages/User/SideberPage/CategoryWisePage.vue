@@ -28,7 +28,7 @@
                                 :alt="item.product_name">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">{{ item.product_name }} </h6>
+                            <h6 class="text-truncate mb-3">{{ item.title }} </h6>
                             <div class="d-flex justify-content-center">
                                 <h6>${{ item.product_selling_price }}</h6>
 
@@ -42,8 +42,10 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
  
-                            <Link :href="`/page/product_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
+                            <Link :href="`/page/product_detail/product/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                 Detail</Link>
+                            <!-- <Link :href="`/page/product_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
+                                Detail</Link> -->
                             <a href="" class="btn btn-sm text-dark p-0"><i
                                     class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
   
@@ -68,7 +70,7 @@ import { usePage } from '@inertiajs/vue3'
 
 const page = usePage()
 
-defineProps({
+const props = defineProps({
     pages: Array,
     subcategory: Array,
     // category: Array,
@@ -82,6 +84,7 @@ defineProps({
     justarrived: Array,
 
 })
+ 
  
 
 </script>

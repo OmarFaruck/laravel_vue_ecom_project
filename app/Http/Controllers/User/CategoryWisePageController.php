@@ -31,6 +31,7 @@ class CategoryWisePageController extends Controller
       $ProductPages = Product::where('category_id', $categories->id)->get();
       $justarrived = JustArrived::get();   
    
+   
 
       return Inertia::render('User/SideberPage/CategoryWisePage', [
         'category' => $category,

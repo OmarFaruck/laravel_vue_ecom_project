@@ -63,7 +63,7 @@ class ProductController extends Controller
         'product_view' => 'required|integer',
         'product_weight' => 'required|numeric',
 
-        'product_name' => 'required',
+        'title' => 'required',
 
         'product_code' => 'required|unique:products,product_code',
         'product_tags' => 'required', 
@@ -78,8 +78,8 @@ class ProductController extends Controller
 
         // 'product_return_policy' => 'required',
 
-        'product_purchase_price' => 'required|numeric',
-        'product_selling_price' => 'required|numeric',
+        'cancelprize' => 'required|numeric',
+        'prize' => 'required|numeric',
 
         'warehouse' => 'required',
         'featured' => 'required',
@@ -120,7 +120,7 @@ class ProductController extends Controller
         'product_view' => $data['product_view'],
         'product_weight' => $data['product_weight'],
 
-        'product_name' => $data['product_name'],
+        'title' => $data['title'],
         'product_code' => $data['product_code'],
         'product_tags' => $data['product_tags'],
 
@@ -136,8 +136,8 @@ class ProductController extends Controller
 
         // 'product_return_policy' => $data['product_return_policy'],
 
-        'product_purchase_price' => $data['product_purchase_price'],
-        'product_selling_price' => $data['product_selling_price'],
+        'cancelprize' => $data['cancelprize'],
+        'prize' => $data['prize'],
 
         'warehouse' => $data['warehouse'],
         'featured' => $data['featured'],
@@ -197,7 +197,7 @@ class ProductController extends Controller
                 'product_view' => 'required|integer',
                 'product_weight' => 'required|numeric',
     
-                'product_name' => 'required',
+                'title' => 'required',
     
                 'product_code' => 'required|unique:products,product_code,' . $request->id,
                 'product_tags' => 'required',
@@ -214,8 +214,8 @@ class ProductController extends Controller
     
                 // 'product_return_policy' => 'required',
     
-                'product_purchase_price' => 'required|numeric',
-                'product_selling_price' => 'required|numeric',
+                'cancelprize' => 'required|numeric',
+                'prize' => 'required|numeric',
     
                 'warehouse' => 'required',
                 'featured' => 'required',
@@ -260,7 +260,7 @@ class ProductController extends Controller
                 'product_view' => $productdata['product_view'],
                 'product_weight' => $productdata['product_weight'],
     
-                'product_name' => $productdata['product_name'],
+                'title' => $productdata['title'],
                 'product_code' => $productdata['product_code'],
                 'product_tags' => $productdata['product_tags'],
     
@@ -276,8 +276,8 @@ class ProductController extends Controller
     
                 // 'product_return_policy' => $productdata['product_return_policy'],
     
-                'product_purchase_price' => $productdata['product_purchase_price'],
-                'product_selling_price' => $productdata['product_selling_price'],
+                'cancelprize' => $productdata['cancelprize'],
+                'prize' => $productdata['prize'],
     
                 'warehouse' => $productdata['warehouse'],
                 'featured' => $productdata['featured'],

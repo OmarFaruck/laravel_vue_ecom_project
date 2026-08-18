@@ -3,11 +3,11 @@
         <!-- Page Header Start -->
         <div class="container-fluid bg-secondary mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our {{ product.heading }}</h1>
+                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our {{ product.title }}</h1>
                 <div class="d-inline-flex">
                     <p class="m-0"><a href="">Shop</a></p>
                     <p class="m-0 px-2">-</p>
-                    <p class="m-0">{{ product.heading }}</p>
+                    <p class="m-0">{{ product.title }}</p>
                 </div>
             </div>
         </div>
@@ -23,34 +23,16 @@
                         <div class="carousel-inner border">
 
                             <div class="carousel-item active">
-
-                                <img class="w-100 h-100" :src="type === 'trendy'
-                                        ? `/storage/trendyproducts/${product.image}`
-                                        : type === 'justarrived'
-                                            ? `/storage/justarrived/${product.image}`
-                                            : `/storage/products/${product.image}`
-                                    " :alt="product.title">
-
+                                <img class="w-100 h-100" :src="product.image_url"
+                                    :alt="product.title || product.product_name">
                             </div>
                             <div class="carousel-item">
-
-                                <img class="w-100 h-100" :src="type === 'trendy'
-                                        ? `/storage/trendyproducts/${product.image}`
-                                        : type === 'justarrived'
-                                            ? `/storage/justarrived/${product.image}`
-                                            : `/storage/products/${product.image}`
-                                    " :alt="product.title">
-
+                                <img class="w-100 h-100" :src="product.image_url"
+                                    :alt="product.title || product.product_name">
                             </div>
                             <div class="carousel-item">
-
-                                <img class="w-100 h-100" :src="type === 'trendy'
-                                        ? `/storage/trendyproducts/${product.image}`
-                                        : type === 'justarrived'
-                                            ? `/storage/justarrived/${product.image}`
-                                            : `/storage/products/${product.image}`
-                                    " :alt="product.title">
-
+                                <img class="w-100 h-100" :src="product.image_url"
+                                    :alt="product.title || product.product_name">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
@@ -92,7 +74,7 @@
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="color-1" name="color">
                                 <label class="custom-control-label" for="color-1">{{ product.product_color
-                                }}</label>
+                                    }}</label>
                             </div>
 
                         </form>
@@ -190,10 +172,16 @@
                             <div class="row">
 
                                 <div class="col-md-6">
-                                    <h4 class="mb-4">{{ product.id }}.{{ product.product_name }}</h4>
+                                    <h4 class="mb-4">{{ product.id }}.{{ product.title }}</h4>
                                     <div class="media mb-4">
-                                        <img :src="'/storage/' + product.product_thumbnail" :alt="product.product_name"
-                                            class="img-fluid mr-3 mt-1" style="width: 45px;">
+
+                                        <img :src="type === 'trendy'
+                                            ? `/storage/trendyproducts/${product.image}`
+                                            : type === 'justarrived'
+                                                ? `/storage/justarrived/${product.image}`
+                                                : `/storage/products/${product.image}`
+                                            " :alt="product.title" style="width: 45px;">
+
                                         <div class="media-body" v-if="review">
                                             <h6>{{ review.name }}<small> - <i>01 Jan 2045</i></small></h6>
                                             <div class="text-primary mb-2">
@@ -282,20 +270,21 @@
                         '768': { slidesPerView: 2 },
                         '992': { slidesPerView: 4 }
                     }" class="mySwiper">
-                    <swiper-slide v-for="item in products" :key="item.id" class="pb-1">
+                    <swiper-slide v-for="item in allProducts" :key="`${item.product_type}-${item.id}`" class="pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div
                                 class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                                 <!-- <img class="img-fluid w-100" :src="'/storage/' + item.product_thumbnail"
                                     :alt="item.product_name"> -->
-                                <img :src="`/storage/${type === 'trendy' ? 'trendyproducts' : 'justarrived'}/${product.image}`"
-                                    :alt="product.title" class="img-fluid">
+                                <!-- <img :src="`/storage/${item.image_path}/${item.image}`" :alt="item.title"
+                                    class="img-fluid w-100"> -->
+                                <img :src="item.image_url" :alt="item.name" class="img-fluid w-100">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">{{ item.product_name }}</h6>
+                                <h6 class="text-truncate mb-3">{{ item.title }}</h6>
                                 <div class="d-flex justify-content-center gap-3">
-                                    <h6 class="text-muted ml-2"><del>${{ item.product_purchase_price }}</del></h6>
-                                    <h6>${{ item.product_selling_price }}</h6>
+                                    <h6 class="text-muted ml-2"><del>${{ item.cancelprize }}</del></h6>
+                                    <h6>${{ item.prize }}</h6>
                                 </div>
                                 <div class="d-flex justify-content-center gap-3">
                                     <h6>Product_Color:{{ item.product_color }}</h6>
@@ -303,7 +292,8 @@
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
-                                <Link :href="`/page/product_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0">
+                                <Link :href="`/page/product_detail/${item.product_type}/${item.id}`"
+                                    class="btn btn-sm text-dark p-0">
                                     <i class="fas fa-eye text-primary mr-1"></i>View Detail
                                 </Link>
                                 <Link href="" class="btn btn-sm text-dark p-0">
@@ -336,23 +326,73 @@ import { Autoplay } from 'swiper/modules';
 // Swiper styles
 import 'swiper/css';
 
-const justarrived = computed(() => page.props.justarrived || [])
+// const justarrived = computed(() => page.props.justarrived || [])
 const modules = [Autoplay];
 
 const page = usePage()
-const props = defineProps({ trendyproducts: Object, product: Object,justArrived: Object, review: Object, reviewCount: Number, averageRating: Number, type:String })
-// defineProps({
+// const props = defineProps({ trendyproducts: Object, product: Object,justArrived: Object, review: Object, reviewCount: Number, averageRating: Number, products:Array, type:String })
 
-//     trendyproducts: Object,
-//     justArrived: Object,
-//     product: Object,
-//     products: Array,
-//     review: Object,
-//     reviewCount: Number,
-//     averageRating: Number,
-//     type:String
+const props = defineProps({
+    type: String,
+    review: Object,
+    product: Object,
+    type: String,
+    pages: Object,
 
-// })
+
+    trendyProducts: {
+        type: Array,
+        default: () => []
+    },
+
+    justArrivedProducts: {
+        type: Array,
+        default: () => []
+    },
+
+    products: {
+        type: Array,
+        default: () => []
+    }
+
+
+});
+
+const trendy = props.trendyProducts.map(item => ({
+    ...item,
+    product_type: 'trendy',
+    image_path: 'trendyproducts',
+    image: item.image,
+    name: item.title,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const justArrived = props.justArrivedProducts.map(item => ({
+    ...item,
+    product_type: 'justarrived',
+    image_path: 'justarrived',
+    image: item.image,
+    name: item.title,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const normalProducts = props.products.map(item => ({
+    ...item,
+    product_type: 'product',
+    image_path: 'products/product_thumbnail',
+    image: item.product_thumbnail,
+    name: item.product_name,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const allProducts = computed(() => [
+    ...trendy,
+    ...justArrived,
+    ...normalProducts
+]);
 
 
 // review form
