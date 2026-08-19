@@ -23,6 +23,26 @@ class PageController extends Controller
 {
     public function home(Request $request){
  
+    //   if ($type === 'trendy') {
+    //     $product = TrendyProduct::findOrFail($id);
+    //     $product->image_url =
+    //         '/storage/trendyproducts/' . $product->image;
+    // } elseif ($type === 'justarrived') {
+    //     $product = JustArrived::findOrFail($id);
+    //     $product->image_url =
+    //         '/storage/justarrived/' . $product->image;
+    // } elseif ($type === 'product') {
+
+    //    $product = Product::findOrFail($id);
+    //     $product->image_url =
+    //         '/storage/' . $product->product_thumbnail;
+    // } else {
+    //     abort(404);
+    // }
+
+ 
+
+
     $category = Category::with('subcategory')->get();
     $subcategory = SubCategory::with('product')->get();
     $pages = Page::get();

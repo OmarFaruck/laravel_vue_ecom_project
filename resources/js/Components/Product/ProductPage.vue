@@ -204,11 +204,11 @@
                             </div> -->
 
                             <div class="mb-3">
-                                <label>product_description:</label>
-                                <input v-model="form.product_description" type="text"
-                                    placeholder="Create product_description" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_description">
-                                    {{ form.errors.product_description }}
+                                <label>description:</label>
+                                <input v-model="form.description" type="text"
+                                    placeholder="Create description" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.description">
+                                    {{ form.errors.description }}
                                 </div>
                             </div>
 
@@ -559,11 +559,11 @@
                             </div> -->
 
                             <div class="mb-3">
-                                <label>product_description:</label>
-                                <input v-model="form.product_description" type="text"
-                                    placeholder="Create product_description" class="form-control" />
-                                <div class="text-danger" v-if="form.errors.product_description">
-                                    {{ form.errors.product_description }}
+                                <label>description:</label>
+                                <input v-model="form.description" type="text"
+                                    placeholder="Create description" class="form-control" />
+                                <div class="text-danger" v-if="form.errors.description">
+                                    {{ form.errors.description }}
                                 </div>
                             </div>
 
@@ -786,7 +786,7 @@ import { computed, ref } from "vue";
 
 // product_return_policy
 // product_heading
-const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_view", "product_weight", "title", "product_code", "product_tags","product_thumbnail", "product_description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "cancelprize", "prize", "warehouse", "featured", "today_deal", "trendy_product","justarriveds","product_color","product_size", "product_quantity","product_status", "user_id","slug"// "product_video"
+const searchField = ["id", "category_id", "subcategory_id", "brand_id", "pickup_point_id", "product_view", "product_weight", "title", "product_code", "product_tags","product_thumbnail", "description", "product_warranty", "product_warranty_duration", "product_warranty_conditions", "cancelprize", "prize", "warehouse", "featured", "today_deal", "trendy_product","justarriveds","product_color","product_size", "product_quantity","product_status", "user_id","slug"// "product_video"
 ];
 const searchValue = ref();
 
@@ -809,7 +809,7 @@ const headers = [
     // { text: "product_video", value: "product_video" },
     { text: "product_thumbnail", value: "product_thumbnail" },
     // { text: "product_heading", value: "product_heading" },
-    { text: "product_description", value: "product_description" },
+    { text: "description", value: "description" },
     { text: "product_warranty", value: "product_warranty" },
     { text: "product_warranty_duration", value: "product_warranty_duration" },
     { text: "product_warranty_conditions", value: "product_warranty_conditions" },
@@ -844,7 +844,7 @@ const form = useForm({
     // product_video: null,
     product_thumbnail: null,
     // product_heading: "",
-    product_description: "",
+    description: "",
     product_warranty: "",
     product_warranty_duration: "",
     product_warranty_conditions: "",
@@ -922,7 +922,7 @@ function edit(item) {
     // form.product_video = item.product_video;
     form.product_thumbnail = item.product_thumbnail;
     // form.product_heading = item.product_heading;
-    form.product_description = item.product_description;
+    form.description = item.description;
     form.product_warranty = item.product_warranty;
     form.product_warranty_duration = item.product_warranty_duration;
     form.product_warranty_conditions = item.product_warranty_conditions;

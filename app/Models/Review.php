@@ -3,20 +3,18 @@
 namespace App\Models;
 
 use App\Models\JustArrived;
+use App\Models\Product;
 use App\Models\TrendyProduct;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $fillable = 
-    [ 
-    'trendy_product_id', 
-    'justarrived_id', 
-    'name', 
-    'email', 
-    'message', 
+   protected $fillable = [
+    'message',
+    'name',
+    'email',
     'rating', 
-    ]; 
+];
 
     public function trendyproduct() { 
         return $this->belongsTo( TrendyProduct::class, 
@@ -31,6 +29,13 @@ class Review extends Model
         'id' 
         ); 
     }
+
+        public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+
 
     
 }

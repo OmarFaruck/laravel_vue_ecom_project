@@ -120,14 +120,13 @@
                     <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                         <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Description</a>
                         <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Information</a>
-                        <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                        <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Reviews {{ reviewCount }}</a>
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
                             <h4 class="mb-3">Product Description</h4>
                             <p>{{ product.description }}
                             </p>
-
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
                             <h4 class="mb-3">Additional Information</h4>
@@ -175,12 +174,7 @@
                                     <h4 class="mb-4">{{ product.id }}.{{ product.title }}</h4>
                                     <div class="media mb-4">
 
-                                        <img :src="type === 'trendy'
-                                            ? `/storage/trendyproducts/${product.image}`
-                                            : type === 'justarrived'
-                                                ? `/storage/justarrived/${product.image}`
-                                                : `/storage/products/${product.image}`
-                                            " :alt="product.title" style="width: 45px;">
+                                        <img :src="product.image_url" :alt="product.name" style="width: 45px;">
 
                                         <div class="media-body" v-if="review">
                                             <h6>{{ review.name }}<small> - <i>01 Jan 2045</i></small></h6>
@@ -198,52 +192,8 @@
 
                                 <div class="col-md-6">
                                     <h4 class="mb-4">Leave a review</h4>
-                                    <small>Your email address will not be published. Required fields are marked
-                                        *</small>
-                                    <div class="d-flex my-3 align-items-center">
-                                        <p class="mb-0 mr-2">Your Rating * :</p>
-
-                                        <div>
-                                            <i v-for="star in 5" :key="star" @click="form.rating = star"
-                                                class="fa-star mr-1"
-                                                :class="star <= form.rating ? 'fas text-warning' : 'far text-secondary'"
-                                                style="cursor:pointer; font-size:24px;"></i>
-
-                                            <span class="ml-2">
-                                                {{ form.rating }}/5
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="text-danger" v-if="form.errors.rating">
-                                        {{ form.errors.rating }}
-                                    </div>
-                                    <form @submit.prevent="submitReview" class="mt-3">
-                                        <div class="form-group">
-                                            <label for="message">Your Review *</label>
-                                            <textarea class="form-control" v-model="form.message"></textarea>
-                                            <div class="text-danger" v-if="form.errors.message">
-                                                {{ form.errors.message }}
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Your Name *</label>
-                                            <input type="text" class="form-control" id="name" v-model="form.name">
-                                            <div class="text-danger" v-if="form.errors.name">
-                                                {{ form.errors.name }}
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="email">Your Email *</label>
-                                            <input type="email" class="form-control" id="email" v-model="form.email">
-                                            <div class="text-danger" v-if="form.errors.email">
-                                                {{ form.errors.email }}
-                                            </div>
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                                        </div>
-                                    </form>
+                                    <small>Your email address will not be published. Required fields are marked*</small>
+                                    <ReviewPage :trendyproduct="trendyproduct" :reviewCount="reviewCount"/>
                                 </div>
 
                             </div>
@@ -296,7 +246,7 @@
                                     class="btn btn-sm text-dark p-0">
                                     <i class="fas fa-eye text-primary mr-1"></i>View Detail
                                 </Link>
-                                <Link href="" class="btn btn-sm text-dark p-0">
+                                <Link :href="`/page/add_to_cart/${item.product_type}/${item.id}`" class="btn btn-sm text-dark p-0">
                                     <i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart
                                 </Link>
                             </div>
@@ -325,19 +275,21 @@ import { Autoplay } from 'swiper/modules';
 
 // Swiper styles
 import 'swiper/css';
+import ReviewPage from './ReviewPage.vue';
 
 // const justarrived = computed(() => page.props.justarrived || [])
 const modules = [Autoplay];
 
 const page = usePage()
-// const props = defineProps({ trendyproducts: Object, product: Object,justArrived: Object, review: Object, reviewCount: Number, averageRating: Number, products:Array, type:String })
 
 const props = defineProps({
     type: String,
-    review: Object,
+    review: Array,
     product: Object,
     type: String,
-    pages: Object,
+    pages: Object, 
+    trendyproduct: Object,
+    reviewCount: Number,
 
 
     trendyProducts: {
@@ -396,19 +348,21 @@ const allProducts = computed(() => [
 
 
 // review form
-const form = useForm({
-    message: '',
-    name: '',
-    email: '',
-    rating: 0,
-})
+// const form = useForm({
+//     message: '',
+//     name: '',
+//     email: '',
+//     rating: 0,
+//     trendy_product_id: props.trendyproduct?.id ?? null,
+// })
 
-const submitReview = () => {
-    form.post('/review', {
-        onSuccess: () => {
-            form.reset();
-        }
-    });
-}
+// const submitReview = () => {
+//     form.post('/review', {
+//         preserveScroll: true,
+//         onSuccess: () => {
+//             form.reset('message', 'name', 'email', 'rating')
+//         }
+//     })
+// }
 
 </script>

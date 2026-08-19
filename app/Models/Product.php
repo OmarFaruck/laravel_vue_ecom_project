@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\JustArrived;
 use App\Models\PickupPoint;
 use App\Models\ProductVariant;
+use App\Models\Review;
 use App\Models\SubCategory;
 use App\Models\TrendyProduct;
 use App\Models\User;
@@ -87,11 +88,13 @@ class Product extends Model
     {
         return $this->belongsTo(User::class, 'user_id' ,'id');
     }
-
-
     public function productvarient()
     {
         return $this->belongsTo(ProductVariant::class);
+    }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
     }
 
  

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class ShopingCardController extends Controller
 {
-    public function shopingcard($id){
+    public function shopingcard($type, $id){
 
          $trendyproduct = TrendyProduct::where('id', $id)->firstOrFail();
 

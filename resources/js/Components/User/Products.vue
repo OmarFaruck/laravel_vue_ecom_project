@@ -29,7 +29,7 @@
                             <i class="fas fa-eye text-primary mr-1"></i>
                             View Detail
                         </Link>
-                        <Link href="" class="btn btn-sm text-dark p-0"><i
+                        <Link :href="`/page/add_to_cart/${item.product_type}/${item.id}`" class="btn btn-sm text-dark p-0"><i
                                 class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
 
                     </div>
@@ -47,10 +47,74 @@ import { router, usePage, Link } from '@inertiajs/vue3';
 import { Type } from '@lucide/vue';
 import { computed } from 'vue';
 
-
 const page = usePage();
-
 const trendyproduct = computed(() => page.props.trendyproduct || [])
 const trendyproducts = computed(() => page.props.trendyproducts || [])
+
+const props = defineProps({
+    type: String,
+    review: Array,
+    product: Object,
+    type: String,
+    pages: Object, 
+    trendyproduct: Object,
+    reviewCount: Number,
+
+
+    trendyProducts: {
+        type: Array,
+        default: () => []
+    },
+
+    justArrivedProducts: {
+        type: Array,
+        default: () => []
+    },
+
+    products: {
+        type: Array,
+        default: () => []
+    }
+
+
+});
+
+const trendy = props.trendyProducts.map(item => ({
+    ...item,
+    product_type: 'trendy',
+    image_path: 'trendyproducts',
+    image: item.image,
+    name: item.title,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const justArrived = props.justArrivedProducts.map(item => ({
+    ...item,
+    product_type: 'justarrived',
+    image_path: 'justarrived',
+    image: item.image,
+    name: item.title,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const normalProducts = props.products.map(item => ({
+    ...item,
+    product_type: 'product',
+    image_path: 'products/product_thumbnail',
+    image: item.product_thumbnail,
+    name: item.product_name,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const allProducts = computed(() => [
+    ...trendy,
+    ...justArrived,
+    ...normalProducts
+]);
+
+
 
 </script>

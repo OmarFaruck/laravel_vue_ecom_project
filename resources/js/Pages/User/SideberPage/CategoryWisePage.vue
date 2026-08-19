@@ -25,12 +25,12 @@
                             class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
 
                             <img class="img-fluid w-100" :src="`/storage/${item.product_thumbnail}`"
-                                :alt="item.product_name">
+                                :alt="item.title">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                             <h6 class="text-truncate mb-3">{{ item.title }} </h6>
                             <div class="d-flex justify-content-center">
-                                <h6>${{ item.product_selling_price }}</h6>
+                                <h6>${{ item.prize }}</h6>
 
                             </div>
 

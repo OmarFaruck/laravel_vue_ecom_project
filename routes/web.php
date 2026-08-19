@@ -61,6 +61,7 @@ Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->
 
 
 Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/page/add_to_cart/{type}/{id}', [PageController::class, 'home'])->name('shoping_card');
 
 
 Route::middleware([SessionAuthenticate::class])->group(function () {
@@ -236,13 +237,13 @@ Route::get('/user/{slug}', [CategoryWisePageController::class, 'categorywisepage
 // Product detail page Controller
 Route::get('/page/product_detail/{type}/{id}', [ShopDetailController::class, 'productdetail'])->name('page.product_detail');
  
-//ReviewController  Controller
+//ReviewController  Controller 
 Route::get('/review/{id}', [ReviewController::class,'review'])->name('review');
 Route::post('/review', [ReviewController::class,'store'])->name('review.store');
 
 
 //ShopingCardController  Controller
-Route::get('/page/add_to_cart/{id}', [ShopingCardController::class,'shopingcard'])->name('shoping_card');
+Route::get('/page/add_to_cart/{type}/{id}', [ShopingCardController::class,'shopingcard'])->name('shoping_card');
 Route::post('/apply-coupon', [ShopingCardController::class, 'applyCoupon'])->name('apply.coupon');
  Route::post('/remove-from-cart', [ShopingCardController::class, 'removeCardItem'])->name('remove.from.cart');
 // Route::get('/cheack_out', [ShopingCardController::class,'cheack_out'])->name('cheack_out');

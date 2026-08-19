@@ -26,7 +26,7 @@ return new class extends Migration
             // $table->string('product_video')->nullable();
             $table->string('product_thumbnail')->nullable(); 
             // $table->string('product_heading')->nullable();
-            $table->text('product_description')->nullable();
+            $table->text('description')->nullable();
             $table->string('product_warranty')->nullable();
             $table->integer('product_warranty_duration')->nullable();
             $table->text('product_warranty_conditions')->nullable();
@@ -54,3 +54,7 @@ return new class extends Migration
         Schema::dropIfExists('products');
     }
 };
+
+
+           
+            

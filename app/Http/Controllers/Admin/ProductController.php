@@ -70,7 +70,7 @@ class ProductController extends Controller
         'product_thumbnail' => 'required|image|max:10240',
 
         // 'product_heading' => 'required',
-        'product_description' => 'required',
+        'description' => 'required',
 
         'product_warranty' => 'required',
         'product_warranty_duration' => 'required|integer',
@@ -128,7 +128,7 @@ class ProductController extends Controller
         'product_thumbnail' => $thumbnailPath,
 
         // 'product_heading' => $data['product_heading'],
-        'product_description' => $data['product_description'],
+        'description' => $data['description'],
 
         'product_warranty' => $data['product_warranty'],
         'product_warranty_duration' => $data['product_warranty_duration'],
@@ -206,7 +206,7 @@ class ProductController extends Controller
                 'product_thumbnail' => 'nullable|image|max:10240',
     
                 // 'product_heading' => 'required',
-                'product_description' => 'required',
+                'description' => 'required',
     
                 'product_warranty' => 'required',
                 'product_warranty_duration' => 'required|integer',
@@ -268,7 +268,7 @@ class ProductController extends Controller
                 'product_thumbnail' => $thumbnailPath,
     
                 // 'product_heading' => $productdata['product_heading'],
-                'product_description' => $productdata['product_description'],
+                'description' => $productdata['description'],
     
                 'product_warranty' => $productdata['product_warranty'],
                 'product_warranty_duration' => $productdata['product_warranty_duration'],

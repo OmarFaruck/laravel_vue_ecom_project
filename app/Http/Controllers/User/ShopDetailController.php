@@ -36,8 +36,7 @@ class ShopDetailController extends Controller
     }
 
     $pages = Page::get();
-    $category = Category::with('subcategory')->get();
-    $reviews = Review::where('trendy_product_id', $id)->get();
+    $category = Category::with('subcategory')->get(); 
 
     // You May Also Like
     $trendyProducts = TrendyProduct::get()->map(function ($item) {
@@ -57,13 +56,12 @@ class ShopDetailController extends Controller
             '/storage/' . $item->product_thumbnail;
         return $item;
     });
-
+ 
     return Inertia::render('User/PageShow/shop_detail', [
         'product' => $product,
         'type' => $type,
         'pages' => $pages,
-        'category' => $category,
-        'reviews' => $reviews,
+        'category' => $category, 
         'trendyProducts' => $trendyProducts,
         'justArrivedProducts' => $justArrivedProducts,
         'products' => $products,

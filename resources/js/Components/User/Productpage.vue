@@ -26,7 +26,7 @@
                          <!-- <Link :href="`/page/just_arrived_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</Link> -->
   
  
-                        <Link href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
+                        <Link :href="`/page/add_to_cart/${item.product_type}/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
                     </div>
                 </div>
             </div>
@@ -51,8 +51,73 @@ const justarrived = computed( () => page.props.justarrived || [])
 const justarriveds = computed( () => page.props.justarriveds || [])
 
  
-defineProps({
+// defineProps({
+//     justArrived: Object,
+// })
+
+const props = defineProps({
+    type: String,
+    review: Array,
+    product: Object,
+    type: String,
+    pages: Object, 
+    trendyproduct: Object,
     justArrived: Object,
-})
+    reviewCount: Number,
+
+
+    trendyProducts: {
+        type: Array,
+        default: () => []
+    },
+
+    justArrivedProducts: {
+        type: Array,
+        default: () => []
+    },
+
+    products: {
+        type: Array,
+        default: () => []
+    }
+
+
+});
+
+const trendy = props.trendyProducts.map(item => ({
+    ...item,
+    product_type: 'trendy',
+    image_path: 'trendyproducts',
+    image: item.image,
+    name: item.title,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const justArrived = props.justArrivedProducts.map(item => ({
+    ...item,
+    product_type: 'justarrived',
+    image_path: 'justarrived',
+    image: item.image,
+    name: item.title,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const normalProducts = props.products.map(item => ({
+    ...item,
+    product_type: 'product',
+    image_path: 'products/product_thumbnail',
+    image: item.product_thumbnail,
+    name: item.product_name,
+    purchase_price: item.product_purchase_price,
+    selling_price: item.product_selling_price
+}));
+
+const allProducts = computed(() => [
+    ...trendy,
+    ...justArrived,
+    ...normalProducts
+]);
 
 </script>
