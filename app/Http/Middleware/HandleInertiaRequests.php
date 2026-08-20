@@ -35,25 +35,30 @@ class HandleInertiaRequests extends Middleware
      * @return array<string, mixed>
      */
     public function share(Request $request): array
-    {
-             return array_merge(parent::share($request), [
-             'flash' => [
-                'success' => fn () => $request->session()->get('success'),
-                'error' => fn () => $request->session()->get('error'),
-                'status' => fn () => $request->session()->get('status'),
-                'message' => fn () => $request->session()->get('message'),
-                'share_data' => fn () => $request->session()->get('share_data')
-            ],
-            'auth' => [
-                
-                'user' => function () use ($request) {
-                    $userId = $request->session()->get('user_id');
-                    if ($userId) {
-                        return User::find($userId);
-                    }
-                    return null;
+{
+    return array_merge(parent::share($request), [
+        'flash' => [
+            'success' => fn () => $request->session()->get('success'),
+            'error' => fn () => $request->session()->get('error'),
+            'status' => fn () => $request->session()->get('status'),
+            'message' => fn () => $request->session()->get('message'),
+            'share_data' => fn () => $request->session()->get('share_data'),
+
+            // Coupon amount
+            'coupon_amount' => fn () => $request->session()->get('coupon_amount'),
+        ],
+
+        'auth' => [
+            'user' => function () use ($request) {
+                $userId = $request->session()->get('user_id');
+
+                if ($userId) {
+                    return User::find($userId);
                 }
-            ]
- ]       );
-    }
+
+                return null;
+            }
+        ]
+    ]);
+}
 }

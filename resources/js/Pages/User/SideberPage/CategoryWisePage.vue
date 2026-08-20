@@ -44,10 +44,9 @@
  
                             <Link :href="`/page/product_detail/product/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                 Detail</Link>
-                            <!-- <Link :href="`/page/product_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
-                                Detail</Link> -->
-                            <a href="" class="btn btn-sm text-dark p-0"><i
-                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                           
+                            <Link :href="`/page/add_to_cart/product/${item.id}`" class="btn btn-sm text-dark p-0"><i
+                                    class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
   
  
                         </div>

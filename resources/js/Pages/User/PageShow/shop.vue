@@ -241,7 +241,7 @@
                                         View Detail
                                     </Link>
 
-                                    <Link :href="`/page/add_to_cart/${item.id}`" class="btn btn-sm text-dark p-0"><i
+                                    <Link :href="`/page/add_to_cart/trendy/${item.id}`" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@
                                     </Link>
 
 
-                                    <a href="" class="btn btn-sm text-dark p-0"><i
+                                    <a :href="`/page/add_to_cart/justarrived/${items.id}`" class="btn btn-sm text-dark p-0"><i
                                             class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                                 </div>
                             </div>

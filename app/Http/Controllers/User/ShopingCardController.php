@@ -5,91 +5,127 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\JustArrived;
 use App\Models\Page;
-use App\Models\TrendyProduct; 
-use Inertia\Inertia;
+use App\Models\Product;
+use App\Models\TrendyProduct;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ShopingCardController extends Controller
 {
-    public function shopingcard($type, $id){
+    public function shopingcard($type, $id)
+    {
+        if ($type === 'trendy') {
+            $product = TrendyProduct::findOrFail($id);
+        } elseif ($type === 'justarrived') {
+            $product = JustArrived::findOrFail($id);
+        } elseif ($type === 'product') {
+            $product = Product::findOrFail($id);
+        } else {
+            abort(404);
+        }
 
-         $trendyproduct = TrendyProduct::where('id', $id)->firstOrFail();
+        $cart = session()->get('cart', []);
+        // type + id দিয়ে unique cart key
+        $cartKey = $type . '_' . $id;
+        if (!isset($cart[$cartKey])) {
+            $cart[$cartKey] = [
+                'id' => $product->id,
+                'type' => $type,
+                'title' => $product->title,
+                'image' => $product->image ?? $product->product_thumbnail,
+                'prize' => $product->prize ?? $product->product_selling_price,
+                'qty' => 1,
+            ];
+            session()->put('cart', $cart);
+        }
 
-    // Cart session
-    $cart = session()->get('cart', []);
-
-    // Product cart-এ না থাকলে add করবে
-    if (!isset($cart[$id])) {
-        $cart[$id] = [
-            'id' => $trendyproduct->id,
-            'title' => $trendyproduct->title,
-            'image' => $trendyproduct->image,
-            'prize' => $trendyproduct->prize,
-            'qty' => 1,
-        ];
-
-        session()->put('cart', $cart);
+        $pages = Page::get();
+        $category = Category::with('subcategory')->get();
+        $coupon = Coupon::get();
+        return Inertia::render('User/PageShow/shoping_card', [
+            'product' => $product,
+            'cart' => $cart,
+            'type' => $type,
+            'pages' => $pages,
+            'category' => $category,
+            'coupon' => $coupon,
+        ]);
     }
+   
 
-    $pages = Page::get();
-    $category = Category::with('subcategory')->get();
-    $coupon = Coupon::get();
 
-    return Inertia::render('User/PageShow/shoping_card', [
-        'trendyproduct' => $trendyproduct,
-        'pages' => $pages,
-        'category' => $category,
-        'coupon' => $coupon,
-    ]);
-    }
 
-    public function applyCoupon(Request $request)
+public function applyCoupon(Request $request)
 {
     $request->validate([
         'coupon_code' => 'required|string',
     ]);
 
-    $couponCode = $request->input('coupon_code');
-
-    // Validate the coupon code
-    $coupon = Coupon::where('coupon_code', $couponCode)->first();
+    $coupon = Coupon::where(
+        'coupon_code',
+        $request->coupon_code
+    )->first();
 
     if (!$coupon) {
-        return redirect()->back()->with('error', 'Invalid coupon code');
+        return back()->with('error', 'Invalid coupon code');
     }
 
-    // Check if the coupon is still valid
     if ($coupon->valid_date < now()) {
-        return redirect()->back()->with('error', 'This coupon has expired');
+        return back()->with('error', 'This coupon has expired');
     }
 
-    // Apply your logic here (e.g., calculate discount)
+    session()->put('coupon', [
+        'code' => $coupon->coupon_code,
+        'amount' => $coupon->coupon_amount,
+    ]);
 
-    return redirect()->back()->with('success', 'Coupon code applied successfully!');
+    return back()->with([
+        'success' => 'Coupon code applied successfully!',
+        'coupon_amount' => $coupon->coupon_amount,
+    ]);
 }
 
 
-public function removeCardItem(Request $request)
-{
-     $itemId = $request->input('item_id');
+    public function removeCardItem(Request $request)
+    {
+        $itemId = $request->input('item_id');
 
+        $cart = session()->get('cart', []);
+
+        if (isset($cart[$itemId])) {
+
+            unset($cart[$itemId]);
+
+            session()->put('cart', $cart);
+
+            return redirect()
+                ->route('home')
+                ->with('success', 'Item removed from cart successfully!');
+        }
+
+        return back()->with(
+            'error',
+            'Item not found in cart'
+        );
+    }
+
+    public function cart()
+{
     $cart = session()->get('cart', []);
 
-    if (isset($cart[$itemId])) {
+    $coupon = session()->get('coupon', null);
 
-        unset($cart[$itemId]);
+    $pages = Page::get();
+    $category = Category::with('subcategory')->get();
 
-        session()->put('cart', $cart);
-
-        return redirect()
-            ->route('shoping_card', ['id' => array_key_first($cart) ?? $itemId])
-            ->with('success', 'Item removed from cart successfully!');
-    }
-
-    return back()->with(
-        'error',
-        'Item not found in cart'
-    );
+    return Inertia::render('User/PageShow/shoping_card', [
+        'cart' => $cart,
+        'coupon' => $coupon,
+        'pages' => $pages,
+        'category' => $category,
+    ]);
 }
+    
 }

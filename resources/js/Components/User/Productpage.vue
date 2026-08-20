@@ -26,7 +26,7 @@
                          <!-- <Link :href="`/page/just_arrived_shop_detail/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</Link> -->
   
  
-                        <Link :href="`/page/add_to_cart/${item.product_type}/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
+                        <Link :href="`/page/add_to_cart/justarrived/${item.id}`" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</Link>
                     </div>
                 </div>
             </div>
