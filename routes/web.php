@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\TrendyProductController;
 use App\Http\Controllers\Admin\WareHouseController;
+use App\Http\Controllers\User\BrandWiseProductController;
 use App\Http\Controllers\User\CategoryWisePageController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ReviewController;
@@ -242,12 +243,14 @@ Route::get('/review/{id}', [ReviewController::class,'review'])->name('review');
 Route::post('/review', [ReviewController::class,'store'])->name('review.store');
 
 
+//BrandWiseProduct page controller
+Route::get('/page/brand_wise_product/{id}', [BrandWiseProductController::class,'brandproduct'])->name('brand_wise_product');
+
 //ShopingCardController  Controller
 Route::get('/page/add_to_cart/{type}/{id}', [ShopingCardController::class,'shopingcard'])->name('shoping_card');
 Route::post('/apply-coupon', [ShopingCardController::class, 'applyCoupon'])->name('apply.coupon');
  Route::post('/remove_from_cart', [ShopingCardController::class, 'removeCardItem'])->name('remove.from.cart');
- Route::get('/cart', [ShopingCardController::class, 'cart'])
-    ->name('home');
+ Route::get('/cart', [ShopingCardController::class, 'cart'])->name('home');
 // Route::get('/cheack_out', [ShopingCardController::class,'cheack_out'])->name('cheack_out');
 // Route::get('/order_success', [ShopingCardController::class,'order_success'])->name('order_success');
 // Route::get('/order_failed', [ShopingCardController::class,'order_failed'])->name('order_failed');

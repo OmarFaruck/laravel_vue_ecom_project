@@ -74,7 +74,7 @@
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" class="custom-control-input" id="color-1" name="color">
                                 <label class="custom-control-label" for="color-1">{{ product.product_color
-                                    }}</label>
+                                }}</label>
                             </div>
 
                         </form>
@@ -93,8 +93,11 @@
                                 </button>
                             </div>
                         </div>
-                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart</button>
+                        <Link :href="`/page/add_to_cart/product/${product.id}`">
+                            <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                                Cart</button>
+                        </Link>
+
                     </div>
                     <div class="d-flex pt-2">
                         <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
@@ -193,7 +196,7 @@
                                 <div class="col-md-6">
                                     <h4 class="mb-4">Leave a review</h4>
                                     <small>Your email address will not be published. Required fields are marked*</small>
-                                    <ReviewPage :trendyproduct="trendyproduct" :reviewCount="reviewCount"/>
+                                    <ReviewPage :trendyproduct="trendyproduct" :reviewCount="reviewCount" />
                                 </div>
 
                             </div>
@@ -246,7 +249,8 @@
                                     class="btn btn-sm text-dark p-0">
                                     <i class="fas fa-eye text-primary mr-1"></i>View Detail
                                 </Link>
-                                <Link :href="`/page/add_to_cart/${item.product_type}/${item.id}`" class="btn btn-sm text-dark p-0">
+                                <Link :href="`/page/add_to_cart/${item.product_type}/${item.id}`"
+                                    class="btn btn-sm text-dark p-0">
                                     <i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart
                                 </Link>
                             </div>
@@ -287,7 +291,7 @@ const props = defineProps({
     review: Array,
     product: Object,
     type: String,
-    pages: Object, 
+    pages: Object,
     trendyproduct: Object,
     reviewCount: Number,
 

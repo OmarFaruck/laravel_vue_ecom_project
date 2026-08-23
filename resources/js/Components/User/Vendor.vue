@@ -3,7 +3,9 @@
         <div class="row px-xl-5">
             <div class="vendor-wrapper" ref="slider" @mouseenter="pauseSlider" @mouseleave="startSlider">
                 <div class="vendor-item" v-for="item in vendorsLoop" :key="item.id">
-                    <img :src="`/storage/brands/${item.image}`" :alt="item.title">
+                    <Link :href="`/page/brand_wise_product/${item.id}`">
+                      <img :src="`/storage/brands/${item.image}`" :alt="item.name">
+                    </Link>
                 </div>
             </div>
         </div>
@@ -11,8 +13,10 @@
 </template>
 
 <script setup>
-import { usePage } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { ref, onMounted, onBeforeUnmount, computed } from "vue";
+
+
 
 
 const page = usePage();

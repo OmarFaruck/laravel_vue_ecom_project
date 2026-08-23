@@ -18,19 +18,12 @@ class CategoryWisePageController extends Controller
       $category = Category::with('subcategory')->get();
       $categories = Category::with('subcategory')->where('slug', $slug)->firstOrFail();
  
-      $pages = Page::get();
-      $subcategory = SubCategory::with('product')->get();
- 
-      $ProductPages = Product::where('category_id', $categories->id)->get();
-      $justarrived = JustArrived::get();
- 
       $pages = Page::get(); 
       $subcategory = SubCategory::with('product')->get(); 
       $trendyproduct = TrendyProduct::get(); 
       // $trendyproducts = TrendyProduct::where('slug', $slug)->firstOrFail(); 
       $ProductPages = Product::where('category_id', $categories->id)->get();
       $justarrived = JustArrived::get();   
-   
    
 
       return Inertia::render('User/SideberPage/CategoryWisePage', [
