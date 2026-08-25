@@ -3,11 +3,11 @@
         <!-- Page Header Start -->
         <div class="container-fluid bg-secondary mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                <h1 class="font-weight-semi-bold text-uppercase mb-3">Our {{ product.title }}</h1>
+                <h1 class="font-weight-semi-bold text-uppercase mb-3" v-if="product.length">Our {{ product[0].title }}</h1>
                 <div class="d-inline-flex">
                     <p class="m-0"><a href="">Home</a></p>
                     <p class="m-0 px-2">-</p>
-                    <p class="m-0">{{ product.title }}</p>
+                    <p class="m-0">{{ product[0].title }}</p>
                 </div>
             </div>
         </div>
@@ -29,60 +29,86 @@
                         </thead>
                         <!-- <tbody class="align-middle" v-for="item in product" :key="`${item.product_type}-${item.id}`"> -->
                         <tbody class="align-middle">
-                            <tr>
+
+                            <tr v-if="cartProducts.length === 0">
+                                <td colspan="6" class="text-center">
+                                    No products found
+                                </td>
+                            </tr>
+
+                            <tr v-for="product in cartProducts" :key="`${product.type}_${product.id}`">
+
+                                <!-- Image -->
                                 <td class="align-middle">
-                                    <img :src="type === 'trendy'
-                                        ? `/storage/trendyproducts/${product.image}`
-                                        : type === 'justarrived'
-                                            ? `/storage/justarrived/${product.image}`
-                                            : `/storage/${product.product_thumbnail}`" :alt="product.title"
-                                        style="width: 50px;">
-                                    <!-- <img :src="product.image_url" :alt="product.name" style="width: 50px;"> -->
-                                    <!-- <img :src="`/storage/trendyproducts/${trendyproduct.image}`"
-                                        :alt="trendyproduct.title" style="width: 50px;"> -->
+
+                                    <img :src="getImageUrl(product)" :alt="product.title" style="width: 50px;">
+
                                 </td>
 
+                                <!-- Product Name -->
                                 <td class="align-middle">
                                     {{ product.title }}
                                 </td>
 
+                                <!-- Price -->
                                 <td class="align-middle">
-                                    ${{ Number(product.prize).toFixed(2) }}
+                                    ${{ Number(product.prize ?? 0).toFixed(2) }}
                                 </td>
 
+                                <!-- Quantity -->
                                 <td class="align-middle">
+
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
 
                                         <div class="input-group-btn">
-                                            <button type="button" class="btn btn-sm btn-primary btn-minus"
-                                                @click="decreaseQty">
+
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                @click="decreaseQty(product)">
                                                 <i class="fa fa-minus"></i>
                                             </button>
+
                                         </div>
 
                                         <input type="text" class="form-control form-control-sm bg-secondary text-center"
-                                            v-model.number="qty" readonly>
+                                            :value="product.qty" readonly>
 
                                         <div class="input-group-btn">
-                                            <button type="button" class="btn btn-sm btn-primary btn-plus"
-                                                @click="increaseQty">
+
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                @click="increaseQty(product)">
                                                 <i class="fa fa-plus"></i>
                                             </button>
+
                                         </div>
 
                                     </div>
+
                                 </td>
 
+                                <!-- Sub Total -->
                                 <td class="align-middle">
-                                    ${{ totalPrice.toFixed(2) }}
+
+                                    ${{
+                                        (
+                                            Number(product.prize ?? 0) *
+                                            Number(product.qty ?? 1)
+                                    ).toFixed(2)
+                                    }}
+
                                 </td>
 
+                                <!-- Remove -->
                                 <td class="align-middle">
-                                    <button class="btn btn-sm btn-primary" @click="removeItem(product.id, type)">
+
+                                    <button class="btn btn-sm btn-primary"
+                                        @click="removeItem(product.id, product.type)">
                                         <i class="fa fa-times"></i>
                                     </button>
+
                                 </td>
+
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -126,7 +152,9 @@
                                     ${{ finalTotal.toFixed(2) }}
                                 </h5>
                             </div>
-                            <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                            <Link :href="`/check_out`" alt="">
+                                <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                            </Link>
                         </div>
 
                     </div>
@@ -149,34 +177,14 @@ import Swal from 'sweetalert2';
 
 const page = usePage()
 
-
 const props = defineProps({
-    type: String,
-    review: Array,
-    product: Object,
-    pages: Array,
-    trendyproduct: Object,
-    reviewCount: Number,
-    category: Array,
-    coupon: Array,
-
-    coupon:
-    {
-        type: Object,
-        default: null
-    },
-
-    trendyProducts: {
+    product: Array,
+    pages: {
         type: Array,
         default: () => []
     },
 
-    justArrivedProducts: {
-        type: Array,
-        default: () => []
-    },
-
-    products: {
+    category: {
         type: Array,
         default: () => []
     },
@@ -189,64 +197,90 @@ const props = defineProps({
     coupon: {
         type: Object,
         default: null
-    },
-
-
-
-});
-
-const trendy = props.trendyProducts.map(item => ({
-    ...item,
-    product_type: 'trendy',
-    image_path: 'trendyproducts',
-    image: item.image,
-    name: item.title,
-    purchase_price: item.product_purchase_price,
-    selling_price: item.product_selling_price
-}));
-
-const justArrived = props.justArrivedProducts.map(item => ({
-    ...item,
-    product_type: 'justarrived',
-    image_path: 'justarrived',
-    image: item.image,
-    name: item.title,
-    purchase_price: item.product_purchase_price,
-    selling_price: item.product_selling_price
-}));
-
-const normalProducts = props.products.map(item => ({
-    ...item,
-    product_type: 'product',
-    image_path: 'products/product_thumbnail',
-    image: item.product_thumbnail,
-    name: item.product_name,
-    purchase_price: item.product_purchase_price,
-    selling_price: item.product_selling_price
-}));
-
-const allProducts = computed(() => [
-    ...trendy,
-    ...justArrived,
-    ...normalProducts
-]);
-
-const qty = ref(1);
-
-const increaseQty = () => {
-    qty.value++;
-};
-
-const decreaseQty = () => {
-    if (qty.value > 1) {
-        qty.value--;
     }
-};
+})
+
+
+const cartProducts = computed(() => {
+
+    return Object.values(props.cart).map(item => ({
+        ...item,
+        qty: Number(item.qty ?? 1)
+    }))
+
+})
+
+
+const getImageUrl = (product) => {
+
+    if (product.type === 'trendy') {
+        return `/storage/trendyproducts/${product.image}`
+    }
+
+    if (product.type === 'justarrived') {
+        return `/storage/justarrived/${product.image}`
+    }
+
+    return `/storage/${product.image}`
+}
+
+const increaseQty = (product) => {
+
+    product.qty = Number(product.qty ?? 1) + 1
+
+    router.post('/update-cart-quantity', {
+        item_id: `${product.type}_${product.id}`,
+        qty: product.qty
+    }, {
+        preserveScroll: true,
+        preserveState: true
+    })
+}
+
+
+const decreaseQty = (product) => {
+
+    if (Number(product.qty) <= 1) {
+        return
+    }
+
+    product.qty = Number(product.qty) - 1
+
+    router.post('/update-cart-quantity', {
+        item_id: `${product.type}_${product.id}`,
+        qty: product.qty
+    }, {
+        preserveScroll: true,
+        preserveState: true
+    })
+}
+
 
 const totalPrice = computed(() => {
-    return Number(props.product?.prize ?? 0) * qty.value;
-});
 
+    return cartProducts.value.reduce((total, product) => {
+
+        const price = Number(product.prize ?? 0)
+        const qty = Number(product.qty ?? 1)
+
+        return total + (price * qty)
+
+    }, 0)
+
+})
+
+const finalTotal = computed(() => {
+
+    const subtotal = Number(totalPrice.value || 0)
+    const shipping = 10
+    const discount = Number(couponAmount.value || 0)
+
+    return Math.max(
+        0,
+        subtotal + shipping - discount
+    )
+
+})
 
 // coupon_code
 
@@ -344,12 +378,4 @@ const removeItem = (id, type) => {
         }
     );
 };
-
-const finalTotal = computed(() => {
-    const subtotal = Number(totalPrice.value || 0);
-    const shipping = 10;
-    const discount = Number(couponAmount.value || 0);
-
-    return Math.max(0, subtotal + shipping - discount);
-});
 </script>

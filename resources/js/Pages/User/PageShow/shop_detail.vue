@@ -82,17 +82,17 @@
                     <div class="d-flex align-items-center mb-4 pt-2">
                         <div class="input-group quantity mr-3" style="width: 130px;">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
+                                <button class="btn btn-primary btn-minus" @click="decreaseQty(product)">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control bg-secondary text-center" value="1">
+                            <input type="text" class="form-control bg-secondary text-center" :value="product.qty">
                             <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
+                                <button class="btn btn-primary btn-plus" @click="increaseQty(product)">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
-                        </div>
+                        </div> 
                         <Link :href="`/page/add_to_cart/product/${product.id}`">
                             <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
                                 Cart</button>
@@ -226,11 +226,7 @@
                     <swiper-slide v-for="item in allProducts" :key="`${item.product_type}-${item.id}`" class="pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div
-                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <!-- <img class="img-fluid w-100" :src="'/storage/' + item.product_thumbnail"
-                                    :alt="item.product_name"> -->
-                                <!-- <img :src="`/storage/${item.image_path}/${item.image}`" :alt="item.title"
-                                    class="img-fluid w-100"> -->
+                                class="card-header product-img position-relative overflow-hidden bg-transparent border p-0"> 
                                 <img :src="item.image_url" :alt="item.name" class="img-fluid w-100">
                             </div>
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
@@ -349,6 +345,30 @@ const allProducts = computed(() => [
     ...justArrived,
     ...normalProducts
 ]);
+
+
+const increaseQty = (product) => {
+    product.qty = Number(product.qty ?? 1) + 1
+    updateServer(product)
+}
+
+const decreaseQty = (product) => {
+    if (Number(product.qty) <= 1) {
+        return
+    }
+    product.qty = Number(product.qty) - 1
+    updateServer(product)
+}
+
+const updateServer = (product) => {
+    router.post('/update-cart-quantity', {
+        item_id: `${product.type}_${product.id}`,
+        qty: product.qty
+    }, {
+        preserveScroll: true,
+        preserveState: true
+    })
+}
 
 
 // review form
